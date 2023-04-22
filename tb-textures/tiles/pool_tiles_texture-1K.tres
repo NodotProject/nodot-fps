@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cnwlab80jwhpu"]
+
+[ext_resource type="Texture2D" uid="uid://dh648tctuhj5u" path="res://tb-textures/tiles/pool_tiles_texture-1K.jpg" id="1_8ndh5"]
+[ext_resource type="Texture2D" uid="uid://dxffik0emtrcr" path="res://tb-textures/tiles/pool_tiles_texture-1K/1K-pool_tiles-ao.jpg" id="2_fo2gw"]
+[ext_resource type="Texture2D" uid="uid://d12j8v4go2xsl" path="res://tb-textures/tiles/pool_tiles_texture-1K/1K-pool_tiles-normal.jpg" id="3_1i1xg"]
+
+[resource]
+albedo_texture = ExtResource("1_8ndh5")
+normal_enabled = true
+normal_texture = ExtResource("3_1i1xg")
+ao_enabled = true
+ao_texture = ExtResource("2_fo2gw")

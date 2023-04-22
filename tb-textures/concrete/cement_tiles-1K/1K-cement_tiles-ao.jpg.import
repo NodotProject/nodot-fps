@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c66jfksdbpmug"
-path.s3tc="res://.godot/imported/1K-concrete_9-ao.jpg-55bae29cb18e2d2ee10b19bd78aab11a.s3tc.ctex"
+uid="uid://boe1ikpo2ovg2"
+path.s3tc="res://.godot/imported/1K-cement_tiles-ao.jpg-e565dbc2fab592c5b10805834caa5f3e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://tb-textures/concrete/dark_concrete_11-1K/1K-concrete_9-ao.jpg"
-dest_files=["res://.godot/imported/1K-concrete_9-ao.jpg-55bae29cb18e2d2ee10b19bd78aab11a.s3tc.ctex"]
+source_file="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-ao.jpg"
+dest_files=["res://.godot/imported/1K-cement_tiles-ao.jpg-e565dbc2fab592c5b10805834caa5f3e.s3tc.ctex"]
 
 [params]
 
@@ -24,8 +24,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
-roughness/src_normal="res://tb-textures/concrete/dark_concrete_11-1K/1K-concrete_9-normal.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
