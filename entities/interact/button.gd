@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends Entity
 
 @export var fgd_solid = true
 
@@ -9,3 +9,8 @@ func _enter_tree():
   box_shape.size = mesh.get_aabb().size
   collision_shape.shape = box_shape
   add_child(collision_shape)
+
+func interact():
+  var target = get_target(target)
+  if target and target.has_method("action"):
+    target.action()

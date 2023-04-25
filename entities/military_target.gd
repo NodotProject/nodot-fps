@@ -1,8 +1,10 @@
 extends StaticBody3D
 
+@export var target: String
+@export var targetname: String
 @export var fgd_model = {
   "path": "models/MilitaryTarget.fbx",
-  "scale": 0.2
+  "scale": 0.15
 }
 
 @onready var health: Health = $Health

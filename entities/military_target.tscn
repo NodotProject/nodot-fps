@@ -91,7 +91,7 @@ shape = SubResource("ConcavePolygonShape3D_i0qkb")
 script = ExtResource("7_kew50")
 
 [node name="TextEmitter" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925091, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36509, 0)
 script = ExtResource("7_3etbd")
 font_color = Color(1, 0, 0, 1)
 font_size = 14

@@ -9,6 +9,7 @@ albedo_color = Color(0.32549, 0.32549, 0.32549, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8fub"]
 emission_enabled = true
 emission = Color(0.682353, 0.682353, 0.682353, 1)
+emission_energy_multiplier = 11.06
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wortb"]
 material = SubResource("StandardMaterial3D_f8fub")
@@ -28,8 +29,8 @@ mesh = ExtResource("1_5fu81")
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.271843, 0)
 mesh = SubResource("CylinderMesh_wortb")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285487, 0)
-light_energy = 12.68
-light_size = 0.292
-omni_range = 10.996
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_energy = 3.377
+spot_range = 15.645
+spot_angle = 79.53

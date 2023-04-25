@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hv5hu6l3rxoc"]
+
+[ext_resource type="Script" path="res://entities/interact/button.gd" id="1_yvdyk"]
+
+[node name="button" type="StaticBody3D"]
+script = ExtResource("1_yvdyk")

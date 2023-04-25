@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://entities/brushes/glass.gd" id="1_2hwy0"]
 
-[node name="glass" type="Node3D"]
+[node name="glass" type="StaticBody3D"]
 script = ExtResource("1_2hwy0")
