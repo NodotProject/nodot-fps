@@ -1,0 +1,2 @@
+extends StaticBreakable3D
+

@@ -1,6 +1,7 @@
 extends Entity
 
 @export var fgd_solid = true
+@export var label_text: String = "Press E to interact"
 
 func _enter_tree():
   var collision_shape = CollisionShape3D.new()
@@ -11,6 +12,9 @@ func _enter_tree():
   add_child(collision_shape)
 
 func interact():
-  var target = get_target(target)
-  if target and target.has_method("action"):
-    target.action()
+  var new_target = get_target(target)
+  if new_target and new_target.has_method("action"):
+    new_target.action()
+
+func label():
+  return label_text

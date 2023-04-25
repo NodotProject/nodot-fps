@@ -6,5 +6,5 @@ class_name Entity extends Node3D
 func get_target(target_name: String):
   var siblings = get_parent().get_children()
   for item in siblings:
-    if item.targetname == target_name:
+    if "targetname" in item and item.targetname == target_name:
       return item

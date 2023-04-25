@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://b16yeyarw2ht2"]
 
-[ext_resource type="Script" path="res://addons/nodot/interaction/StaticBreakable3D.gd" id="1_hpdmj"]
-[ext_resource type="Texture2D" uid="uid://c55rww1pcxmui" path="res://examples/fps/materials/Base Color_Barrel.png" id="2_yfobb"]
+[ext_resource type="Script" path="res://entities/breakables/barrel.gd" id="1_0v54u"]
+[ext_resource type="Texture2D" uid="uid://c55rww1pcxmui" path="res://textures/Base Color_Barrel.png" id="2_yfobb"]
 [ext_resource type="Script" path="res://addons/nodot/interaction/Health.gd" id="5_esyxo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itxl2"]
@@ -157,7 +157,7 @@ shadow_mesh = SubResource("ArrayMesh_arnab")
 points = PackedVector3Array(0.089606, 0.00397291, 0.320079, -0.0384, 0.38815, -0.41035, -0.0386174, 0.440555, -0.412673, -0.412697, 0.466316, 0.0386197, 0.378508, 0.487024, 0.163957, 0.127721, 0.0172577, -0.332106, -0.332126, 0.0172921, -0.127649, -0.166649, 0.452225, 0.384536, -0.255383, 0.0301344, 0.255383, 0.345431, 0.0552911, -0.115117, 0.166185, 0.502988, -0.383652, -0.384202, 0.490535, -0.166424, 0.038217, 0.476445, 0.407542, 0.268162, 0.0173318, 0.229841, 0.384151, 0.490503, -0.166401, -0.153296, 0.0555751, -0.332129, -0.378808, 0.487208, 0.164087, 0.165573, 0.387309, 0.382238, -0.296281, 0.46609, -0.296281, -0.0127547, 0.0294964, 0.358495, -0.332195, 0.0172433, 0.127675, 0.292063, 0.348745, -0.292063, 0.358498, 0.029543, 0.0127548, -0.104051, -5.55112e-17, -0.312072, 0.173404, 0.513822, -0.333599, 0.254495, 0.00550145, -0.216305, 0.409094, 0.336592, -0.0127341, 0.307496, 0.452108, 0.281812, 0.37121, 0.259928, 0.153568, -0.292104, 0.348759, 0.292104, -0.396356, 0.24723, -0.0127366, -0.104051, 0, 0.312072)
 
 [node name="StaticBreakable3D" type="StaticBody3D" node_paths=PackedStringArray("replacement_node")]
-script = ExtResource("1_hpdmj")
+script = ExtResource("1_0v54u")
 replacement_node = NodePath("OnBreak")
 
 [node name="Barrel" type="MeshInstance3D" parent="."]
