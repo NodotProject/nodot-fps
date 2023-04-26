@@ -9,8 +9,6 @@ class_name WaterArea3D extends Area3D
 @export var tidal_direction: Vector3 = Vector3.ZERO
 ## How hard to push the objects
 @export var tidal_force: float = 0.0
-@export var water_drag: float = 0.05
-@export var water_angular_drag: float = 0.05
 # TODO: Fix probes logic
 # @export var force_probes: int = 9
 
@@ -25,11 +23,10 @@ var body_tracker: Array[RigidBody3D] = []
 # An array of vector3 arrays
 # var probe_tracker = []
 
-#var water_drag: float = 0.05
-#var water_angular_drag: float = 0.05
-var material: ShaderMaterial
-
 # Used to simulate the waves in gdscript
+var water_drag: float = 0.05
+var water_angular_drag: float = 0.05
+var material: ShaderMaterial
 var noise: Image
 var noise_scale: float
 var wave_speed: float
