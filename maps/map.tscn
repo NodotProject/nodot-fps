@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://cuaeq8t4wxbwb"]
+[gd_scene load_steps=126 format=3 uid="uid://cuaeq8t4wxbwb"]
 
 [ext_resource type="PackedScene" uid="uid://dv6pyhevccscg" path="res://scenes/player.tscn" id="1_iyh1t"]
 [ext_resource type="Material" uid="uid://dqgpj6utkhhck" path="res://tb-textures/concrete/dark_concrete_11-1K.tres" id="2_li0da"]
@@ -13,22 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://fh4qljqxtno0" path="res://tb-textures/prototype/Orange/texture_08.png" id="11_rgbp1"]
 [ext_resource type="Texture2D" uid="uid://cckhcd6syq0j7" path="res://tb-textures/prototype/Light/texture_11.png" id="12_ju4wn"]
 [ext_resource type="PackedScene" uid="uid://c4ii2vr8tjhcq" path="res://entities/brushes/glass.tscn" id="13_75kyc"]
-[ext_resource type="Script" path="res://entities/brushes/glass.gd" id="14_l2jgg"]
 [ext_resource type="Material" uid="uid://drb4xujx7lqfs" path="res://tb-textures/utilities/glass.tres" id="15_bnlh0"]
 [ext_resource type="PackedScene" uid="uid://dkqylgy3hxgid" path="res://entities/lighting/lamp.tscn" id="16_3cxbw"]
-[ext_resource type="Script" path="res://entities/lighting/lamp.gd" id="17_f5q4l"]
 [ext_resource type="PackedScene" uid="uid://dqsar57406ve3" path="res://entities/military_target.tscn" id="18_g3y4e"]
-[ext_resource type="Script" path="res://entities/military_target.gd" id="19_wqdui"]
 [ext_resource type="PackedScene" uid="uid://hv5hu6l3rxoc" path="res://entities/interact/button.tscn" id="20_nhfrh"]
-[ext_resource type="Script" path="res://entities/interact/button.gd" id="21_big0l"]
 [ext_resource type="PackedScene" uid="uid://edj3hy1lebxn" path="res://entities/utility/position.tscn" id="22_5irki"]
-[ext_resource type="Script" path="res://entities/utility/position.gd" id="23_2bh8p"]
+[ext_resource type="PackedScene" uid="uid://dau58yv77qyvu" path="res://scenes/environment/water/pool.tscn" id="22_qowoq"]
 [ext_resource type="PackedScene" uid="uid://hme8qon3s6fl" path="res://entities/breakables/jar.tscn" id="24_16uco"]
-[ext_resource type="Script" path="res://entities/breakables/jar.gd" id="25_lmq2b"]
 [ext_resource type="PackedScene" uid="uid://dgh8b72jwbv11" path="res://entities/breakables/crate.tscn" id="26_6dxsi"]
 [ext_resource type="Script" path="res://addons/nodot/interaction/RigidBreakable3D.gd" id="27_i680h"]
-[ext_resource type="Script" path="res://addons/nodot/physics/WaterArea3D.gd" id="28_8j0i6"]
-[ext_resource type="Material" uid="uid://ck4ea8jnulenl" path="res://addons/nodot/shaders/clean_water.tres" id="29_pq03k"]
 [ext_resource type="Texture2D" uid="uid://cu6kia41gqmw2" path="res://textures/skybox/sunset.png" id="30_i2bc1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aimy6"]
@@ -900,16 +893,6 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_toyuf"]
 data = PackedVector3Array(-0.125, 0.0625, -0.125, -0.125, -0.0625, -0.125, 0.125, -0.0625, -0.125, -0.125, 0.0625, -0.125, 0.125, -0.0625, -0.125, 0.125, 0.0625, -0.125, -0.125, 0.0625, -0.125, -0.125, 0.0625, 0.125, -0.125, -0.0625, 0.125, -0.125, 0.0625, -0.125, -0.125, -0.0625, 0.125, -0.125, -0.0625, -0.125, 0.125, -0.0625, -0.125, -0.125, -0.0625, -0.125, -0.125, -0.0625, 0.125, 0.125, -0.0625, -0.125, -0.125, -0.0625, 0.125, 0.125, -0.0625, 0.125, 0.125, 0.0625, -0.125, 0.125, 0.0625, 0.125, -0.125, 0.0625, 0.125, 0.125, 0.0625, -0.125, -0.125, 0.0625, 0.125, -0.125, 0.0625, -0.125, 0.125, 0.0625, -0.125, 0.125, -0.0625, -0.125, 0.125, -0.0625, 0.125, 0.125, 0.0625, -0.125, 0.125, -0.0625, 0.125, 0.125, 0.0625, 0.125, -0.125, 0.0625, 0.125, 0.125, 0.0625, 0.125, 0.125, -0.0625, 0.125, -0.125, 0.0625, 0.125, 0.125, -0.0625, 0.125, -0.125, -0.0625, 0.125)
 
-[sub_resource type="FogMaterial" id="FogMaterial_82joo"]
-density = 0.0383
-
-[sub_resource type="FogMaterial" id="FogMaterial_ckch5"]
-density = 0.2768
-albedo = Color(0.568627, 0.929412, 0.956863, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_r317c"]
-size = Vector3(43, 4, 20)
-
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_llv6f"]
 panorama = ExtResource("30_i2bc1")
 
@@ -919,7 +902,12 @@ sky_material = SubResource("PanoramaSkyMaterial_llv6f")
 [sub_resource type="Environment" id="Environment_derty"]
 background_mode = 2
 sky = SubResource("Sky_vmvcp")
+ambient_light_source = 3
+reflected_light_source = 2
 sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.84
+sdfgi_cascades = 6
+sdfgi_energy = 2.361
 fog_light_energy = 0.65
 fog_sun_scatter = 0.02
 fog_density = 0.0028
@@ -933,7 +921,7 @@ volumetric_fog_sky_affect = 0.257
 [node name="map" type="Node3D"]
 
 [node name="FirstPersonCharacterBody3D" parent="." instance=ExtResource("1_iyh1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.3597, -12.8246)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.9998, -12.8246)
 
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://maps/playarea.map"
@@ -950,9 +938,8 @@ mesh = SubResource("ArrayMesh_swvv4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_dp48v")
 
-[node name="glass" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="glass" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 3, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_1_geometry" type="MeshInstance3D" parent="TBLoader/glass"]
 mesh = SubResource("ArrayMesh_docxv")
@@ -960,9 +947,8 @@ mesh = SubResource("ArrayMesh_docxv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/glass"]
 shape = SubResource("ConcavePolygonShape3D_4eumu")
 
-[node name="@glass@191413" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191413" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 3, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_2_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191413"]
 mesh = SubResource("ArrayMesh_n0r0h")
@@ -970,9 +956,8 @@ mesh = SubResource("ArrayMesh_n0r0h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191413"]
 shape = SubResource("ConcavePolygonShape3D_slb4o")
 
-[node name="@glass@191415" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191415" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 3, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_3_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191415"]
 mesh = SubResource("ArrayMesh_uajun")
@@ -980,9 +965,8 @@ mesh = SubResource("ArrayMesh_uajun")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191415"]
 shape = SubResource("ConcavePolygonShape3D_vc7dg")
 
-[node name="@glass@191417" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191417" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_4_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191417"]
 mesh = SubResource("ArrayMesh_fltmh")
@@ -990,9 +974,8 @@ mesh = SubResource("ArrayMesh_fltmh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191417"]
 shape = SubResource("ConcavePolygonShape3D_8uu6x")
 
-[node name="@glass@191419" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191419" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_5_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191419"]
 mesh = SubResource("ArrayMesh_ckvtf")
@@ -1000,9 +983,8 @@ mesh = SubResource("ArrayMesh_ckvtf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191419"]
 shape = SubResource("ConcavePolygonShape3D_lo24n")
 
-[node name="@glass@191421" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191421" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_6_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191421"]
 mesh = SubResource("ArrayMesh_lngmu")
@@ -1010,9 +992,8 @@ mesh = SubResource("ArrayMesh_lngmu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191421"]
 shape = SubResource("ConcavePolygonShape3D_5fa7e")
 
-[node name="@glass@191423" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191423" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 3, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_7_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191423"]
 mesh = SubResource("ArrayMesh_i7a4s")
@@ -1020,9 +1001,8 @@ mesh = SubResource("ArrayMesh_i7a4s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191423"]
 shape = SubResource("ConcavePolygonShape3D_rkjw0")
 
-[node name="@glass@191425" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191425" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 3, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_8_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191425"]
 mesh = SubResource("ArrayMesh_6opow")
@@ -1030,9 +1010,8 @@ mesh = SubResource("ArrayMesh_6opow")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191425"]
 shape = SubResource("ConcavePolygonShape3D_ibww7")
 
-[node name="@glass@191427" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191427" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 3, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_9_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191427"]
 mesh = SubResource("ArrayMesh_ce44t")
@@ -1040,9 +1019,8 @@ mesh = SubResource("ArrayMesh_ce44t")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191427"]
 shape = SubResource("ConcavePolygonShape3D_jcdiy")
 
-[node name="@glass@191429" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191429" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 9.5, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_10_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191429"]
 mesh = SubResource("ArrayMesh_3crsv")
@@ -1050,9 +1028,8 @@ mesh = SubResource("ArrayMesh_3crsv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191429"]
 shape = SubResource("ConcavePolygonShape3D_eu123")
 
-[node name="@glass@191431" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191431" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 9.5, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_11_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191431"]
 mesh = SubResource("ArrayMesh_l4lvf")
@@ -1060,9 +1037,8 @@ mesh = SubResource("ArrayMesh_l4lvf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191431"]
 shape = SubResource("ConcavePolygonShape3D_kqveq")
 
-[node name="@glass@191433" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191433" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 9.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_12_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191433"]
 mesh = SubResource("ArrayMesh_3vq8c")
@@ -1070,9 +1046,8 @@ mesh = SubResource("ArrayMesh_3vq8c")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191433"]
 shape = SubResource("ConcavePolygonShape3D_ota0w")
 
-[node name="@glass@191435" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191435" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 9.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_13_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191435"]
 mesh = SubResource("ArrayMesh_wqg3s")
@@ -1080,9 +1055,8 @@ mesh = SubResource("ArrayMesh_wqg3s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191435"]
 shape = SubResource("ConcavePolygonShape3D_wpdc0")
 
-[node name="@glass@191437" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191437" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_14_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191437"]
 mesh = SubResource("ArrayMesh_o7pnj")
@@ -1090,9 +1064,8 @@ mesh = SubResource("ArrayMesh_o7pnj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191437"]
 shape = SubResource("ConcavePolygonShape3D_1eu5w")
 
-[node name="@glass@191439" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191439" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 9.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_15_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191439"]
 mesh = SubResource("ArrayMesh_ybglv")
@@ -1100,9 +1073,8 @@ mesh = SubResource("ArrayMesh_ybglv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191439"]
 shape = SubResource("ConcavePolygonShape3D_n8gki")
 
-[node name="@glass@191441" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191441" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 9.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_16_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191441"]
 mesh = SubResource("ArrayMesh_b7e2x")
@@ -1110,9 +1082,8 @@ mesh = SubResource("ArrayMesh_b7e2x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191441"]
 shape = SubResource("ConcavePolygonShape3D_cfjhv")
 
-[node name="@glass@191443" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191443" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 9.5, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_17_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191443"]
 mesh = SubResource("ArrayMesh_tiso0")
@@ -1120,9 +1091,8 @@ mesh = SubResource("ArrayMesh_tiso0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191443"]
 shape = SubResource("ConcavePolygonShape3D_1kky8")
 
-[node name="@glass@191445" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191445" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 9.5, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_18_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191445"]
 mesh = SubResource("ArrayMesh_kqc8k")
@@ -1130,9 +1100,8 @@ mesh = SubResource("ArrayMesh_kqc8k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191445"]
 shape = SubResource("ConcavePolygonShape3D_yjwcm")
 
-[node name="@glass@191447" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191447" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 15.5, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_19_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191447"]
 mesh = SubResource("ArrayMesh_4soge")
@@ -1140,9 +1109,8 @@ mesh = SubResource("ArrayMesh_4soge")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191447"]
 shape = SubResource("ConcavePolygonShape3D_nxchj")
 
-[node name="@glass@191449" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191449" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 15.5, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_20_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191449"]
 mesh = SubResource("ArrayMesh_vmjf8")
@@ -1150,9 +1118,8 @@ mesh = SubResource("ArrayMesh_vmjf8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191449"]
 shape = SubResource("ConcavePolygonShape3D_w6mdm")
 
-[node name="@glass@191451" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191451" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 15.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_21_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191451"]
 mesh = SubResource("ArrayMesh_r4itc")
@@ -1160,9 +1127,8 @@ mesh = SubResource("ArrayMesh_r4itc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191451"]
 shape = SubResource("ConcavePolygonShape3D_nee67")
 
-[node name="@glass@191453" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191453" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 15.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_22_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191453"]
 mesh = SubResource("ArrayMesh_dgdke")
@@ -1170,9 +1136,8 @@ mesh = SubResource("ArrayMesh_dgdke")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191453"]
 shape = SubResource("ConcavePolygonShape3D_uy0a2")
 
-[node name="@glass@191455" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191455" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 15.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_23_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191455"]
 mesh = SubResource("ArrayMesh_0snfm")
@@ -1180,9 +1145,8 @@ mesh = SubResource("ArrayMesh_0snfm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191455"]
 shape = SubResource("ConcavePolygonShape3D_ykfdr")
 
-[node name="@glass@191457" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191457" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 15.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_24_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191457"]
 mesh = SubResource("ArrayMesh_gkahy")
@@ -1190,9 +1154,8 @@ mesh = SubResource("ArrayMesh_gkahy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191457"]
 shape = SubResource("ConcavePolygonShape3D_llwty")
 
-[node name="@glass@191459" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191459" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 15.5, -23.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_25_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191459"]
 mesh = SubResource("ArrayMesh_kkr11")
@@ -1200,9 +1163,8 @@ mesh = SubResource("ArrayMesh_kkr11")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191459"]
 shape = SubResource("ConcavePolygonShape3D_wb16h")
 
-[node name="@glass@191461" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191461" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 15.5, -19)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_26_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191461"]
 mesh = SubResource("ArrayMesh_1kmt1")
@@ -1210,9 +1172,8 @@ mesh = SubResource("ArrayMesh_1kmt1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191461"]
 shape = SubResource("ConcavePolygonShape3D_l612e")
 
-[node name="@glass@191463" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191463" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 15.5, -9)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_27_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191463"]
 mesh = SubResource("ArrayMesh_tvakw")
@@ -1220,9 +1181,8 @@ mesh = SubResource("ArrayMesh_tvakw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191463"]
 shape = SubResource("ConcavePolygonShape3D_8xsgo")
 
-[node name="@glass@191465" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191465" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 15.5, 1)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_28_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191465"]
 mesh = SubResource("ArrayMesh_6vnmp")
@@ -1230,9 +1190,8 @@ mesh = SubResource("ArrayMesh_6vnmp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191465"]
 shape = SubResource("ConcavePolygonShape3D_q1sk0")
 
-[node name="@glass@191467" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191467" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 15.5, 11)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_29_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191467"]
 mesh = SubResource("ArrayMesh_c4a38")
@@ -1240,9 +1199,8 @@ mesh = SubResource("ArrayMesh_c4a38")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191467"]
 shape = SubResource("ConcavePolygonShape3D_1gi3p")
 
-[node name="@glass@191469" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191469" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 15.5, 18.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_30_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191469"]
 mesh = SubResource("ArrayMesh_8jjtr")
@@ -1250,9 +1208,8 @@ mesh = SubResource("ArrayMesh_8jjtr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191469"]
 shape = SubResource("ConcavePolygonShape3D_yxjhu")
 
-[node name="@glass@191471" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191471" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 15.5, 20.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_31_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191471"]
 mesh = SubResource("ArrayMesh_736wq")
@@ -1260,9 +1217,8 @@ mesh = SubResource("ArrayMesh_736wq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191471"]
 shape = SubResource("ConcavePolygonShape3D_ui8bi")
 
-[node name="@glass@191473" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191473" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 15.5, 20.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_32_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191473"]
 mesh = SubResource("ArrayMesh_cobdw")
@@ -1270,9 +1226,8 @@ mesh = SubResource("ArrayMesh_cobdw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191473"]
 shape = SubResource("ConcavePolygonShape3D_ep0xr")
 
-[node name="@glass@191475" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191475" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 15.5, 20.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_33_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191475"]
 mesh = SubResource("ArrayMesh_ugl8l")
@@ -1280,9 +1235,8 @@ mesh = SubResource("ArrayMesh_ugl8l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191475"]
 shape = SubResource("ConcavePolygonShape3D_7rx28")
 
-[node name="@glass@191477" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191477" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 15.5, 20.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_34_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191477"]
 mesh = SubResource("ArrayMesh_tj585")
@@ -1290,9 +1244,8 @@ mesh = SubResource("ArrayMesh_tj585")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191477"]
 shape = SubResource("ConcavePolygonShape3D_iib2b")
 
-[node name="@glass@191479" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191479" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 15.5, 20.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_35_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191479"]
 mesh = SubResource("ArrayMesh_11muy")
@@ -1300,9 +1253,8 @@ mesh = SubResource("ArrayMesh_11muy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191479"]
 shape = SubResource("ConcavePolygonShape3D_1uju5")
 
-[node name="@glass@191481" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191481" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 15.5, 18.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_36_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191481"]
 mesh = SubResource("ArrayMesh_vcyxn")
@@ -1310,9 +1262,8 @@ mesh = SubResource("ArrayMesh_vcyxn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191481"]
 shape = SubResource("ConcavePolygonShape3D_aaier")
 
-[node name="@glass@191483" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191483" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 15.5, 1)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_37_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191483"]
 mesh = SubResource("ArrayMesh_oko8i")
@@ -1320,9 +1271,8 @@ mesh = SubResource("ArrayMesh_oko8i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191483"]
 shape = SubResource("ConcavePolygonShape3D_teq6t")
 
-[node name="@glass@191485" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191485" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 15.5, 11)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_38_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191485"]
 mesh = SubResource("ArrayMesh_akyt5")
@@ -1330,9 +1280,8 @@ mesh = SubResource("ArrayMesh_akyt5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191485"]
 shape = SubResource("ConcavePolygonShape3D_obksx")
 
-[node name="@glass@191487" type="StaticBody3D" parent="TBLoader" instance=ExtResource("13_75kyc")]
+[node name="@glass@191487" parent="TBLoader" instance=ExtResource("13_75kyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9.5, -1.5)
-script = ExtResource("14_l2jgg")
 
 [node name="entity_39_geometry" type="MeshInstance3D" parent="TBLoader/@glass@191487"]
 mesh = SubResource("ArrayMesh_prwro")
@@ -1340,67 +1289,55 @@ mesh = SubResource("ArrayMesh_prwro")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@glass@191487"]
 shape = SubResource("ConcavePolygonShape3D_66lym")
 
-[node name="lamp" type="Node3D" parent="TBLoader" instance=ExtResource("16_3cxbw")]
+[node name="lamp" parent="TBLoader" instance=ExtResource("16_3cxbw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.25, 5.75, 17.75)
-script = ExtResource("17_f5q4l")
 
-[node name="@lamp@191489" type="Node3D" parent="TBLoader" instance=ExtResource("16_3cxbw")]
+[node name="@lamp@191489" parent="TBLoader" instance=ExtResource("16_3cxbw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.25, 5.75, 17.75)
-script = ExtResource("17_f5q4l")
 
-[node name="@lamp@191490" type="Node3D" parent="TBLoader" instance=ExtResource("16_3cxbw")]
+[node name="@lamp@191490" parent="TBLoader" instance=ExtResource("16_3cxbw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.25, 5.75, 17.75)
-script = ExtResource("17_f5q4l")
 
-[node name="@lamp@191491" type="Node3D" parent="TBLoader" instance=ExtResource("16_3cxbw")]
+[node name="@lamp@191491" parent="TBLoader" instance=ExtResource("16_3cxbw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.75, 5.75, 17.75)
-script = ExtResource("17_f5q4l")
 
-[node name="military_target_1" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_1" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 15.25, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_1"
 targetname = "military_target_1"
 
-[node name="military_target_2" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_2" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 9.25, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_2"
 targetname = "military_target_2"
 
-[node name="military_target_5" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_5" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -8.75, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_5"
 targetname = "military_target_5"
 
-[node name="military_target_4" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_4" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2.75, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_4"
 targetname = "military_target_4"
 
-[node name="military_target_7" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_7" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -20.75, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_7"
 targetname = "military_target_7"
 
-[node name="military_target_3" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_3" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 3.25, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_3"
 targetname = "military_target_3"
 
-[node name="military_target_6" type="Node3D" parent="TBLoader" instance=ExtResource("18_g3y4e")]
+[node name="military_target_6" parent="TBLoader" instance=ExtResource("18_g3y4e")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -14.75, 1, 18.75)
-script = ExtResource("19_wqdui")
 target = "military_forward_6"
 targetname = "military_target_6"
 
-[node name="button" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="button" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.25, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_1"
 
@@ -1410,9 +1347,8 @@ mesh = SubResource("ArrayMesh_nn51r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/button"]
 shape = SubResource("ConcavePolygonShape3D_a7rgq")
 
-[node name="@button@191493" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191493" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_2"
 
@@ -1422,9 +1358,8 @@ mesh = SubResource("ArrayMesh_54fug")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191493"]
 shape = SubResource("ConcavePolygonShape3D_y8yly")
 
-[node name="@button@191495" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191495" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_3"
 
@@ -1434,9 +1369,8 @@ mesh = SubResource("ArrayMesh_nqmg3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191495"]
 shape = SubResource("ConcavePolygonShape3D_b3ehj")
 
-[node name="@button@191497" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191497" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_4"
 
@@ -1446,9 +1380,8 @@ mesh = SubResource("ArrayMesh_aqmrv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191497"]
 shape = SubResource("ConcavePolygonShape3D_1w0fr")
 
-[node name="@button@191499" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191499" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_5"
 
@@ -1458,9 +1391,8 @@ mesh = SubResource("ArrayMesh_7y23x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191499"]
 shape = SubResource("ConcavePolygonShape3D_ci80m")
 
-[node name="@button@191501" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191501" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_6"
 
@@ -1470,9 +1402,8 @@ mesh = SubResource("ArrayMesh_mge1g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191501"]
 shape = SubResource("ConcavePolygonShape3D_bgtri")
 
-[node name="@button@191503" type="StaticBody3D" parent="TBLoader" instance=ExtResource("20_nhfrh")]
+[node name="@button@191503" parent="TBLoader" instance=ExtResource("20_nhfrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.75, 1.0625, -4.5)
-script = ExtResource("21_big0l")
 label_text = "Press E to reset target"
 target = "military_target_7"
 
@@ -1482,164 +1413,73 @@ mesh = SubResource("ArrayMesh_kx6mq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/@button@191503"]
 shape = SubResource("ConcavePolygonShape3D_toyuf")
 
-[node name="military_forward_1" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_1" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.25, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_1"
 
-[node name="military_forward_2" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_2" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.25, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_2"
 
-[node name="military_forward_3" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_3" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_3"
 
-[node name="military_forward_4" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_4" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.75, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_4"
 
-[node name="military_forward_5" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_5" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.75, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_5"
 
-[node name="military_forward_6" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_6" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.75, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_6"
 
-[node name="military_forward_7" type="Node3D" parent="TBLoader" instance=ExtResource("22_5irki")]
+[node name="military_forward_7" parent="TBLoader" instance=ExtResource("22_5irki")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -20.75, 0.75, -0.75)
-script = ExtResource("23_2bh8p")
 targetname = "military_forward_7"
 
-[node name="Breakable_Jar" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="Breakable_Jar" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, -0.5)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191505" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191505" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 2.5)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191506" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191506" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 5.75)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="Breakable_Crates" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("26_6dxsi")]
+[node name="Breakable_Crates" parent="TBLoader" instance=ExtResource("26_6dxsi")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 8.75)
 script = ExtResource("27_i680h")
-replacement_node = NodePath("ReplaceWith")
 
-[node name="@Breakable_Jar@191507" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191507" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 14.75, 8.75)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191508" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191508" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 11)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191509" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191509" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 13.5)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191510" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191510" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.25, 13.25, 19)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191511" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191511" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.25, 13.25, 17.75)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191512" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191512" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.25, 13.25, 18.25)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
 
-[node name="@Breakable_Jar@191513" type="RigidBody3D" parent="TBLoader" node_paths=PackedStringArray("replacement_node") instance=ExtResource("24_16uco")]
+[node name="@Breakable_Jar@191513" parent="TBLoader" instance=ExtResource("24_16uco")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.5, 13.25, 19.5)
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("25_lmq2b")
-replacement_node = NodePath("ReplaceMe")
-explosion_force = 2.0
-environmental_damage = 2.0
+
+[node name="Pool" parent="." instance=ExtResource("22_qowoq")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9349, 0.354911, 0, -0.354911, 0.9349, 0, 13.8435, 57.1454)
-
-[node name="Pool" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12234, 10.6827, 8.4027)
-gravity_space_override = 3
-gravity_point_center = Vector3(0, 0, 0)
-gravity_direction = Vector3(0, 0, 0)
-script = ExtResource("28_8j0i6")
-water_shader = ExtResource("29_pq03k")
-float_force = 0.712
-tidal_direction = Vector3(-1, 0, 0)
-tidal_force = 4.0
-water_drag = 0.535
-water_angular_drag = 0.445
-
-[node name="FogVolume" type="FogVolume" parent="Pool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.85218, 0)
-size = Vector3(43, 4, 19)
-material = SubResource("FogMaterial_82joo")
-
-[node name="FogVolume2" type="FogVolume" parent="Pool"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-size = Vector3(43, 5, 19)
-material = SubResource("FogMaterial_ckch5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pool"]
-shape = SubResource("BoxShape3D_r317c")
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_derty")

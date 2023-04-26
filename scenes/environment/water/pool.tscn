@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://dau58yv77qyvu"]
+
+[ext_resource type="Script" path="res://scenes/environment/water/pool.gd" id="1_cor75"]
+[ext_resource type="Script" path="res://addons/nodot/utility/SignalConnector.gd" id="2_061ev"]
+[ext_resource type="Material" uid="uid://ck4ea8jnulenl" path="res://addons/nodot/shaders/clean_water.tres" id="2_cag3d"]
+[ext_resource type="Script" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="3_bikea"]
+[ext_resource type="AudioStream" uid="uid://br7ky4lkvg82r" path="res://sfx/environmental/water/splash.mp3" id="4_pa8gy"]
+[ext_resource type="AudioStream" uid="uid://bk5c7mcsospo8" path="res://sfx/environmental/water/splash2.mp3" id="5_qo7xa"]
+[ext_resource type="AudioStream" uid="uid://wc62ojykywyn" path="res://sfx/environmental/water/splash3.mp3" id="6_vmroc"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_82joo"]
+density = 0.0094
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_ckch5"]
+density = 0.2768
+albedo = Color(0.568627, 0.929412, 0.956863, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r317c"]
+margin = 0.0
+size = Vector3(43, 5, 20)
+
+[node name="Pool" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.122, 10.081, 8.403)
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+script = ExtResource("1_cor75")
+water_shader = ExtResource("2_cag3d")
+float_force = 3.0
+tidal_direction = Vector3(-1, 0, 0)
+tidal_force = 3.0
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.605, 0)
+size = Vector3(43, 4, 20)
+material = SubResource("FogMaterial_82joo")
+
+[node name="FogVolume2" type="FogVolume" parent="."]
+size = Vector3(43, 5, 20)
+material = SubResource("FogMaterial_ckch5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_r317c")
+
+[node name="SignalConnector" type="Node" parent="." node_paths=PackedStringArray("trigger_node", "target_node")]
+script = ExtResource("2_061ev")
+trigger_node = NodePath("..")
+trigger_signal = "body_entered"
+target_node = NodePath("..")
+target_method = "move_sfx"
+
+[node name="SplashSFX" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("trigger_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12234, -10.6827, -8.4027)
+script = ExtResource("3_bikea")
+sfx = Array[AudioStream]([ExtResource("4_pa8gy"), ExtResource("5_qo7xa"), ExtResource("6_vmroc")])
+trigger_node = NodePath("..")
+trigger_signal = "body_entered"
+unbind_count = 1
