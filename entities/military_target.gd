@@ -6,18 +6,18 @@ extends Entity
 }
 
 func _ready():
-  var target_node_position = get_target(target).global_position
-  if target_node_position:
-    $Mover3D.destination_position = target_node_position
+	var target_node_position = get_target(target).global_position
+	if target_node_position:
+		$Mover3D.destination_position = target_node_position
 
 func _on_health_health_changed(old_health, new_health):
-  $TextEmitter.action(str(round(new_health - old_health)))
+	$TextEmitter.action(str(round(new_health - old_health)))
 
 func _on_health_health_depleted():
-  $Mover3D.activate()
+	$Mover3D.activate()
 
 func _on_health_health_gained(_old_health, _new_health):
-  $Mover3D.deactivate()
+	$Mover3D.deactivate()
 
 func action():
-  $MilitaryTarget/Health.set_health(100)
+	$MilitaryTarget/Health.set_health(100)

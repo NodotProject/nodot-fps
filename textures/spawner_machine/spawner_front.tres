@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dg5hnnmrqsjoj"]
+
+[ext_resource type="Texture2D" uid="uid://dm4vij8t1pt1n" path="res://textures/spawner_machine/laboratory_machine_(1628544074)_Base_color.png" id="1_tpdd7"]
+[ext_resource type="Texture2D" uid="uid://chfd4ljrgmbaa" path="res://textures/spawner_machine/laboratory_machine_(1628544074)_Mixed_AO.png" id="2_uhj1p"]
+[ext_resource type="Texture2D" uid="uid://dqcqe3p6e23py" path="res://textures/spawner_machine/laboratory_machine_(1628544074)_Height.png" id="3_x4jkj"]
+[ext_resource type="Texture2D" uid="uid://cvklqbo3y5cvs" path="res://textures/spawner_machine/laboratory_machine_(1628544074)_Metallic.png" id="4_5msv7"]
+[ext_resource type="Texture2D" uid="uid://ds0v2fjpoyh07" path="res://textures/spawner_machine/laboratory_machine_(1628544074)_Roughness.png" id="5_xgkh2"]
+
+[resource]
+albedo_texture = ExtResource("1_tpdd7")
+metallic = 1.0
+metallic_specular = 0.41
+metallic_texture = ExtResource("4_5msv7")
+roughness_texture = ExtResource("5_xgkh2")
+normal_enabled = true
+normal_texture = ExtResource("5_xgkh2")
+ao_enabled = true
+ao_texture = ExtResource("2_uhj1p")
+heightmap_enabled = true
+heightmap_scale = 0.433
+heightmap_texture = ExtResource("3_x4jkj")

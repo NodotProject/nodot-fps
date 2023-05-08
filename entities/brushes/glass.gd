@@ -1,6 +1,4 @@
-extends StaticBody3D
-
-@export var fgd_solid = true
+extends StaticBrushEntity
 
 func _enter_tree():
   var collision_shape = CollisionShape3D.new()

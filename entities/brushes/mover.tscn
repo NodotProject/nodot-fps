@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfq0ps8eivosv"]
+
+[ext_resource type="Script" path="res://addons/nodot/physics/Mover3D.gd" id="1_agh77"]
+[ext_resource type="Script" path="res://entities/brushes/mover.gd" id="1_aoi3w"]
+
+[node name="mover" type="StaticBody3D"]
+script = ExtResource("1_aoi3w")
+
+[node name="Mover3D" type="Node3D" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("1_agh77")
+target_node = NodePath("..")
+relative_destination_position = true

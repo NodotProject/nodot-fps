@@ -163,4 +163,3 @@ mesh = NodePath("../Crate")
 
 [node name="HealthBar3D" parent="." node_paths=PackedStringArray("health_node") instance=ExtResource("5_axv8j")]
 health_node = NodePath("../Health")
-always_on_top = true

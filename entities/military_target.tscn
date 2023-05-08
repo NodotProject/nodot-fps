@@ -109,7 +109,6 @@ script = ExtResource("7_kew50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08569, 0)
 script = ExtResource("8_qhkgb")
 health_node = NodePath("../Health")
-always_on_top = true
 
 [node name="ProgressBar" type="ProgressBar" parent="MilitaryTarget/HealthBar3D"]
 offset_right = 512.0

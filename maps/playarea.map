@@ -1787,6 +1787,24 @@
 ( -268 -352 108 ) ( -268 -352 109 ) ( -269 -352 108 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 ( -264 -352 108 ) ( -264 -353 108 ) ( -264 -352 109 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 }
+// brush 198
+{
+( -160 352 112 ) ( -160 353 112 ) ( -160 352 113 ) metal/silver-1K 0 0 0 1 1
+( -160 352 112 ) ( -160 352 113 ) ( -159 352 112 ) metal/silver-1K 0 0 0 1 1
+( -160 352 112 ) ( -159 352 112 ) ( -160 353 112 ) metal/silver-1K 0 0 0 1 1
+( -144 368 160 ) ( -144 369 160 ) ( -143 368 160 ) metal/silver-1K 0 0 0 1 1
+( -144 368 128 ) ( -143 368 128 ) ( -144 368 129 ) metal/silver-1K 0 0 0 1 1
+( -144 368 128 ) ( -144 368 129 ) ( -144 369 128 ) metal/silver-1K 0 0 0 1 1
+}
+// brush 199
+{
+( -112 352 144 ) ( -112 353 144 ) ( -112 352 145 ) metal/silver-1K 0 0 0 1 1
+( -112 352 144 ) ( -112 352 145 ) ( -111 352 144 ) metal/silver-1K 0 0 0 1 1
+( -112 352 144 ) ( -111 352 144 ) ( -112 353 144 ) metal/silver-1K 0 0 0 1 1
+( -96 368 192 ) ( -96 369 192 ) ( -95 368 192 ) metal/silver-1K 0 0 0 1 1
+( -96 368 160 ) ( -95 368 160 ) ( -96 368 161 ) metal/silver-1K 0 0 0 1 1
+( -96 368 160 ) ( -96 368 161 ) ( -96 369 160 ) metal/silver-1K 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -2572,4 +2590,122 @@
 {
 "classname" "breakables_jar"
 "origin" "312 344 212"
+}
+// entity 76
+{
+"classname" "lighting_spotlight"
+"origin" "-12 244 95"
+}
+// entity 77
+{
+"classname" "lighting_spotlight"
+"origin" "-12 148 95"
+}
+// entity 78
+{
+"classname" "lighting_spotlight"
+"origin" "-12 52 95"
+}
+// entity 79
+{
+"classname" "lighting_spotlight"
+"origin" "-12 -236 95"
+}
+// entity 80
+{
+"classname" "lighting_spotlight"
+"origin" "-12 -140 95"
+}
+// entity 81
+{
+"classname" "lighting_spotlight"
+"origin" "-12 -44 95"
+}
+// entity 82
+{
+"classname" "lighting_spotlight"
+"origin" "-12 -332 95"
+}
+// entity 83
+{
+"classname" "lighting_spotlight"
+"origin" "-108 200 95"
+"color" "138 43 226"
+}
+// entity 84
+{
+"classname" "lighting_spotlight"
+"origin" "-108 -44 95"
+"color" "138 43 226"
+}
+// entity 85
+{
+"classname" "lighting_spotlight"
+"origin" "-108 -280 95"
+"color" "138 43 226"
+}
+// entity 86
+{
+"classname" "toys_spawn_machine"
+"origin" "-356 218 12"
+"angle" "180"
+}
+// entity 87
+{
+"classname" "brushes_mover"
+"destination_position" "0 6 0"
+"targetname" "door1"
+// brush 0
+{
+( -76 360 68 ) ( -76 361 68 ) ( -76 360 69 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -76 320 68 ) ( -76 320 69 ) ( -75 320 68 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -76 360 24 ) ( -75 360 24 ) ( -76 361 24 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -64 368 48 ) ( -64 369 48 ) ( -63 368 48 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -64 368 72 ) ( -63 368 72 ) ( -64 368 73 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -68 368 72 ) ( -68 368 73 ) ( -68 369 72 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+}
+}
+// entity 88
+{
+"classname" "brushes_mover"
+"targetname" "door2"
+"target" ""
+"destination_position" "0 -6 0"
+// brush 0
+{
+( -76 360 44 ) ( -76 361 44 ) ( -76 360 45 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -76 320 44 ) ( -76 320 45 ) ( -75 320 44 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -76 360 0 ) ( -75 360 0 ) ( -76 361 0 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -64 368 24 ) ( -64 369 24 ) ( -63 368 24 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -64 368 48 ) ( -63 368 48 ) ( -64 368 49 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+( -68 368 48 ) ( -68 368 49 ) ( -68 369 48 ) prototype/Orange/texture_09 0 0 0 0.01 0.01
+}
+}
+// entity 89
+{
+"classname" "brushes_trigger"
+"target" "door1"
+// brush 0
+{
+( -84 332 0 ) ( -84 333 0 ) ( -84 332 1 ) utilities/trigger 0 0 0 -0.01 0.01
+( -84 332 0 ) ( -84 332 1 ) ( -83 332 0 ) utilities/trigger 0 0 0 -0.01 0.01
+( -84 332 0 ) ( -83 332 0 ) ( -84 333 0 ) utilities/trigger 0 0 0 -0.01 0.01
+( -76 356 32 ) ( -76 357 32 ) ( -75 356 32 ) utilities/trigger 0 0 0 -0.01 0.01
+( -76 356 4 ) ( -75 356 4 ) ( -76 356 5 ) utilities/trigger 0 0 0 -0.01 0.01
+( -60 356 4 ) ( -60 356 5 ) ( -60 357 4 ) utilities/trigger 0 0 0 -0.01 0.01
+}
+}
+// entity 90
+{
+"classname" "brushes_trigger"
+"target" "door2"
+// brush 0
+{
+( -84 332 0 ) ( -84 333 0 ) ( -84 332 1 ) utilities/trigger 0 0 0 -0.01 0.01
+( -84 332 0 ) ( -84 332 1 ) ( -83 332 0 ) utilities/trigger 0 0 0 -0.01 0.01
+( -84 332 0 ) ( -83 332 0 ) ( -84 333 0 ) utilities/trigger 0 0 0 -0.01 0.01
+( -76 356 32 ) ( -76 357 32 ) ( -75 356 32 ) utilities/trigger 0 0 0 -0.01 0.01
+( -76 356 4 ) ( -75 356 4 ) ( -76 356 5 ) utilities/trigger 0 0 0 -0.01 0.01
+( -60 356 4 ) ( -60 356 5 ) ( -60 357 4 ) utilities/trigger 0 0 0 -0.01 0.01
+}
 }
