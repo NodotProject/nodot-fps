@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://kgwi4e3hdsrh"]
-
-[ext_resource type="Script" path="res://entities/brushes/trigger.gd" id="1_3422q"]
-
-[node name="trigger" type="Area3D"]
-script = ExtResource("1_3422q")
+version https://git-lfs.github.com/spec/v1
+oid sha256:874e0d2716f538ae9c9aabbf972dd121181591ac8b6e70a5e2c454bc7dc5eb37
+size 211

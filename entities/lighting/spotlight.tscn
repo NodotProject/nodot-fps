@@ -1,26 +1,3 @@
-[gd_scene load_steps=4 format=3 uid="uid://vlxgcoe5yrj6"]
-
-[ext_resource type="Script" path="res://entities/lighting/spotlight.gd" id="1_n3qex"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xeeao"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 1.57
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_vhxtu"]
-material = SubResource("StandardMaterial3D_xeeao")
-top_radius = 0.05
-bottom_radius = 0.05
-height = 0.009
-
-[node name="spotlight" type="Node3D"]
-script = ExtResource("1_n3qex")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_vhxtu")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-light_energy = 1.914
-spot_range = 15.0
-spot_angle = 50.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:3d31f76a6895821223d8fc3266c2fbb186d567dc3926fe4ba8645b7fed42f830
+size 841

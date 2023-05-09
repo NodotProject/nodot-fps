@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4ii2vr8tjhcq"]
-
-[ext_resource type="Script" path="res://entities/brushes/glass.gd" id="1_2hwy0"]
-
-[node name="glass" type="StaticBody3D"]
-script = ExtResource("1_2hwy0")
+version https://git-lfs.github.com/spec/v1
+oid sha256:bb5c72357dac744ec2b10d56f8b668c99dfe9d60b641d23a8826354362bc22f5
+size 214

@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://hv5hu6l3rxoc"]
-
-[ext_resource type="Script" path="res://entities/interact/button.gd" id="1_yvdyk"]
-
-[node name="button" type="StaticBody3D"]
-script = ExtResource("1_yvdyk")
+version https://git-lfs.github.com/spec/v1
+oid sha256:7c31d4cb1c60a94bf1be9de6a527198d998d82b3a0ea6757a5e7dfbf99c21421
+size 216
