@@ -3,7 +3,7 @@
 class_name WaterArea3D extends Area3D
 
 ## The shader to apply to the quad plane on top of the waterarea
-@export var water_shader: ShaderMaterial = preload("res://addons/nodot/shaders/clean_water.tres")
+@export var water_shader: ShaderMaterial = load("res://addons/nodot/shaders/clean_water.tres")
 ## The upward force to apply to submerged objects
 @export var float_force: float = 1.0
 ## A direction to push floating objects in
@@ -54,7 +54,7 @@ func _enter_tree() -> void:
 	waterMesh.subdivide_depth = 200
 	waterMesh.material = water_shader
 	water_mesh_instance.mesh = waterMesh
-	water_mesh_instance.transparency = 0.00
+	water_mesh_instance.transparency = 0.05
 	water_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 	if collider_shape is BoxShape3D:
@@ -130,7 +130,7 @@ func _physics_process(delta: float) -> void:
 				# This await allows other physics to apply first
 				await get_tree().physics_frame
 				if is_instance_valid(body):
-					var final_float_force = Vector3.UP * float_force * gravity * depth
+					var final_float_force = Vector3.UP * float_force * default_gravity * depth
 					final_float_force.y = min(final_float_force.y, 90)
 					body.apply_force(final_float_force + (tidal_direction * tidal_force))
 
