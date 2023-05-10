@@ -28,5 +28,12 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:RootNode/Props_Pod": {
+"generate/physics": true,
+"physics/shape_type": 2
+}
+}
+}
 gltf/embedded_image_handling=1

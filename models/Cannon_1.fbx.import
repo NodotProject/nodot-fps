@@ -28,5 +28,20 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:RootNode/Cannon_1_Base": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:RootNode/Cannon_1_Gun": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:RootNode/Cannon_1_Mid": {
+"generate/physics": true,
+"physics/shape_type": 2
+}
+}
+}
 gltf/embedded_image_handling=1

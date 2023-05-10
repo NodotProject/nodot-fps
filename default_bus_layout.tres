@@ -1,9 +1,23 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://bsttniq5hk41e"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bsttniq5hk41e"]
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_ngdqc"]
 resource_name = "LowPassFilter"
 cutoff_hz = 686.0
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_v7284"]
+resource_name = "Reverb"
+room_size = 0.25
+damping = 0.35
+wet = 0.16
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectLowPassFilter_ngdqc")
 bus/0/effect/0/enabled = false
+bus/1/name = &"ShootingRange"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_v7284")
+bus/1/effect/0/enabled = true

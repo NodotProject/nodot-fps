@@ -4,5 +4,7 @@ extends Node3D
 
 func _enter_tree():
 	if color != Color.WHITE:
-		$MeshInstance3D.get_active_material(0).emission = color
+		var material = $MeshInstance3D.get_active_material(0).duplicate(15)
+		material.emission = color
+		$MeshInstance3D.set_surface_override_material(0, material)
 		$SpotLight3D.light_color = color
