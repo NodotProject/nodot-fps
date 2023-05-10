@@ -3,7 +3,7 @@
 class_name WaterArea3D extends Area3D
 
 ## The shader to apply to the quad plane on top of the waterarea
-@export var water_shader: ShaderMaterial = load("res://addons/nodot/shaders/clean_water.tres")
+@export var water_shader: ShaderMaterial = preload("res://addons/nodot/shaders/clean_water.tres")
 ## The upward force to apply to submerged objects
 @export var float_force: float = 1.0
 ## A direction to push floating objects in
