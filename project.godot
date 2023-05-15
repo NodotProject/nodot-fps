@@ -25,7 +25,7 @@ CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tbloader/plugin.cfg", "res://addons/nodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/tbloader/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 
