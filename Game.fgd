@@ -53,6 +53,9 @@
   targetname(string) : "Targetname" : "" : "String"
 ]
 
+@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Coin.fbx","scale":0.1}) = collectables_coin : "Collectables" [
+]
+
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = interact_button : "Interact" [
   label_text(string) : "Label Text" : "Press E to interact" : "String"
   target(string) : "Target" : "" : "String"

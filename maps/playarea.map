@@ -396,7 +396,7 @@
 {
 ( -308 320 36 ) ( -308 321 36 ) ( -308 320 37 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 ( -304 320 36 ) ( -304 320 37 ) ( -303 320 36 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
-( -304 320 36 ) ( -303 320 36 ) ( -304 321 36 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
+( -304 320 0 ) ( -303 320 0 ) ( -304 321 0 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 ( -300 356 44 ) ( -300 357 44 ) ( -299 356 44 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 ( -300 368 40 ) ( -299 368 40 ) ( -300 368 41 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
 ( -300 356 40 ) ( -300 356 41 ) ( -300 357 40 ) concrete/marble_tiles_2-1K 125 0 0 0.1 0.1
@@ -3349,4 +3349,29 @@
 {
 "classname" "lighting_spotlight"
 "origin" "-140 292 287"
+}
+// entity 140
+{
+"classname" "collectables_coin"
+"origin" "-60 -184 12"
+}
+// entity 141
+{
+"classname" "collectables_coin"
+"origin" "-320 328 4"
+}
+// entity 142
+{
+"classname" "collectables_coin"
+"origin" "272 -56 152"
+}
+// entity 143
+{
+"classname" "collectables_coin"
+"origin" "148 364 212"
+}
+// entity 144
+{
+"classname" "collectables_coin"
+"origin" "264 56 308"
 }
