@@ -1,0 +1,37 @@
+# Written by MakeHuman 1.2.0 final
+version v1.2.0
+camera 19.5 357.5 0.1273450312021795 0.8167448668166938 -0.28233660816030026 1.9750000000000005
+modifier head/head-age-decr|incr -0.158000
+modifier head/head-angle-in|out 0.508000
+modifier head/head-fat-decr|incr 0.206000
+modifier head/head-oval 0.143000
+modifier head/head-round 0.135000
+modifier head/head-square 0.421000
+modifier head/head-back-scale-depth-decr|incr -0.666000
+modifier breast/BreastSize 0.500000
+modifier breast/BreastFirmness 0.500000
+modifier macrodetails/Gender 0.500000
+modifier macrodetails/Age 0.500000
+modifier macrodetails/African 0.333333
+modifier macrodetails/Asian 0.333333
+modifier macrodetails/Caucasian 0.333333
+modifier macrodetails-universal/Muscle 0.500000
+modifier macrodetails-universal/Weight 0.500000
+modifier macrodetails-height/Height 0.500000
+modifier macrodetails-proportions/BodyProportions 0.500000
+modifier measure/measure-neck-circ-decr|incr 0.650000
+modifier measure/measure-neck-height-decr|incr -0.096000
+proxy male_muscle_13290 79e967dc-3f7a-4f2d-851e-4f06753ed571
+hair short04 e09bfd91-f83f-4f9a-ba8c-4635cd1ae0d8
+eyelashes Eyelashes01 d533836f-13ad-4836-8b65-051108253cd2
+eyebrows eyebrow001 9c81ec3a-faa5-4c94-9cdb-992300ba3084
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+clothes male_elegantsuit01 1d2e3843-dda5-40a8-84a0-96666aa681bb
+clothes shoes03 ad622a26-da1e-4e3c-9f8e-454edf10d504
+clothesHideFaces True
+skinMaterial skins/middleage_caucasian_male/middleage_caucasian_male.mhmat
+material short04 e09bfd91-f83f-4f9a-ba8c-4635cd1ae0d8 short04.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+material eyebrow001 9c81ec3a-faa5-4c94-9cdb-992300ba3084 eyebrow001.mhmat
+material Eyelashes01 d533836f-13ad-4836-8b65-051108253cd2 eyelashes01.mhmat
+subdivide False

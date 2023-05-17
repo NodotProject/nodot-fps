@@ -1,11 +1,15 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://drb4xujx7lqfs"]
 
 [resource]
-render_priority = -1
 cull_mode = 2
 albedo_color = Color(0.890196, 1, 1, 0.247059)
-metallic = 1.0
-roughness = 0.03
+metallic = 0.19
+roughness = 0.1
+clearcoat = 0.05
+clearcoat_roughness = 0.07
+anisotropy_enabled = true
+anisotropy = 1.0
+ao_enabled = true
 refraction_enabled = true
 refraction_scale = 0.0
 texture_filter = 0
