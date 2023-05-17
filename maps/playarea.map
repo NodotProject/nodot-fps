@@ -3487,12 +3487,12 @@
 // entity 165
 {
 "classname" "collectables_banana"
-"origin" "-232 308 212"
+"origin" "-216 308 212"
 }
 // entity 166
 {
 "classname" "collectables_apple"
-"origin" "-232 300 212"
+"origin" "-216 300 212"
 }
 // entity 167
 {
@@ -3508,4 +3508,104 @@
 {
 "classname" "collectables_orange"
 "origin" "-348 -368 308"
+}
+// entity 170
+{
+"classname" "collectables_orange"
+"origin" "-52 -172 4"
+}
+// entity 171
+{
+"classname" "collectables_orange"
+"origin" "-36 -180 4"
+}
+// entity 172
+{
+"classname" "collectables_orange"
+"origin" "-52 -196 4"
+}
+// entity 173
+{
+"classname" "collectables_orange"
+"origin" "-36 -196 4"
+}
+// entity 174
+{
+"classname" "collectables_banana"
+"origin" "308 356 4"
+}
+// entity 175
+{
+"classname" "collectables_banana"
+"origin" "308 340 4"
+}
+// entity 176
+{
+"classname" "collectables_banana"
+"origin" "292 340 20"
+}
+// entity 177
+{
+"classname" "collectables_apple"
+"origin" "-212 212 4"
+}
+// entity 178
+{
+"classname" "collectables_apple"
+"origin" "-212 228 4"
+}
+// entity 179
+{
+"classname" "collectables_banana"
+"origin" "-348 276 4"
+}
+// entity 180
+{
+"classname" "collectables_orange"
+"origin" "-348 260 4"
+}
+// entity 181
+{
+"classname" "collectables_orange"
+"origin" "-340 -372 116"
+}
+// entity 182
+{
+"classname" "collectables_orange"
+"origin" "-356 -372 116"
+}
+// entity 183
+{
+"classname" "collectables_banana"
+"origin" "-60 292 116"
+}
+// entity 184
+{
+"classname" "collectables_apple"
+"origin" "-216 284 212"
+}
+// entity 185
+{
+"classname" "collectables_banana"
+"origin" "-216 292 212"
+}
+// entity 186
+{
+"classname" "collectables_apple"
+"origin" "-216 268 212"
+}
+// entity 187
+{
+"classname" "collectables_banana"
+"origin" "-216 276 212"
+}
+// entity 188
+{
+"classname" "collectables_apple"
+"origin" "-216 252 212"
+}
+// entity 189
+{
+"classname" "collectables_banana"
+"origin" "-216 260 212"
 }
