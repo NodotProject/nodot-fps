@@ -146,5 +146,8 @@ func drop_slot(slot_index: int, collectable_id: String, quantity: int):
 	for i in quantity:
 		var item_instance = item_node.duplicate(15)
 		item_instance.top_level = true
-		spawn_location_node.add_child(item_instance)
+		if spawn_location_node:
+			spawn_location_node.add_child(item_instance)
+		else:
+			push_error("No spawn location node set")
 	
