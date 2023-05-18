@@ -3609,3 +3609,9 @@
 "classname" "collectables_banana"
 "origin" "-216 260 212"
 }
+// entity 190
+{
+"classname" "collectables_chest"
+"origin" "-360 64 112"
+"angle" "180"
+}

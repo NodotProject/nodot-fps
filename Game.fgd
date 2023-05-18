@@ -59,6 +59,11 @@
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Banana.fbx","scale":0.05}) = collectables_banana : "Collectables" [
 ]
 
+@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Chest_Closed.fbx","scale":0.2}) = collectables_chest : "Collectables" [
+  enabled(bool) : "Enabled" : 1 : "bool"
+  label_text(string) : "Label Text" : "" : "String"
+]
+
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Coin.fbx","scale":0.1}) = collectables_coin : "Collectables" [
 ]
 
