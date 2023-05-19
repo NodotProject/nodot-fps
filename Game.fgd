@@ -83,10 +83,7 @@
   color(color) : "Color" : "1 1 1" : "Color"
 ]
 
-@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/spawner/spawner3d_new.obj","scale":0.01}) = toys_spawn_machine : "Toys" [
-]
-
-@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = toys_spawn_machine : "Toys" [
+@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/spawner/FixdMsh.fbx","scale":0.01}) = toys_spawn_machine : "Toys" [
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = utility_position : "Utility" [
