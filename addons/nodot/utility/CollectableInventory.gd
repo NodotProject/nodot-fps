@@ -142,7 +142,10 @@ func update_slot(slot_index: int, collectable_id: String, quantity: int, _overfl
 func drop_slot(slot_index: int, collectable_id: String, quantity: int):
 	collectable_stacks[slot_index] = ["", 0]
 	emit_signal("collectable_added", slot_index, "", 0)
-	var item_node = CollectableManager.get_info(collectable_id).node
+	var collectable_info = CollectableManager.get_info(collectable_id)
+	if !collectable_info: return
+	
+	var item_node = collectable_info.node
 	for i in quantity:
 		var item_instance = item_node.duplicate(15)
 		item_instance.top_level = true
