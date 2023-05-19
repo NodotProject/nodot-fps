@@ -3047,8 +3047,8 @@
 // entity 85
 {
 "classname" "toys_spawn_machine"
-"origin" "-228 258 12"
-"angle" "180"
+"origin" "-226 268 12"
+"angle" "270"
 }
 // entity 86
 {
