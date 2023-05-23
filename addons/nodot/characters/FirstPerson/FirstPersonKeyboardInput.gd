@@ -7,12 +7,6 @@ class_name FirstPersonKeyboardInput extends Nodot
 @export var enabled := true
 ## Only allow WASD movement
 @export var direction_movement_only := false
-## How fast the character can move
-@export var speed := 5.0
-## How fast the character can move while sprinting (higher = faster)
-@export var sprint_speed_multiplier := 3.0
-## How high the character can jump
-@export var jump_velocity := 4.5
 
 @export_category("Input Actions")
 ## The input action name for strafing left
@@ -34,9 +28,8 @@ class_name FirstPersonKeyboardInput extends Nodot
 @onready var fps_viewport: FirstPersonViewport
 
 var is_editor: bool = Engine.is_editor_hint()
-var is_jumping: bool = false
-var accelerated_jump: bool = false
-
+var direction: Vector3 = Vector3.ZERO
+var state_ids: Dictionary = {}
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
@@ -66,49 +59,39 @@ func add_action_to_input_map(action_name, default_key):
 
 func _ready() -> void:
 	fps_viewport = Nodot.get_first_child_of_type(self, FirstPersonViewport)
-
+	
+	var state: StateMachine = parent.sm
+	for state_name in ["idle", "walk", "jump", "sprint"]:
+		var state_id = state.register_state(state_name)
+	state_ids["jump"] = parent.sm.get_id_from_name("jump")
+	state_ids["sprint"] = parent.sm.get_id_from_name("sprint")
+	state_ids["walk"] = parent.sm.get_id_from_name("walk")
+	state_ids["idle"] = parent.sm.get_id_from_name("idle")
 
 func _input(event: InputEvent) -> void:
 	if enabled and fps_viewport and event.is_action_pressed(reload_action):
 		fps_viewport.reload()
 
-
 func _physics_process(delta: float) -> void:
 	if !enabled or is_editor: return
-	var final_speed: float = speed
 
 	if !direction_movement_only and parent._is_on_floor():
-		var jump_pressed: bool = Input.is_action_just_pressed(jump_action)
-		var sprint_pressed: bool = Input.is_action_pressed(sprint_action)
-		#prints("Sprint Pressed: ", sprint_pressed)
-		#prints("Is sprinting: ", sprint_pressed)
 		# Handle Jump.
-		if jump_pressed:
-			parent.velocity.y = jump_velocity
-
-		# Handle Sprint.
-		if sprint_pressed:
-			final_speed *= sprint_speed_multiplier
-		# Handle a sprint jump
-		if sprint_pressed and jump_pressed:
-			accelerated_jump = true
-
-		if !sprint_pressed:
-			accelerated_jump = false
-
-	elif accelerated_jump:
-		final_speed *= sprint_speed_multiplier
+		if Input.is_action_just_pressed(jump_action):
+			parent.sm.state = state_ids["jump"]
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
-	var direction = (parent.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (parent.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
-		parent.velocity.x = direction.x * final_speed
-		parent.velocity.z = direction.z * final_speed
+		if Input.is_action_pressed(sprint_action):
+			parent.sm.state = state_ids["sprint"]
+		else:
+			parent.sm.state = state_ids["walk"]
 	else:
-		parent.velocity.x = move_toward(parent.velocity.x, 0, final_speed)
-		parent.velocity.z = move_toward(parent.velocity.z, 0, final_speed)
+		parent.sm.state = state_ids["idle"]
 
 ## Disable input
 func disable() -> void:

@@ -1,18 +1,16 @@
 ## A CharacterBody3D for first person games
-class_name FirstPersonCharacter extends NodotCharacter
+class_name FirstPersonCharacter extends NodotCharacter3D
 
 ## Allow player input
 @export var input_enabled := true
 ## Is the character used by the player
 @export var is_current_player := false
+## (optional) The character state machine. If not assigned, is created automatically
+@export var sm: StateMachine
 ## The camera field of view
 @export var fov := 75.0
 ## The head position
 @export var head_position := Vector3.ZERO
-## Gravity strength
-@export var gravity: float = 9.8
-## Apply gravity even when the character is on the floor
-@export var always_apply_gravity: bool = false
 
 
 @export_category("Input Actions")
@@ -35,6 +33,10 @@ func _enter_tree() -> void:
 	if is_current_player:
 		PlayerManager.node = self
 		
+	if !sm:
+		sm = StateMachine.new()
+		add_child(sm)
+		
 	head = Node3D.new()
 	head.name = "Head"
 	camera.name = "Camera3D"
@@ -44,6 +46,7 @@ func _enter_tree() -> void:
 	submerge_handler = Nodot.get_first_child_of_type(self, FirstPersonSubmerged)
 	keyboard_input = Nodot.get_first_child_of_type(self, FirstPersonKeyboardInput)
 	inventory = Nodot.get_first_child_of_type(self, CollectableInventory)
+	
 
 
 func _ready() -> void:
@@ -60,21 +63,7 @@ func _ready() -> void:
 	else:
 		head.position = head_position
 
-
 func _physics_process(delta: float) -> void:
-	if always_apply_gravity or !_is_on_floor():
-		velocity.y -= gravity * delta
-	
-	var character_mover: CharacterMover = Nodot.get_first_child_of_type(self, CharacterMover)
-	if character_mover:
-		if character_mover.enabled:
-			# For some reason, the step code breaks sprinting.
-			character_mover.move()
-		else:
-			move_and_slide()
-	else:
-		move_and_slide()
-		
 	var collision = get_last_slide_collision()
 	if collision:
 		for i in collision.get_collision_count():
