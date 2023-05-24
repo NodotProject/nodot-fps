@@ -27,7 +27,7 @@ func _check_transition_valid(old_state: int, new_state: int) -> bool:
 	if old_state == new_state:
 		return false
 		
-	if valid_transitions.size() <= old_state:
+	if valid_transitions.size() > old_state:
 		var transitions = valid_transitions[old_state]
 		if transitions.has(new_state):
 			return true
@@ -62,7 +62,7 @@ func add_valid_transition(from, to) -> void:
 				if t is String:
 					to_ids.append(state_names.find(t))
 		
-	if valid_transitions.size() <= from_id:
+	if valid_transitions.size() > from_id:
 		if to_ids is Array:
 			for t in to_ids:
 				if !valid_transitions[from_id].has(t):
@@ -84,6 +84,9 @@ func get_id_from_name(state_name: String) -> int:
 	if id < 0:
 		push_error("Attempted to get id of %s before it was registered" % state_name)
 	return id
+
+func get_name_from_id(id: int) -> String:
+	return state_names[id]
 
 func set_state(new_state: int) -> void:
 	state = new_state

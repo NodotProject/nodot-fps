@@ -34,6 +34,7 @@ func _ready():
 		input_direction_source = parent.keyboard_input
 		
 	_setup_valid_transitions()
+	parent.sm.connect("state_updated", _on_character_state_updated)
 		
 
 func _setup_valid_transitions() -> void:
@@ -43,10 +44,9 @@ func _setup_valid_transitions() -> void:
 		state_ids[state_name] = state_id
 		handle_states.append(state_id)
 		
-	state.add_valid_transition("idle", ["walk", "jump", "sprint", "crouch", "prone"])
-	state.add_valid_transition("jump", ["land"])
-	state.add_valid_transition("land", ["idle", "walk", "jump", "sprint", "crouch", "prone"])
-	state.add_valid_transition("sprint", ["idle", "walk", "jump", "crouch", "prone"])
+	state.add_valid_transition("idle", ["crouch", "prone"])
+	state.add_valid_transition("land", ["crouch", "prone"])
+	state.add_valid_transition("sprint", ["crouch", "prone"])
 	state.add_valid_transition("crouch", ["idle", "sneak", "jump", "prone"])
 	state.add_valid_transition("prone", ["idle", "crawl", "jump", "crouch"])
 	
@@ -55,6 +55,10 @@ func _physics_process(delta):
 	if current_state < 0 or !handle_states.has(current_state):
 		return
 	move(delta)
+	
+func _on_character_state_updated(old_state: int, new_state: int) -> void:
+	if new_state == state_ids["jump"]:
+		jump()
 
 func move(delta: float) -> void:
 	if !parent._is_on_floor() or parent.velocity.y > 0:

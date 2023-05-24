@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		for i in collision.get_collision_count():
 			var collider = collision.get_collider(i)
-			if collider.has_method("_on_character_collide"):
+			if collider and collider.has_method("_on_character_collide"):
 				collider._on_character_collide(self)
 	
 

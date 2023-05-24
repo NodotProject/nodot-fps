@@ -5,8 +5,6 @@ class_name FirstPersonKeyboardInput extends Nodot
 
 ## Is input enabled
 @export var enabled := true
-## Only allow WASD movement
-@export var direction_movement_only := false
 
 @export_category("Input Actions")
 ## The input action name for strafing left
@@ -19,8 +17,6 @@ class_name FirstPersonKeyboardInput extends Nodot
 @export var down_action: String = "down"
 ## The input action name for reloading the current active weapon
 @export var reload_action: String = "reload"
-## The input action name for jumping
-@export var jump_action: String = "jump"
 ## The input action name for sprinting
 @export var sprint_action: String = "sprint"
 
@@ -40,7 +36,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _init() -> void:
 	var action_names = [
-		left_action, right_action, up_action, down_action, reload_action, jump_action, sprint_action
+		left_action, right_action, up_action, down_action, reload_action, sprint_action
 	]
 	var default_keys = [KEY_A, KEY_D, KEY_W, KEY_S, KEY_R, KEY_SPACE, KEY_SHIFT]
 	for i in action_names.size():
@@ -61,12 +57,12 @@ func _ready() -> void:
 	fps_viewport = Nodot.get_first_child_of_type(self, FirstPersonViewport)
 	
 	var state: StateMachine = parent.sm
-	for state_name in ["idle", "walk", "jump", "sprint"]:
-		var state_id = state.register_state(state_name)
-	state_ids["jump"] = parent.sm.get_id_from_name("jump")
-	state_ids["sprint"] = parent.sm.get_id_from_name("sprint")
-	state_ids["walk"] = parent.sm.get_id_from_name("walk")
-	state_ids["idle"] = parent.sm.get_id_from_name("idle")
+	for state_name in ["idle", "walk", "sprint"]:
+		state_ids[state_name] = state.register_state(state_name)
+	
+	state.add_valid_transition("idle", ["walk", "sprint"])
+	state.add_valid_transition("walk", ["idle", "walk", "sprint"])
+	state.add_valid_transition("sprint", ["idle", "walk"])
 
 func _input(event: InputEvent) -> void:
 	if enabled and fps_viewport and event.is_action_pressed(reload_action):
@@ -75,11 +71,6 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if !enabled or is_editor: return
 
-	if !direction_movement_only and parent._is_on_floor():
-		# Handle Jump.
-		if Input.is_action_just_pressed(jump_action):
-			parent.sm.state = state_ids["jump"]
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
@@ -87,16 +78,15 @@ func _physics_process(delta: float) -> void:
 	
 	if direction:
 		if Input.is_action_pressed(sprint_action):
-			parent.sm.state = state_ids["sprint"]
+			parent.sm.set_state(state_ids["sprint"])
 		else:
-			parent.sm.state = state_ids["walk"]
+			parent.sm.set_state(state_ids["walk"])
 	else:
-		parent.sm.state = state_ids["idle"]
+		parent.sm.set_state(state_ids["idle"])
 
 ## Disable input
 func disable() -> void:
 	enabled = false
-
 
 ## Enable input
 func enable() -> void:
