@@ -14,7 +14,7 @@ func _ready():
 	
 	InputManager.register_action(jump_action, KEY_SPACE)
 	
-	register_handled_states(["jump", "land"])
+	register_handled_states(["jump", "land", "idle", "walk", "sprint", "crouch", "prone"])
 	
 	sm.add_valid_transition("idle", ["jump"])
 	sm.add_valid_transition("walk", ["jump"])
@@ -31,11 +31,12 @@ func state_updated(old_state: int, new_state: int) -> void:
 func jump() -> void:
 	character.velocity.y = jump_velocity
 
-func input(event: InputEvent) -> void:
-	if Input.is_action_pressed(jump_action) and character._is_on_floor():
-		sm.set_state(state_ids["jump"])
-
 func action(delta: float) -> void:
-	if sm.state == state_ids["jump"] and character._is_on_floor():
+	if !character._is_on_floor():
+		return
+		
+	if Input.is_action_pressed(jump_action):
+		sm.set_state(state_ids["jump"])
+	elif sm.state == state_ids["jump"]:
 		sm.set_state(state_ids["land"])
 		
