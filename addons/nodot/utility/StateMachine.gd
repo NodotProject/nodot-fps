@@ -44,7 +44,7 @@ func add_valid_transition(from, to) -> void:
 	elif from is String:
 		from_id = state_names.find(from)
 		if from_id < 0:
-			push_error("A transition was added to %s before it was registered" % from)
+			return
 		
 	var to_ids = to
 	if to is int:
@@ -52,7 +52,8 @@ func add_valid_transition(from, to) -> void:
 	if to is String:
 		to_ids = state_names.find(to)
 		if to_ids < 0:
-			push_error("%s was added as a valid transition before it was registered" % to_ids)
+			return
+			
 	if to is Array:
 		to_ids = []
 		for t in to:
@@ -71,10 +72,11 @@ func add_valid_transition(from, to) -> void:
 			if !valid_transitions[from_id].has(to_ids):
 				valid_transitions[from_id].append(to_ids)
 
-func register_state(name: String) -> int:
-	var existing_id = state_names.find(name)
+## Register a new state
+func register_state(new_state_name: String) -> int:
+	var existing_id = state_names.find(new_state_name)
 	if existing_id < 0:
-		state_names.append(name)
+		state_names.append(new_state_name)
 		valid_transitions.append([])
 		return valid_transitions.size() - 1
 	return existing_id 

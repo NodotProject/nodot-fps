@@ -8,6 +8,7 @@ class_name CharacterExtensionBase3D extends Nodot
 ## Run action even when the state is unhandled
 @export var action_unhandled_states: bool = false
 
+var is_editor: bool = Engine.is_editor_hint()
 var sm: StateMachine
 var handled_states: Array[String] = []
 var state_ids: Dictionary = {}
@@ -25,12 +26,16 @@ func _enter_tree():
 	sm.connect("state_updated", state_updated)
 	
 func _physics_process(delta):
-	if !enabled or !sm or sm.state < 0:
-		return
-	if !action_unhandled_states and !handles_state(sm.state):
+	if is_editor or !enabled or !sm or sm.state < 0 or (!action_unhandled_states and !handles_state(sm.state)):
 		return
 		
 	action(delta)
+	
+func _input(event: InputEvent) -> void:
+	if !InputManager.enabled:
+		return
+		
+	input(event)
 
 ## Registers a set of states that the node handles
 func register_handled_states(new_states: Array[String]):
@@ -51,6 +56,10 @@ func handles_state(state: Variant) -> bool:
 func action(delta: float) -> void:
 	pass
 
+## Extend this placeholder. This is where your logic will be run for every input.
+func input(event: InputEvent) -> void:
+	pass
+	
 ## Extend this placeholder. This is triggered whenever the character state is updated.
 func state_updated(old_state: int, new_state: int) -> void:
 	pass

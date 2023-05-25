@@ -11,8 +11,6 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 @export var step_height: float = 1.0
 ## Constructs the step up movement vector.
 @onready var step_vector: Vector3 = Vector3(0, step_height, 0)
-## How high the character can jump
-@export var jump_velocity := 4.5
 ## How fast the character can move
 @export var movement_speed := 5.0
 ## How fast the character can move while sprinting (higher = faster)
@@ -20,24 +18,36 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 ## The maximum speed a character can fall
 @export var terminal_velocity := 190.0
 
-var input_direction_source
+@export_subgroup("Input Actions")
+## The input action name for strafing left
+@export var left_action: String = "left"
+## The input action name for strafing right
+@export var right_action: String = "right"
+## The input action name for moving forward
+@export var up_action: String = "up"
+## The input action name for moving backwards
+@export var down_action: String = "down"
+## The input action name for sprinting
+@export var sprint_action: String = "sprint"
+
 var sprint_speed = false
+var direction: Vector3 = Vector3.ZERO
 
 func _ready():
 	if !enabled:
 		return
+	
+	InputManager.register_action(left_action, KEY_A)
+	InputManager.register_action(right_action, KEY_D)
+	InputManager.register_action(up_action, KEY_W)
+	InputManager.register_action(down_action, KEY_S)
+	InputManager.register_action(sprint_action, KEY_SHIFT)
+	
+	register_handled_states(["idle", "walk", "sprint", "jump", "land"])
 		
-	if character.keyboard_input:
-		input_direction_source = character.keyboard_input
-		
-	register_handled_states(["idle", "walk", "jump", "sprint", "crouch", "prone", "land", "sneak", "crawl"])
-		
-	sm.add_valid_transition("idle", ["crouch", "prone"])
-	sm.add_valid_transition("land", ["crouch", "prone"])
-	sm.add_valid_transition("sprint", ["crouch", "prone"])
-	sm.add_valid_transition("crouch", ["idle", "sneak", "jump", "prone"])
-	sm.add_valid_transition("prone", ["idle", "crawl", "jump", "crouch"])
-	sm.set_state(state_ids["idle"])
+	sm.add_valid_transition("idle", ["walk", "sprint"])
+	sm.add_valid_transition("walk", ["idle", "walk", "sprint"])
+	sm.add_valid_transition("sprint", ["idle", "walk"])
 	
 func state_updated(old_state: int, new_state: int) -> void:
 	var sprint_id = state_ids["sprint"]
@@ -45,7 +55,6 @@ func state_updated(old_state: int, new_state: int) -> void:
 	if new_state == state_ids["jump"]:
 		if old_state == sprint_id:
 			sprint_speed = true
-		jump()
 	elif new_state == state_ids["land"] or old_state == sprint_id:
 		sprint_speed = false
 	elif new_state == sprint_id:
@@ -58,6 +67,18 @@ func get_movement_speed(delta: float) -> float:
 	return final_speed * delta * 100
 
 func action(delta: float) -> void:
+	
+	var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
+	direction = (character.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if direction:
+		if Input.is_action_pressed(sprint_action):
+			sm.set_state(state_ids["sprint"])
+		else:
+			sm.set_state(state_ids["walk"])
+	else:
+		sm.set_state(state_ids["idle"])
+		
 	if !character._is_on_floor() or character.velocity.y > 0:
 		move_air(delta)
 	else:
@@ -67,30 +88,22 @@ func move_air(delta: float) -> void:
 	character.velocity.y = min(terminal_velocity, character.velocity.y - gravity * delta)
 	
 	var final_speed = get_movement_speed(delta)
-	if input_direction_source.direction != Vector3.ZERO:
-		character.velocity.x = lerp(character.velocity.x, input_direction_source.direction.x * final_speed, 0.025)
-		character.velocity.z = lerp(character.velocity.z, input_direction_source.direction.z * final_speed, 0.025)
+	if direction != Vector3.ZERO:
+		character.velocity.x = lerp(character.velocity.x, direction.x * final_speed, 0.025)
+		character.velocity.z = lerp(character.velocity.z, direction.z * final_speed, 0.025)
 	
 	character.move_and_slide()
 
 func move_ground(delta: float) -> void:
-	var character_state = sm.state
-	
-	if character_state == state_ids["jump"]:
-		sm.set_state(state_ids["land"])
-	
-	if not [state_ids["walk"], state_ids["sprint"], state_ids["idle"]].has(character_state):
-		return
-	
 	var final_speed = get_movement_speed(delta)
-		
-	if input_direction_source.direction == Vector3.ZERO:
+	
+	if direction == Vector3.ZERO:
 		var final_friction = friction if friction >= 0 else final_speed
 		character.velocity.x = move_toward(character.velocity.x, 0, friction)
 		character.velocity.z = move_toward(character.velocity.z, 0, friction)
 	else:
-		character.velocity.x = input_direction_source.direction.x * final_speed
-		character.velocity.z = input_direction_source.direction.z * final_speed
+		character.velocity.x = direction.x * final_speed
+		character.velocity.z = direction.z * final_speed
 	
 	# --- Stairs logic ---
 	var starting_position: Vector3 = character.global_position
@@ -126,6 +139,3 @@ func move_ground(delta: float) -> void:
 	if slide_distance > step_distance or !character._is_on_floor():
 		character.global_position = slide_position
 	# --- Step up logic ---
-
-func jump() -> void:
-	character.velocity.y = jump_velocity

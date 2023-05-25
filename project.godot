@@ -22,6 +22,7 @@ SaveManager="*res://addons/nodot/autoload/SaveManager.gd"
 GlobalSignal="*res://addons/nodot/autoload/GlobalSignal.gd"
 PlayerManager="*res://addons/nodot/autoload/PlayerManager.gd"
 CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
+InputManager="*res://addons/nodot/autoload/InputManager.gd"
 
 [editor_plugins]
 

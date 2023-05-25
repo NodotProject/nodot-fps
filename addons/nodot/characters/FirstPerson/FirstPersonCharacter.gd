@@ -23,7 +23,6 @@ signal unpaused
 var head: Node3D
 var camera: Camera3D = Camera3D.new()
 var submerge_handler: FirstPersonSubmerged
-var keyboard_input: FirstPersonKeyboardInput
 var inventory: CollectableInventory
 
 
@@ -42,7 +41,6 @@ func _enter_tree() -> void:
 	add_child(head)
 
 	submerge_handler = Nodot.get_first_child_of_type(self, FirstPersonSubmerged)
-	keyboard_input = Nodot.get_first_child_of_type(self, FirstPersonKeyboardInput)
 	inventory = Nodot.get_first_child_of_type(self, CollectableInventory)
 	
 
@@ -80,34 +78,16 @@ func _input(event: InputEvent) -> void:
 
 ## Pause the game
 func pause():
-	disable_input()
 	input_enabled = false
+	InputManager.disable()
 	emit_signal("paused")
 
 
 ## Unpause the game
 func unpause():
-	enable_input()
 	input_enabled = true
+	InputManager.enable()
 	emit_signal("unpaused")
-
-
-## Disable player input
-func disable_input() -> void:
-	for child in get_children():
-		if child is FirstPersonKeyboardInput:
-			child.disable()
-		if child is FirstPersonMouseInput:
-			child.disable()
-
-
-## Enable player input
-func enable_input() -> void:
-	for child in get_children():
-		if child is FirstPersonKeyboardInput:
-			child.enable()
-		if child is FirstPersonMouseInput:
-			child.enable()
 
 ## Add collectables to collectable inventory
 func collect(node: Node3D) -> bool:
