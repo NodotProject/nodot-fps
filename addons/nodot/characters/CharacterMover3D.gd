@@ -1,64 +1,83 @@
-# A node to manage movement of a CharacterBody.
+# A node to manage WASD and Jump movement of a NodotCharacter3D
 class_name CharacterMover3D extends Nodot
 
 # Enable/disable this node.
 @export var enabled : bool = true
 ## Gravity for the character
-@export var gravity : float = 9.7
+@export var gravity : float = 12.0
 # Enables stepping up stairs.
 @export var stepping_enabled : bool = true
 # Maximum height for a ledge to allow stepping up.
 @export var step_height : float = 1.0
 # Constructs the step up movement vector.
-@onready var step_vector : Vector3 = Vector3(0,step_height,0)
+@onready var step_vector : Vector3 = Vector3(0, step_height, 0)
 ## How high the character can jump
 @export var jump_velocity := 4.5
 ## How fast the character can move
 @export var movement_speed := 5.0
 ## How fast the character can move while sprinting (higher = faster)
-@export var sprint_speed_multiplier := 3.0
+@export var sprint_speed_multiplier := 2.0
+## The maximum speed a character can fall
+@export var terminal_velocity := 190.0
 
-var parent : CharacterBody3D
+var parent : NodotCharacter3D
 var handle_states: Array[int] = []
 var state_ids: Dictionary = {}
 var input_direction_source
+var sprint_speed = false
+var parent_statemachine: StateMachine
 
 func _ready():
-	if get_parent() is CharacterBody3D:
-		parent = get_parent()
-		parent.sm.state = "idle"
+	parent = get_parent()
+	if parent is NodotCharacter3D:
+		parent_statemachine = parent.sm
 	else:
 		enabled = false
+		return
 		
 	if parent.keyboard_input:
 		input_direction_source = parent.keyboard_input
 		
 	_setup_valid_transitions()
-	parent.sm.connect("state_updated", _on_character_state_updated)
+	parent_statemachine.connect("state_updated", _on_character_state_updated)
 		
 
 func _setup_valid_transitions() -> void:
-	var state: StateMachine = parent.sm
 	for state_name in ["idle", "walk", "jump", "sprint", "crouch", "prone", "land", "sneak", "crawl"]:
-		var state_id = state.register_state(state_name)
+		var state_id = parent_statemachine.register_state(state_name)
 		state_ids[state_name] = state_id
 		handle_states.append(state_id)
 		
-	state.add_valid_transition("idle", ["crouch", "prone"])
-	state.add_valid_transition("land", ["crouch", "prone"])
-	state.add_valid_transition("sprint", ["crouch", "prone"])
-	state.add_valid_transition("crouch", ["idle", "sneak", "jump", "prone"])
-	state.add_valid_transition("prone", ["idle", "crawl", "jump", "crouch"])
+	parent_statemachine.add_valid_transition("idle", ["crouch", "prone"])
+	parent_statemachine.add_valid_transition("land", ["crouch", "prone"])
+	parent_statemachine.add_valid_transition("sprint", ["crouch", "prone"])
+	parent_statemachine.add_valid_transition("crouch", ["idle", "sneak", "jump", "prone"])
+	parent_statemachine.add_valid_transition("prone", ["idle", "crawl", "jump", "crouch"])
+	parent_statemachine.set_state(state_ids["idle"])
 	
 func _physics_process(delta):
-	var current_state = parent.sm.state
+	var current_state = parent_statemachine.state
 	if current_state < 0 or !handle_states.has(current_state):
 		return
 	move(delta)
 	
 func _on_character_state_updated(old_state: int, new_state: int) -> void:
+	var sprint_id = state_ids["sprint"]
+	
 	if new_state == state_ids["jump"]:
+		if old_state == sprint_id:
+			sprint_speed = true
 		jump()
+	elif new_state == state_ids["land"] or old_state == sprint_id:
+		sprint_speed = false
+	elif new_state == sprint_id:
+		sprint_speed = true
+		
+func get_movement_speed(delta: float) -> float:
+	var final_speed = movement_speed
+	if sprint_speed:
+		final_speed = movement_speed * sprint_speed_multiplier
+	return final_speed * delta * 100
 
 func move(delta: float) -> void:
 	if !parent._is_on_floor() or parent.velocity.y > 0:
@@ -68,28 +87,35 @@ func move(delta: float) -> void:
 
 func move_air(delta: float) -> void:
 	if !enabled: return
-	parent.velocity.y -= gravity * delta
+	parent.velocity.y = min(terminal_velocity, parent.velocity.y - gravity * delta)
+	
+	var final_speed = get_movement_speed(delta)
+	if input_direction_source.direction != Vector3.ZERO:
+		parent.velocity.x = lerp(parent.velocity.x, input_direction_source.direction.x * final_speed, 0.025)
+		parent.velocity.z = lerp(parent.velocity.z, input_direction_source.direction.z * final_speed, 0.025)
+	
 	parent.move_and_slide()
 
-func move_ground(_delta) -> void:
+func move_ground(delta: float) -> void:
 	
-	var character_state = parent.sm.state
-	if character_state != state_ids["walk"] and character_state != state_ids["sprint"]:
+	var character_state = parent_statemachine.state
+	
+	if character_state == state_ids["jump"]:
+		parent_statemachine.set_state(state_ids["land"])
+	
+	if not [state_ids["walk"], state_ids["sprint"], state_ids["idle"]].has(character_state):
 		return
 	
-	var final_speed = movement_speed
-	if character_state == state_ids["sprint"]:
-		final_speed = movement_speed * sprint_speed_multiplier
-	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if input_direction_source.direction:
-		parent.velocity.x = input_direction_source.direction.x * final_speed
-		parent.velocity.z = input_direction_source.direction.z * final_speed
-	else:
+	var final_speed = get_movement_speed(delta)
+		
+	if input_direction_source.direction == Vector3.ZERO:
 		parent.velocity.x = move_toward(parent.velocity.x, 0, final_speed)
 		parent.velocity.z = move_toward(parent.velocity.z, 0, final_speed)
-		
+	else:
+		parent.velocity.x = input_direction_source.direction.x * final_speed
+		parent.velocity.z = input_direction_source.direction.z * final_speed
+	
+	## Step up logic
 	var starting_position : Vector3 = parent.global_position
 	var starting_velocity : Vector3 = parent.velocity
 	
