@@ -1,4 +1,8 @@
+## The base class for Nodot characters
 class_name NodotCharacter3D extends CharacterBody3D
+
+## (optional) The character state machine. If not assigned, is created automatically
+@export var sm: StateMachine
 
 func _is_on_floor() -> bool:
 	var collision_info: KinematicCollision3D = move_and_collide(Vector3(0,-0.1,0),true)

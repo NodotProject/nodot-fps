@@ -5,8 +5,6 @@ class_name FirstPersonCharacter extends NodotCharacter3D
 @export var input_enabled := true
 ## Is the character used by the player
 @export var is_current_player := false
-## (optional) The character state machine. If not assigned, is created automatically
-@export var sm: StateMachine
 ## The camera field of view
 @export var fov := 75.0
 ## The head position
