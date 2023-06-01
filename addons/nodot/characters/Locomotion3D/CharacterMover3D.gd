@@ -8,7 +8,7 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 ## Enables stepping up stairs.
 @export var stepping_enabled: bool = true
 ## Maximum height for a ledge to allow stepping up.
-@export var step_height: float = 1.0
+@export var step_height: float = 0.5
 ## Constructs the step up movement vector.
 @onready var step_vector: Vector3 = Vector3(0, step_height, 0)
 ## How fast the character can move
@@ -17,6 +17,12 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 @export var sprint_speed_multiplier := 2.0
 ## The maximum speed a character can fall
 @export var terminal_velocity := 190.0
+
+@export_subgroup("Third Person Controls")
+## Strafing enabled. Otherwise the character will turn to face the movement direction
+@export var strafing: bool = true
+## Turn rate. If strafing is disabled, define how fast the character will turn.
+@export var turn_rate: float = 0.1
 
 @export_subgroup("Input Actions")
 ## The input action name for strafing left
@@ -31,7 +37,7 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 @export var sprint_action: String = "sprint"
 
 var sprint_speed = false
-var direction: Vector3 = Vector3.ZERO
+var third_person_camera_container: Node3D
 
 func _ready():
 	if !enabled:
@@ -48,6 +54,9 @@ func _ready():
 	sm.add_valid_transition("idle", ["walk", "sprint"])
 	sm.add_valid_transition("walk", ["idle", "walk", "sprint"])
 	sm.add_valid_transition("sprint", ["idle", "walk"])
+	
+	if third_person_camera:
+		third_person_camera_container = third_person_camera.get_parent()
 	
 func state_updated(old_state: int, new_state: int) -> void:
 	var sprint_id = state_ids["sprint"]
@@ -67,17 +76,22 @@ func get_movement_speed(delta: float) -> float:
 	return final_speed * delta * 100
 
 func action(delta: float) -> void:
-	
-	var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
-	direction = (character.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if direction:
-		if Input.is_action_pressed(sprint_action):
-			sm.set_state(state_ids["sprint"])
+	if character.input_enabled:
+		var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
+		var basis: Basis
+		if third_person_camera:
+			basis = third_person_camera.global_transform.basis
 		else:
-			sm.set_state(state_ids["walk"])
-	else:
-		sm.set_state(state_ids["idle"])
+			basis = character.transform.basis
+		direction = (basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		if direction:
+			if Input.is_action_pressed(sprint_action):
+				sm.set_state(state_ids["sprint"])
+			else:
+				sm.set_state(state_ids["walk"])
+		else:
+			sm.set_state(state_ids["idle"])
 		
 	if !character._is_on_floor() or character.velocity.y > 0:
 		move_air(delta)
@@ -87,8 +101,8 @@ func action(delta: float) -> void:
 func move_air(delta: float) -> void:
 	character.velocity.y = min(terminal_velocity, character.velocity.y - gravity * delta)
 	
-	var final_speed = get_movement_speed(delta)
 	if direction != Vector3.ZERO:
+		var final_speed = get_movement_speed(delta)
 		character.velocity.x = lerp(character.velocity.x, direction.x * final_speed, 0.025)
 		character.velocity.z = lerp(character.velocity.z, direction.z * final_speed, 0.025)
 	
@@ -104,6 +118,11 @@ func move_ground(delta: float) -> void:
 	else:
 		character.velocity.x = direction.x * final_speed
 		character.velocity.z = direction.z * final_speed
+		
+		if third_person_camera and !strafing:
+			var cached_rotation = third_person_camera_container.global_rotation
+			face_target(character.position + direction, turn_rate)
+			third_person_camera_container.global_rotation = cached_rotation
 	
 	# --- Stairs logic ---
 	var starting_position: Vector3 = character.global_position

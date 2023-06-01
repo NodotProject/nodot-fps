@@ -38,9 +38,6 @@ func state_updated(old_state: int, new_state: int) -> void:
 		sm.set_state(state_ids["idle"])
 
 func action(delta: float) -> void:
-	if !character._is_on_floor():
-		return
-		
 	if Input.is_action_pressed(crouch_action):
 		sm.set_state(state_ids["crouch"])
 	else:

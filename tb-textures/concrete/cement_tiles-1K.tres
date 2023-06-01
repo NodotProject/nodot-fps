@@ -1,15 +1,15 @@
 [gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://crtfumj8m6ea2"]
 
-[ext_resource type="Texture2D" uid="uid://b0kbnwr0idj0d" path="res://tb-textures/concrete/cement_tiles-1K.jpg" id="1_hao6t"]
-[ext_resource type="Texture2D" uid="uid://boe1ikpo2ovg2" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-ao.jpg" id="2_l3fp0"]
-[ext_resource type="Texture2D" uid="uid://d21dek0lbb6d2" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-displacement.jpg" id="3_pcvlx"]
-[ext_resource type="Texture2D" uid="uid://0ikeqml1y1xt" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-normal.jpg" id="4_f7c6a"]
+[ext_resource type="Texture2D" uid="uid://b0kbnwr0idj0d" path="res://tb-textures/concrete/cement_tiles-1K.jpg" id="1_1c8xj"]
+[ext_resource type="Texture2D" uid="uid://boe1ikpo2ovg2" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-ao.jpg" id="2_0adis"]
+[ext_resource type="Texture2D" uid="uid://d21dek0lbb6d2" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-displacement.jpg" id="3_2ad2v"]
+[ext_resource type="Texture2D" uid="uid://0ikeqml1y1xt" path="res://tb-textures/concrete/cement_tiles-1K/1K-cement_tiles-normal.jpg" id="4_jlfdg"]
 
 [resource]
-albedo_texture = ExtResource("1_hao6t")
+albedo_texture = ExtResource("1_1c8xj")
 normal_enabled = true
 normal_scale = 1.91
-normal_texture = ExtResource("4_f7c6a")
+normal_texture = ExtResource("4_jlfdg")
 ao_enabled = true
-ao_texture = ExtResource("2_l3fp0")
-heightmap_texture = ExtResource("3_pcvlx")
+ao_texture = ExtResource("2_0adis")
+heightmap_texture = ExtResource("3_2ad2v")
