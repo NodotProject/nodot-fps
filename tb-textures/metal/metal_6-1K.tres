@@ -1,15 +1,15 @@
 [gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b61kmj0s0dk65"]
 
-[ext_resource type="Texture2D" uid="uid://mjvhhaijiqkd" path="res://tb-textures/metal/metal_6-1K.jpg" id="1_f4s11"]
-[ext_resource type="Texture2D" uid="uid://dbi6rnshlo7bg" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-ao.jpg" id="2_qrkns"]
-[ext_resource type="Texture2D" uid="uid://vk6jk3unx38n" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-displacement.jpg" id="3_rms1o"]
-[ext_resource type="Texture2D" uid="uid://c8c4deeyu0miw" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-normal.jpg" id="4_jkwu3"]
+[ext_resource type="Texture2D" uid="uid://mjvhhaijiqkd" path="res://tb-textures/metal/metal_6-1K.jpg" id="1_8ttky"]
+[ext_resource type="Texture2D" uid="uid://dbi6rnshlo7bg" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-ao.jpg" id="2_de0sn"]
+[ext_resource type="Texture2D" uid="uid://vk6jk3unx38n" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-displacement.jpg" id="3_kaipt"]
+[ext_resource type="Texture2D" uid="uid://c8c4deeyu0miw" path="res://tb-textures/metal/metal_6-1K/1K-metal_6-normal.jpg" id="4_8wq7a"]
 
 [resource]
-albedo_texture = ExtResource("1_f4s11")
+albedo_texture = ExtResource("1_8ttky")
 normal_enabled = true
-normal_texture = ExtResource("4_jkwu3")
+normal_texture = ExtResource("4_8wq7a")
 ao_enabled = true
-ao_texture = ExtResource("2_qrkns")
+ao_texture = ExtResource("2_de0sn")
 heightmap_enabled = true
-heightmap_texture = ExtResource("3_rms1o")
+heightmap_texture = ExtResource("3_kaipt")

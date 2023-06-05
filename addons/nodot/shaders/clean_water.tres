@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://vbqj6uwb6wph"]
 
-[ext_resource type="Shader" path="res://addons/nodot/shaders/water.gdshader" id="1_31pcq"]
+[ext_resource type="Shader" path="res://addons/nodot/shaders/water.gdshader" id="1_t0c43"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h6xj0"]
 noise_type = 3
@@ -38,7 +38,7 @@ noise = SubResource("FastNoiseLite_pg80e")
 
 [resource]
 render_priority = 1
-shader = ExtResource("1_31pcq")
+shader = ExtResource("1_t0c43")
 shader_parameter/albedo = Color(0.376471, 0.603922, 1, 1)
 shader_parameter/albedo2 = Color(0.203922, 0.266667, 1, 1)
 shader_parameter/metallic = 0.75
@@ -49,7 +49,7 @@ shader_parameter/time_scale = 0.055
 shader_parameter/noise_scale = 9.508
 shader_parameter/height_scale = -0.159
 shader_parameter/wave_speed = 0.285
-shader_parameter/wave_time = 138.4
+shader_parameter/wave_time = 37.4833
 shader_parameter/color_deep = Color(0, 0, 0.65098, 1)
 shader_parameter/color_shallow = Color(0.321569, 0.52549, 1, 1)
 shader_parameter/beers_law = 2.0
