@@ -80,7 +80,7 @@ func action(delta: float) -> void:
 		var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
 		var basis: Basis
 		if third_person_camera:
-			basis = third_person_camera.global_transform.basis
+			basis = character.current_camera.global_transform.basis
 		else:
 			basis = character.transform.basis
 		direction = (basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -136,7 +136,7 @@ func move_ground(delta: float) -> void:
 	#    position and velocity values.
 	var slide_position: Vector3 = character.global_position
 	character.global_position = starting_position
-	character.velocity = Vector3(starting_velocity.x, 0.0, starting_velocity.z)
+	character.velocity = starting_velocity
 	
 	# After that, we move_and_collide() them up by step_height, move_and_slide()
 	#    and move_and_collide() back down
