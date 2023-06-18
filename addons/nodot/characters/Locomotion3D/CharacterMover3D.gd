@@ -36,6 +36,7 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 ## The input action name for sprinting
 @export var sprint_action: String = "sprint"
 
+var direction: Vector3 = Vector3.ZERO
 var sprint_speed = false
 var third_person_camera_container: Node3D
 
@@ -49,7 +50,7 @@ func ready():
 	InputManager.register_action(down_action, KEY_S)
 	InputManager.register_action(sprint_action, KEY_SHIFT)
 	
-	register_handled_states(["idle", "walk", "sprint", "jump", "land", "crouch"])
+	register_handled_states(["idle", "walk", "sprint", "jump", "land", "crouch", "prone"])
 		
 	sm.add_valid_transition("idle", ["walk", "sprint"])
 	sm.add_valid_transition("walk", ["idle", "walk", "sprint"])
