@@ -22,6 +22,11 @@ Features include:
 
 ## Contributing
 
+### Required Software
+
+- [Godot 4.1 Beta 2](https://godotengine.org)
+- [Git-LFS](https://git-lfs.github.com/) - Required to download the large binary files in this repo
+
 ### Required Godot Addons (included in this repo)
 
 - [Nodot](https://github.com/NodotProject/nodot)
