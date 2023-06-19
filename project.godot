@@ -26,7 +26,7 @@ InputManager="*res://addons/nodot/autoload/InputManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tbloader/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
 [input]
 
