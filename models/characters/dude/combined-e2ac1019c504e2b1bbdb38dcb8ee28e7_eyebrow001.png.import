@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi81mu8lecv7t"
-path.s3tc="res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_shoes03_diffuse.png-1e78ada076f9553c187720a4b587b39b.s3tc.ctex"
+uid="uid://ccretypmdo4r7"
+path.s3tc="res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyebrow001.png-e3199e8e9e775bba111ecb413efcb681.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/characters/dude/walking-e0f45ce6ae4f07d93516ca6e0a32528d_shoes03_diffuse.png"
-dest_files=["res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_shoes03_diffuse.png-1e78ada076f9553c187720a4b587b39b.s3tc.ctex"]
+source_file="res://models/characters/dude/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyebrow001.png"
+dest_files=["res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyebrow001.png-e3199e8e9e775bba111ecb413efcb681.s3tc.ctex"]
 
 [params]
 

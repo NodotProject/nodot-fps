@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btqgae5113yox"
-path.s3tc="res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_short04_diffuse.png-420c7e203816abfe21a72000fa738f27.s3tc.ctex"
+uid="uid://1bxbhc641jnc"
+path.s3tc="res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_brown_eye.png-70703d9534a345e84c26762db38917a1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/characters/dude/walking-e0f45ce6ae4f07d93516ca6e0a32528d_short04_diffuse.png"
-dest_files=["res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_short04_diffuse.png-420c7e203816abfe21a72000fa738f27.s3tc.ctex"]
+source_file="res://models/characters/dude/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_brown_eye.png"
+dest_files=["res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_brown_eye.png-70703d9534a345e84c26762db38917a1.s3tc.ctex"]
 
 [params]
 

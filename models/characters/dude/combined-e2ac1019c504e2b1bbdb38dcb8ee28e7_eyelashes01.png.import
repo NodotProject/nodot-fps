@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pjqkh0fr47da"
-path.s3tc="res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_middleage_lightskinned_male_diffuse.png-e8a01ec0e8155aca182f4c2f64cca46b.s3tc.ctex"
+uid="uid://bg4lxaiypqj34"
+path.s3tc="res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyelashes01.png-cfbaf55c0494841ba9218d6a6b79768e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/characters/dude/walking-e0f45ce6ae4f07d93516ca6e0a32528d_middleage_lightskinned_male_diffuse.png"
-dest_files=["res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_middleage_lightskinned_male_diffuse.png-e8a01ec0e8155aca182f4c2f64cca46b.s3tc.ctex"]
+source_file="res://models/characters/dude/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyelashes01.png"
+dest_files=["res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_eyelashes01.png-cfbaf55c0494841ba9218d6a6b79768e.s3tc.ctex"]
 
 [params]
 

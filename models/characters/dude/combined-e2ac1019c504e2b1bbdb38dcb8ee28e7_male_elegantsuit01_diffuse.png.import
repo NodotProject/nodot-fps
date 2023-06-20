@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djy1ijq2ngrxb"
-path.s3tc="res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_brown_eye.png-7b68c3e154805f50659745e05a0b5399.s3tc.ctex"
+uid="uid://8o0s7xd2uv2c"
+path.s3tc="res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_male_elegantsuit01_diffuse.png-bb063b45daae3f06e21e16e435744484.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/characters/dude/walking-e0f45ce6ae4f07d93516ca6e0a32528d_brown_eye.png"
-dest_files=["res://.godot/imported/walking-e0f45ce6ae4f07d93516ca6e0a32528d_brown_eye.png-7b68c3e154805f50659745e05a0b5399.s3tc.ctex"]
+source_file="res://models/characters/dude/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_male_elegantsuit01_diffuse.png"
+dest_files=["res://.godot/imported/combined-e2ac1019c504e2b1bbdb38dcb8ee28e7_male_elegantsuit01_diffuse.png-bb063b45daae3f06e21e16e435744484.s3tc.ctex"]
 
 [params]
 
