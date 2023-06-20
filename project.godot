@@ -24,6 +24,10 @@ PlayerManager="*res://addons/nodot/autoload/PlayerManager.gd"
 CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
 InputManager="*res://addons/nodot/autoload/InputManager.gd"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/krazy/Videos/Nodot/nodot.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
