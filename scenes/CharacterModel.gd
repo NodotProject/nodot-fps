@@ -11,14 +11,11 @@ func ready():
 		return
 	
 	character.connect("fall_damage", _on_fall_damage)
+	character.connect("current_camera_changed", _on_camera_change)
 	register_handled_states(["jump", "land", "idle", "walk", "sprint", "crouch", "prone"])
 	
 	if character.is_current_player:
-		var i = 0
-		for child in Nodot.get_children_of_type($combined/RootNode/Skeleton3D, MeshInstance3D):
-			if i < 6:
-				child.transparency = 1.0
-			i += 1
+		toggle_model(false)
 	
 func state_updated(old_state: int, new_state: int) -> void:
 	if new_state == state_ids["jump"]:
@@ -47,3 +44,19 @@ func physics(delta: float) -> void:
 		
 func _on_fall_damage(_amount):
 	anim["parameters/Hard Landing/request"] = true
+	
+func _on_camera_change(old_camera: Camera3D, new_camera: Camera3D):
+	if new_camera == character.camera:
+		toggle_model(false)
+	else:
+		toggle_model(true)
+
+func toggle_model(show_model: bool):
+	var i = 0
+	for child in Nodot.get_children_of_type($combined/RootNode/Skeleton3D, MeshInstance3D):
+		if i < 6:
+			if show_model:
+				child.transparency = 0.0
+			else:
+				child.transparency = 1.0
+		i += 1
