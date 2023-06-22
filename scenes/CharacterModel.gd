@@ -20,23 +20,23 @@ func ready():
 func state_updated(old_state: int, new_state: int) -> void:
 	if new_state == state_ids["jump"]:
 		anim["parameters/Jumping/blend_position"] = -1.0
+	elif new_state == state_ids["land"]:
+		anim["parameters/Jumping/blend_position"] = 1.0
 	elif new_state == state_ids["sprint"]:
 		target_movement_velocity = 1.0
 	elif new_state == state_ids["walk"]:
 		target_movement_velocity = 0.5
 
 func physics(delta: float) -> void:
-	if sm.state == state_ids["jump"] or !character._is_on_floor():
-		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 0.0, 0.1)
-		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
-	elif sm.state == state_ids["land"]:
-		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 1.0, 0.3)
-	elif sm.state == state_ids["crouch"]:
+	if sm.state == state_ids["crouch"]:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
+	elif sm.state == state_ids["jump"] or !character.is_on_floor():
+		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.05)
+		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
 	else:
-		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.1)
+		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 0.0, 0.05)
 		
-		var movement_direction = last_position.direction_to(character.global_position)
+		var movement_direction = last_position.direction_to(character.global_position).rotated(Vector3.DOWN, character.rotation.y)
 		target_movement_vector = Vector2(movement_direction.x, -movement_direction.z) * target_movement_velocity
 		anim["parameters/HolsteredMovement/blend_position"] = lerp(anim["parameters/HolsteredMovement/blend_position"], target_movement_vector, 0.1)
 		last_position = character.global_position
