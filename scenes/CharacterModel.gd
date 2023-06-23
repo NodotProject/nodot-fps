@@ -30,8 +30,18 @@ func state_updated(old_state: int, new_state: int) -> void:
 func physics(delta: float) -> void:
 	if sm.state == state_ids["crouch"]:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
+		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
+			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 0.0, 0.3)
+		else:
+			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 1.0, 0.3)
+	elif sm.state == state_ids["prone"]:
+		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
+		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
+			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
+		else:
+			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
 	elif sm.state == state_ids["jump"] or !character.is_on_floor():
-		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.05)
+		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.1)
 		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
 	else:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 0.0, 0.05)
