@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdximxi6a2ksh"
-path.s3tc="res://.godot/imported/FF_Starfield L1_8k.png-c669c854a5c11512d15b16c27bcb0b0c.s3tc.ctex"
+uid="uid://blpm00jouqiin"
+path.s3tc="res://.godot/imported/low_poly_futuristic_city_at_night_dark_starry_nig.jpg-18b531107eb1527853d0368c1d279fc8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/surrounding/skybox/FF_Starfield L1_8k.png"
-dest_files=["res://.godot/imported/FF_Starfield L1_8k.png-c669c854a5c11512d15b16c27bcb0b0c.s3tc.ctex"]
+source_file="res://textures/surrounding/skybox/low_poly_futuristic_city_at_night_dark_starry_nig.jpg"
+dest_files=["res://.godot/imported/low_poly_futuristic_city_at_night_dark_starry_nig.jpg-18b531107eb1527853d0368c1d279fc8.s3tc.ctex"]
 
 [params]
 
