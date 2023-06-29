@@ -24,10 +24,6 @@ PlayerManager="*res://addons/nodot/autoload/PlayerManager.gd"
 CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
 InputManager="*res://addons/nodot/autoload/InputManager.gd"
 
-[display]
-
-window/size/mode=3
-
 [editor]
 
 movie_writer/movie_file="C:/Users/krazy/Videos/Nodot/nodot.avi"

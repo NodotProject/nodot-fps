@@ -50,6 +50,9 @@
   targetname(string) : "Targetname" : "" : "String"
 ]
 
+@SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_particle_collider : "Brushes" [
+]
+
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_trigger : "Brushes" [
   target(string) : "Target" : "" : "String"
   targetname(string) : "Targetname" : "" : "String"
