@@ -3729,3 +3729,53 @@
 ( -208 224 384 ) ( -208 384 384 ) ( -208 384 368 ) concrete/dark_concrete_11-1K 0 0 0 0.1 0.1
 }
 }
+// entity 197
+{
+"classname" "lighting_spotlight"
+"origin" "-220 -332 191"
+}
+// entity 198
+{
+"classname" "lighting_spotlight"
+"origin" "-316 -332 191"
+}
+// entity 199
+{
+"classname" "lighting_spotlight"
+"origin" "-108 -332 191"
+}
+// entity 200
+{
+"classname" "lighting_spotlight"
+"origin" "-108 -252 191"
+}
+// entity 201
+{
+"classname" "lighting_spotlight"
+"origin" "-108 -92 191"
+}
+// entity 202
+{
+"classname" "lighting_spotlight"
+"origin" "-108 68 191"
+}
+// entity 203
+{
+"classname" "lighting_spotlight"
+"origin" "-108 180 191"
+}
+// entity 204
+{
+"classname" "breakables_jar"
+"origin" "-116 -356 116"
+}
+// entity 205
+{
+"classname" "breakables_jar"
+"origin" "-148 -356 116"
+}
+// entity 206
+{
+"classname" "breakables_jar"
+"origin" "-180 -356 116"
+}
