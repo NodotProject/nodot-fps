@@ -66,7 +66,7 @@ func _setup_fire_particle():
 	fire_particle.amount = 200
 	fire_particle.lifetime = fire_life_time * effect_scale
 	fire_particle.randomness = 1.0
-	fire_particle.draw_order = GPUParticles3D.DRAW_ORDER_VIEW_DEPTH
+	fire_particle.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
 	fire_particle.sorting_offset = 1.0
 	
 	var particle_material = ParticleProcessMaterial.new()
@@ -131,7 +131,7 @@ func _setup_smoke_particle():
 	smoke_particle.amount = 80
 	smoke_particle.lifetime = smoke_life_time
 	smoke_particle.randomness = 1.0
-	smoke_particle.draw_order = GPUParticles3D.DRAW_ORDER_VIEW_DEPTH
+	smoke_particle.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
 	
 	var particle_material = ParticleProcessMaterial.new()
 	smoke_particle.process_material = particle_material
@@ -196,7 +196,7 @@ func _setup_sparks_particle():
 	spark_particle.amount = 80
 	spark_particle.lifetime = spark_life_time * effect_scale
 	spark_particle.randomness = 1.0
-	spark_particle.draw_order = GPUParticles3D.DRAW_ORDER_VIEW_DEPTH
+	spark_particle.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
 	
 	var particle_material = ParticleProcessMaterial.new()
 	spark_particle.process_material = particle_material

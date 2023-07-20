@@ -3779,3 +3779,18 @@
 "classname" "breakables_jar"
 "origin" "-180 -356 116"
 }
+// entity 207
+{
+"classname" "breakables_crate"
+"origin" "-76 356 324"
+}
+// entity 208
+{
+"classname" "breakables_crate"
+"origin" "-44 356 308"
+}
+// entity 209
+{
+"classname" "breakables_crate"
+"origin" "-76 356 308"
+}

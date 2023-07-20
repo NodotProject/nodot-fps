@@ -43,7 +43,7 @@ func _setup_smoke_particle():
 	smoke_particle.amount = 80
 	smoke_particle.lifetime = smoke_life_time
 	smoke_particle.randomness = 1.0
-	smoke_particle.draw_order = GPUParticles3D.DRAW_ORDER_VIEW_DEPTH
+	smoke_particle.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
 	
 	var particle_material = ParticleProcessMaterial.new()
 	smoke_particle.process_material = particle_material
