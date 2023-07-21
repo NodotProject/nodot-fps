@@ -3819,3 +3819,58 @@
 "classname" "breakables_crate"
 "origin" "-60 356 340"
 }
+// entity 215
+{
+"classname" "breakables_crate"
+"origin" "292 132 308"
+}
+// entity 216
+{
+"classname" "breakables_crate"
+"origin" "276 132 308"
+}
+// entity 217
+{
+"classname" "breakables_crate"
+"origin" "276 132 324"
+}
+// entity 218
+{
+"classname" "breakables_crate"
+"origin" "292 132 324"
+}
+// entity 219
+{
+"classname" "breakables_crate"
+"origin" "292 132 340"
+}
+// entity 220
+{
+"classname" "breakables_crate"
+"origin" "276 132 340"
+}
+// entity 221
+{
+"classname" "breakables_crate"
+"origin" "276 116 308"
+}
+// entity 222
+{
+"classname" "breakables_crate"
+"origin" "292 116 308"
+}
+// entity 223
+{
+"classname" "breakables_crate"
+"origin" "276 116 324"
+}
+// entity 224
+{
+"classname" "breakables_crate"
+"origin" "276 116 340"
+}
+// entity 225
+{
+"classname" "breakables_crate"
+"origin" "292 116 324"
+}
