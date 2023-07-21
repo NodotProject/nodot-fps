@@ -3787,10 +3787,35 @@
 // entity 208
 {
 "classname" "breakables_crate"
-"origin" "-44 356 308"
+"origin" "-60 356 324"
 }
 // entity 209
 {
 "classname" "breakables_crate"
 "origin" "-76 356 308"
+}
+// entity 210
+{
+"classname" "breakables_crate"
+"origin" "-60 356 308"
+}
+// entity 211
+{
+"classname" "breakables_crate"
+"origin" "-60 340 308"
+}
+// entity 212
+{
+"classname" "breakables_crate"
+"origin" "-76 340 308"
+}
+// entity 213
+{
+"classname" "breakables_crate"
+"origin" "-92 356 308"
+}
+// entity 214
+{
+"classname" "breakables_crate"
+"origin" "-60 356 340"
 }

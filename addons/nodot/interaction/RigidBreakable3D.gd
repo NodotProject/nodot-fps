@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 		if total_velocity > environmental_damage:
 			var multiplier = total_velocity / environmental_damage
 			var damage = environmental_damage_multiplier * (environmental_damage * multiplier)
-			print(damage)
 			health.add_health(-damage)
 
 
