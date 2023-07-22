@@ -24,3 +24,7 @@ func activate():
 ## Unpause
 func deactivate():
 	set_pause(false)
+
+## Toggle pause
+func toggle():
+	set_pause(!pause)

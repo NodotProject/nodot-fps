@@ -1,3 +1,4 @@
+@tool
 ## Executes a method and/or triggers a signal when an input action is pressed
 class_name InputActionConnector extends Nodot
 
