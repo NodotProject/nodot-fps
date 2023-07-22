@@ -17,7 +17,7 @@ func ready():
 	if character.is_current_player:
 		toggle_model(false)
 	
-func state_updated(old_state: int, new_state: int) -> void:
+func state_updated(_old_state: int, new_state: int) -> void:
 	if new_state == state_ids["jump"]:
 		anim["parameters/Jumping/blend_position"] = -1.0
 	elif new_state == state_ids["land"]:
@@ -27,7 +27,7 @@ func state_updated(old_state: int, new_state: int) -> void:
 	elif new_state == state_ids["walk"]:
 		target_movement_velocity = 0.5
 
-func physics(delta: float) -> void:
+func physics(_delta: float) -> void:
 	if sm.state == state_ids["crouch"]:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
@@ -55,7 +55,7 @@ func physics(delta: float) -> void:
 func _on_fall_damage(_amount):
 	anim["parameters/Hard Landing/request"] = true
 	
-func _on_camera_change(old_camera: Camera3D, new_camera: Camera3D):
+func _on_camera_change(_old_camera: Camera3D, new_camera: Camera3D):
 	if new_camera == character.camera:
 		toggle_model(false)
 	else:
