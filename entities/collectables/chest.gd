@@ -10,9 +10,11 @@ extends StaticInteractBody3D
 func toggle_inventory():
 	if inventory_root_node.visible:
 		inventory_root_node.visible = false
-		PlayerManager.node.enable_input()
+		PlayerManager.node.input_enabled = true
 		label_text = "Open Chest"
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		inventory_root_node.visible = true
-		PlayerManager.node.disable_input()
+		PlayerManager.node.input_enabled = false
 		label_text = ""
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
