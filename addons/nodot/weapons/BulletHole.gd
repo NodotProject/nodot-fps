@@ -43,3 +43,4 @@ func action(hit_target: HitTarget) -> void:
 		await get_tree().create_timer(lifespan, false).timeout
 		if is_instance_valid(decal_node):
 			decal_node.queue_free()
+

@@ -37,6 +37,9 @@ func _enter_tree():
 	label3d.modulate = font_color
 	label3d.position.z = -2
 	add_child(label3d)
+	
+func _ready():
+	InputManager.register_action(interact_action, KEY_F)
 
 func _input(event: InputEvent):
 	if !enabled or !event.is_action_pressed(interact_action):
