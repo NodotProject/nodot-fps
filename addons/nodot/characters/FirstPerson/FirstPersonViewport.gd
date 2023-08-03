@@ -52,7 +52,7 @@ func _ready() -> void:
 		if "transform" in child and not child is SubViewport:
 			var saved_transform: Transform3D = child.transform
 			child.reparent(viewport_camera, true)
-	
+
 	if is_instance_valid(VideoManager):
 		VideoManager.connect("window_resized", _on_window_resized)
 		VideoManager.bump()

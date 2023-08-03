@@ -24,6 +24,7 @@ CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
 InputManager="*res://addons/nodot/autoload/InputManager.gd"
 AudioManager="*res://addons/nodot/autoload/AudioManager.gd"
 VideoManager="*res://addons/nodot/autoload/VideoManager.gd"
+NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
 
 [editor]
 
