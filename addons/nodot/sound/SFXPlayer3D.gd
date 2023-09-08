@@ -1,18 +1,25 @@
+@tool
 ## A sound effect player with randomization and trigger options
 class_name SFXPlayer3D extends AudioStreamPlayer3D
 
 ## An array of audiostreams chosen at random on action
 @export var sfx: Array[AudioStream] = []
+
+@export_subgroup("Trigger")
 ## (optional) A node path containing a signal to trigger the sound effect
-@export var trigger_node: Node
-## (optional) The signal name fired from the "trigger_node"
-@export var trigger_signal: String = ""
+@export var trigger_node: Node:
+	set(new_node):
+		trigger_node = new_node
+		notify_property_list_changed()
+		
+@export_subgroup("Other")
 ## Arguments to unbind from signal
 @export var unbind_count: int = 0
 ## Fade speed
 @export var fade_speed: float = 1.0
 
-
+## The name of the signal
+var trigger_signal: String = ""
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var original_volume = volume_db
 
@@ -60,3 +67,29 @@ func fade_out(pause_on_finish: bool = false, index: int = -1):
 		tween.connect("finished", stop)
 	tween.tween_property(self, "volume_db", -80, fade_speed)
 	tween.play()
+
+func _get_property_list() -> Array[Dictionary]:
+	var property_list: Array[Dictionary] = [{
+		name = "Trigger",
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_SUBGROUP
+	}]
+	
+	var signal_list = ""
+	if is_instance_valid(trigger_node):
+		var signal_data = trigger_node.get_signal_list()
+		var signals: Array = signal_data.map(func(item): return item.name).filter(
+			func(item): return item != ""
+		)
+		signals.sort()
+		signal_list = ",".join(signals)
+
+		property_list.append({
+			"name": "trigger_signal",
+			"type": TYPE_STRING,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_ENUM,
+			"hint_string": signal_list,
+		})
+		
+	return property_list

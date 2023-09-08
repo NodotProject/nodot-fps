@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu75186nq7j7a"
-path="res://.godot/imported/visioncone.svg-5d27a6a802246b5279e59df2127144f7.ctex"
+uid="uid://1gh4h63mibux"
+path="res://.godot/imported/accordion.svg-9745b24bdc4672fad3b6ef3df26cc249.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/visioncone.svg"
-dest_files=["res://.godot/imported/visioncone.svg-5d27a6a802246b5279e59df2127144f7.ctex"]
+source_file="res://addons/nodot/icons/accordion.svg"
+dest_files=["res://.godot/imported/accordion.svg-9745b24bdc4672fad3b6ef3df26cc249.ctex"]
 
 [params]
 

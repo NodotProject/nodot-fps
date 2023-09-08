@@ -3,6 +3,7 @@ extends Nodot
 
 var signals: Dictionary = {}
 
+## Add a listener for a specific key
 func add_listener(signal_name: String, node: Node, method: StringName):
 	if not signals.has(signal_name):
 		signals[signal_name] = [{
@@ -15,6 +16,7 @@ func add_listener(signal_name: String, node: Node, method: StringName):
 			"method": method
 		})
 
+## Remove a listener for a specific key
 func remove_listener(signal_name: String, callable: Callable):
 	if not signals.has(signal_name):
 		return
@@ -24,6 +26,7 @@ func remove_listener(signal_name: String, callable: Callable):
 			signals[signal_name].remove(i)
 			return
 
+## Trigger a signal for a specific key
 func trigger_signal(signal_name: String, arg: Variant = null):
 	if not signals.has(signal_name):
 		return
