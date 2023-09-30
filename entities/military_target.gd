@@ -6,7 +6,7 @@ extends Entity
 }
 
 func _ready():
-	var target_node_position = get_target(target).global_position
+	var target_node_position = get_target(target).global_position - global_position
 	if target_node_position:
 		$Mover3D.destination_position = target_node_position
 
