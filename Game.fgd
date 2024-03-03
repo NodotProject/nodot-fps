@@ -24,14 +24,14 @@
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = breakables_crate : "Breakables" [
   explosion_force(float) : "Explosion Force" : 1 : "float"
-  environmental_damage(float) : "Environmental Damage" : 0 : "float"
+  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0 : "float"
   environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1 : "float"
   is_editor(bool) : "Is Editor" : 1
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = breakables_jar : "Breakables" [
   explosion_force(float) : "Explosion Force" : 1 : "float"
-  environmental_damage(float) : "Environmental Damage" : 0 : "float"
+  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0 : "float"
   environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1 : "float"
   is_editor(bool) : "Is Editor" : 1
 ]

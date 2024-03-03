@@ -28,6 +28,14 @@ signal movement_ended
 @export var time_to_destination: float = 1.0
 ## Time until origin
 @export var time_to_origin: float = 1.0
+## Ease Type (https://docs.godotengine.org/en/4.0/classes/class_tween.html)
+@export_enum(
+	"EASE_IN",
+	"EASE_OUT",
+	"EASE_IN_OUT",
+	"EASE_OUT_IN"
+)
+var ease_type: int = 0
 ## Transition type (https://docs.godotengine.org/en/4.0/classes/class_tween.html)
 @export_enum(
 	"TRANS_LINEAR",
@@ -102,12 +110,14 @@ func move_to_destination():
 				target_node, "position", final_destination_position, time_to_destination
 			)
 			. set_trans(transition_type)
+			. set_ease(ease_type)
 		)
 	(
 		destination_tween
 		. parallel()
 		. tween_property(target_node, "rotation", destination_rotation_radians, time_to_destination)
 		. set_trans(transition_type)
+		. set_ease(ease_type)
 	)
 	destination_tween.play()
 	emit_signal("moving_to_destination")
@@ -126,12 +136,14 @@ func move_to_origin():
 			. parallel()
 			. tween_property(target_node, "position", original_position, time_to_origin)
 			. set_trans(transition_type)
+			. set_ease(ease_type)
 		)
 	(
 		origin_tween
 		. parallel()
 		. tween_property(target_node, "rotation", original_rotation, time_to_origin)
 		. set_trans(transition_type)
+		. set_ease(ease_type)
 	)
 	origin_tween.play()
 	emit_signal("moving_to_origin")

@@ -91,18 +91,16 @@ func physics(delta: float) -> void:
 			basis = character.transform.basis
 		direction = (basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		if direction == Vector3.ZERO:
-			sm.set_state(state_ids["idle"])
-		else:
+		if direction != Vector3.ZERO:
 			if Input.is_action_pressed(sprint_action):
 				sm.set_state(state_ids["sprint"])
 			else:
 				sm.set_state(state_ids["walk"])
 		
-	if !character._is_on_floor():
-		move_air(delta)
-	else:
-		move_ground(delta)
+		if !character._is_on_floor():
+			move_air(delta)
+		else:
+			move_ground(delta)
 
 func move_air(delta: float) -> void:
 	character.velocity.y = min(terminal_velocity, character.velocity.y - gravity * delta)
@@ -164,3 +162,5 @@ func move_ground(delta: float) -> void:
 	if slide_distance > step_distance or !character._is_on_floor():
 		character.global_position = slide_position
 	# --- Step up logic ---
+	
+	character.velocity.y = lerp(character.velocity.y, 0.0, delta * 2.0)
