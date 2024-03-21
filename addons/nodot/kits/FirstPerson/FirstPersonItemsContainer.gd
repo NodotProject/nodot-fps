@@ -75,15 +75,14 @@ func change_item(new_index: int) -> void:
 	if new_index == active_item_index: return;
 	var items: Array = get_all_items()
 	var item_count: int = items.size()
-	var total_item_count: int = 8
 	if item_count == 0: return
 	if item_changing == true: return
 	if not items[new_index].unlocked: return
 	item_changing = true
 	
 	# Total item count is placeholder till all items are implemented
-	if new_index >= total_item_count - 1:
-		active_item_index = total_item_count - 1
+	if new_index >= item_count - 1:
+		active_item_index = item_count - 1
 	elif new_index <= 0:
 		active_item_index = 0
 	else:

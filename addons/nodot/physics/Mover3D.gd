@@ -55,7 +55,8 @@ var transition_type: int = 0
 var original_position: Vector3 = Vector3.ZERO
 var original_rotation: Vector3 = Vector3.ZERO
 var activated: bool = false
-
+var destination_tween: Tween
+var origin_tween: Tween
 
 func _ready():
 	if target_node:
@@ -87,8 +88,6 @@ func deactivate():
 
 func move_to_destination():
 	var final_destination_position = destination_position
-	if target_node:
-		original_position = target_node.position
 	if relative_destination_position:
 		final_destination_position = original_position + destination_position
 
@@ -96,7 +95,7 @@ func move_to_destination():
 		return
 
 	activated = true
-	var destination_tween = _create_tween(_on_destination_reached)
+	destination_tween = _create_tween(_on_destination_reached)
 	var destination_rotation_radians = Vector3(
 		deg_to_rad(destination_rotation.x),
 		deg_to_rad(destination_rotation.y),
@@ -129,7 +128,7 @@ func move_to_origin():
 		return
 
 	activated = false
-	var origin_tween = _create_tween(_on_origin_reached)
+	origin_tween = _create_tween(_on_origin_reached)
 	if original_position:
 		(
 			origin_tween
@@ -150,9 +149,18 @@ func move_to_origin():
 	emit_signal("movement_started")
 	
 func reset() -> void:
+	if destination_tween:
+		destination_tween.stop()
+	if origin_tween:
+		origin_tween.stop()
 	target_node.position = original_position
 	target_node.rotation = original_rotation
 
+func pause() -> void:
+	if destination_tween:
+		destination_tween.pause()
+	if origin_tween:
+		origin_tween.pause()
 
 func _create_tween(callback: Callable) -> Tween:
 	var tween = get_tree().create_tween()
