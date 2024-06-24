@@ -40,7 +40,7 @@ func physics(_delta: float) -> void:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
 		else:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
-	elif sm.state == state_ids["jump"] or !character.is_on_floor():
+	elif sm.state == state_ids["jump"] or !character.was_on_floor:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.1)
 		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
 	else:

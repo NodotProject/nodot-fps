@@ -5,8 +5,6 @@ class_name FirstPersonCharacter extends NodotCharacter3D
 @export var input_enabled := true
 ## The camera field of view
 @export var fov := 75.0
-## The head position
-@export var head_position := Vector3.ZERO
 ## Minimum amount of fall damage before it is actually applied
 @export var minimum_fall_damage: float = 5.0
 ## The amount of fall damage to inflict when hitting the ground at velocity (0 for disabled)
@@ -20,6 +18,7 @@ var health: Health
 var submerge_handler: CharacterSwim3D
 var inventory: CollectableInventory
 var was_on_floor: bool = false
+var floor_body: Node3D;
 # Velocity of the previous frame
 var previous_velocity: float = 0.0
 # Peak velocity of the last 0.1 seconds
@@ -27,6 +26,8 @@ var peak_recent_velocity: Vector3 = Vector3.ZERO
 var peak_recent_velocity_timer: float = 0.0
 var character_colliders: UniqueSet = UniqueSet.new()
 var terminal_velocity := 190.0
+var direction := Vector2.ZERO
+var look_angle := Vector2.ZERO
 
 func _enter_tree() -> void:
 	if !sm:
@@ -55,14 +56,6 @@ func _ready() -> void:
 	if has_node("Head"):
 		head = get_node("Head")
 		camera = get_node("Head/Camera3D")
-
-	if has_node("HeadPosition"):
-		var head_position_node: Node = get_node("HeadPosition")
-		head.position = head_position_node.position
-		head_position = head.position
-		head_position_node.queue_free()
-	else:
-		head.position = head_position
 	
 	if is_authority() and is_current_player:
 		set_current_player()
@@ -74,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if not is_authority(): return
 	
 	peak_recent_velocity_timer += delta
-	if peak_recent_velocity_timer > 0.1:
+	if peak_recent_velocity_timer > 0.05:
 		peak_recent_velocity_timer = 0.0
 	else:
 		var max_velocity = max(abs(velocity.x), abs(velocity.y), abs(velocity.z))
@@ -84,11 +77,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			peak_recent_velocity = lerp(peak_recent_velocity, Vector3.ZERO, delta)
 	
+	var on_floor = _is_on_floor() != null
 	if !health or fall_damage_multiplier <= 0.0:
+		was_on_floor = on_floor
+		floor_body = _is_on_floor();
 		return
-		
-	var on_floor = _is_on_floor()
+	
 	if !was_on_floor:
+		floor_body = null;
 		if on_floor:
 			var falling_velocity = abs(previous_velocity)
 			var damage = falling_velocity * fall_damage_multiplier
@@ -97,7 +93,7 @@ func _physics_process(delta: float) -> void:
 				emit_signal("fall_damage", damage)
 		else:
 			previous_velocity = velocity.y
-	was_on_floor = on_floor != null
+	was_on_floor = on_floor
 
 func _is_current_player_changed(new_value: bool):
 	is_current_player = new_value

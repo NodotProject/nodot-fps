@@ -1,6 +1,10 @@
 ## Manages saving game data to the file system
 extends Node
 
+## Triggered on a successful config save
+signal config_saved
+## Triggered on a successful config load
+signal config_loaded
 ## Triggered on a successful file save
 signal saved
 ## Triggered on a successful file load
@@ -69,6 +73,17 @@ func get_special_id(input_node: Node):
 func set_value(key: String, value: Variant):
 	custom_values[key] = value
 	
+## Get a custom value
+func get_value(key: String):
+	if custom_values.has(key):
+		return custom_values[key]
+	else:
+		return null
+		
+## Remove a custom value
+func remove_value(key: String):
+	custom_values.erase(key)
+	
 ## Resets the save data to default
 func reset():
 	savers = []
@@ -81,6 +96,7 @@ func save_config():
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_var(config.data, true)
 	file.close()
+	emit_signal("config_saved")
 	
 ## Load the configuration file
 func load_config() -> void:
@@ -91,3 +107,4 @@ func load_config() -> void:
 		if new_config:
 			config.data = new_config
 		file.close()
+	emit_signal("config_loaded")
