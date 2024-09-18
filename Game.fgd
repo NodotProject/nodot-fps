@@ -1,21 +1,21 @@
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = AreaBrushEntity : "" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = Entity : "" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/MilitaryTarget.fbx","scale":0.15}) = military_target : "" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = StaticBrushEntity : "" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = breakables_barrel : "Breakables" [
@@ -23,41 +23,41 @@
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = breakables_crate : "Breakables" [
-  explosion_force(float) : "Explosion Force" : 1 : "float"
-  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0 : "float"
-  environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1 : "float"
+  explosion_force(float) : "Explosion Force" : 1
+  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0
+  environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1
   is_editor(bool) : "Is Editor" : 1
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = breakables_jar : "Breakables" [
-  explosion_force(float) : "Explosion Force" : 1 : "float"
-  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0 : "float"
-  environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1 : "float"
+  explosion_force(float) : "Explosion Force" : 1
+  environmental_damage_min_velocity(float) : "Environmental Damage Min Velocity" : 0
+  environmental_damage_multiplier(float) : "Environmental Damage Multiplier" : 1
   is_editor(bool) : "Is Editor" : 1
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_glass : "Brushes" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_ladder : "Brushes" [
-  enabled(bool) : "Enabled" : 1 : "bool"
+  enabled(bool) : "Enabled" : 1
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_mover : "Brushes" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_particle_collider : "Brushes" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = brushes_trigger : "Brushes" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Apple.fbx","scale":0.05}) = collectables_apple : "Collectables" [
@@ -67,9 +67,9 @@
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Chest_Closed.fbx","scale":0.2}) = collectables_chest : "Collectables" [
-  enabled(bool) : "Enabled" : 1 : "bool"
-  label_text(string) : "Label Text" : "Press" : "String"
-  input_action(string) : "Input Action" : "interact" : "String"
+  enabled(bool) : "Enabled" : 1
+  label_text(string) : "Label Text" : "Press"
+  input_action(string) : "Input Action" : "interact"
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/collectable/Coin.fbx","scale":0.1}) = collectables_coin : "Collectables" [
@@ -79,23 +79,23 @@
 ]
 
 @SolidClass size(-4 -4 -4, 4 4 4) color(0 255 0) = interact_button : "Interact" [
-  label_text(string) : "Label Text" : "Press E to interact" : "String"
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  label_text(string) : "Label Text" : "Press E to interact"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/Fluorescent_Lamp.obj","scale":0.025}) = lighting_lamp : "Lighting" [
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = lighting_spotlight : "Lighting" [
-  color(color) : "Color" : "1 1 1" : "Color"
+  color(color) : "Color" : "1 1 1"
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) model({"path":"models/spawner/FixdMsh.fbx","scale":0.01}) = toys_spawn_machine : "Toys" [
 ]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = utility_position : "Utility" [
-  target(string) : "Target" : "" : "String"
-  targetname(string) : "Targetname" : "" : "String"
+  target(string) : "Target" : ""
+  targetname(string) : "Targetname" : ""
 ]
 
