@@ -4,3 +4,4 @@ maps/autosave
 .vscode
 build
 addons/tbloader/bin/~tbloader.windows.x86_64.dll
+addons/tbloader/bin/~*.pdb
