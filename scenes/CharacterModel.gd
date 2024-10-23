@@ -12,35 +12,35 @@ func ready():
 	
 	character.connect("fall_damage", _on_fall_damage)
 	character.connect("current_camera_changed", _on_camera_change)
-	register_handled_states(["jump", "land", "idle", "walk", "sprint", "crouch", "prone"])
+	handled_states = ["jump", "land", "idle", "walk", "sprint", "crouch", "prone"]
 	
 	if character.is_current_player:
 		toggle_model(false)
 	
-func state_updated(_old_state: int, new_state: int) -> void:
-	if new_state == state_ids["jump"]:
+func enter() -> void:
+	if sm.state == &"jump":
 		anim["parameters/Jumping/blend_position"] = -1.0
-	elif new_state == state_ids["land"]:
+	elif sm.state == &"land":
 		anim["parameters/Jumping/blend_position"] = 1.0
-	elif new_state == state_ids["sprint"]:
+	elif sm.state == &"sprint":
 		target_movement_velocity = 1.0
-	elif new_state == state_ids["walk"]:
+	elif sm.state == &"walk":
 		target_movement_velocity = 0.5
 
 func physics(_delta: float) -> void:
-	if sm.state == state_ids["crouch"]:
+	if sm.state == &"crouch":
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 0.0, 0.3)
 		else:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 1.0, 0.3)
-	elif sm.state == state_ids["prone"]:
+	elif sm.state == &"prone":
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
 		else:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
-	elif sm.state == state_ids["jump"] or !character.was_on_floor:
+	elif sm.state == &"jump" or !character.was_on_floor:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.1)
 		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
 	else:
