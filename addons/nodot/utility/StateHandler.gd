@@ -9,8 +9,7 @@ class_name StateHandler extends Nodot
 ## The StateMachine to attach this handler to
 @export var sm: StateMachine
 
-var _old_state_active: bool = false
-var state_active: bool = false
+var old_state: StringName
 
 func _ready():
 	if !enabled:
@@ -22,7 +21,7 @@ func _ready():
 	ready()
 	
 func _physics_process(delta):
-	if !enabled and state_active:
+	if !enabled or !sm or !handled_states.has(sm.state):
 		return
 		
 	physics(delta)
@@ -31,24 +30,22 @@ func _process(delta):
 	if !enabled or !sm:
 		return
 	
-	var is_state_active: bool = handled_states.has(sm.state)
-	
-	if _old_state_active != is_state_active:
-		if is_state_active:
-			if can_enter():
-				print("entered %s from %s" % [sm.state, sm.old_state])
-				state_active = true
-				enter()
-		else:
-			state_active = false
-			exit()
-	
-	_old_state_active = state_active
-	if state_active:
+	if _is_state_active():
 		process(delta)
 	
 func _input(event: InputEvent) -> void:
 	input(event)
+
+func _is_state_active() -> bool:
+	var is_state_active: bool = handled_states.has(sm.state)
+
+	if sm.state != old_state:
+		if is_state_active and can_enter():
+			enter()
+		elif !is_state_active:
+			exit()
+		old_state = sm.state
+	return is_state_active
 
 ## Extend this placeholder. This is where your logic will be run when the node becomes ready.
 func ready() -> void:
