@@ -16,6 +16,12 @@ class_name CharacterMover3D extends CharacterExtensionBase3D
 ## The maximum speed a character can fall
 @export var terminal_velocity := 190.0
 
+@export_category("State Handlers")
+## Set the jump state handler
+@export var jump_state_handler: CharacterJump3D
+## Set the idle state handler
+@export var idle_state_handler: StateHandler
+
 @export_subgroup("Third Person Controls")
 ## Strafing enabled. Otherwise the character will turn to face the movement direction
 @export var strafing: bool = true
@@ -33,33 +39,11 @@ var direction: Vector3 = Vector3.ZERO
 var sprint_speed = false
 var third_person_camera_container: Node3D
 
-func ready():
-	if !enabled:
-		return
-	
+func setup():
 	InputManager.register_action(sprint_action, KEY_SHIFT)
-	
-	handled_states = [&"idle", &"walk", &"sprint", &"jump", &"land", &"crouch", &"prone"]
-	if !sm.state: sm.set_state(&"idle")
 		
 	if third_person_camera:
 		third_person_camera_container = third_person_camera.get_parent()
-
-func can_enter() -> bool:
-	return [&"idle", &"walk", &"sprint", &"land", &"crouch"].has(sm.old_state)
-	
-func enter() -> void:
-	if not is_authority(): return
-		
-	var sprint_id = &"sprint"
-	
-	if sm.state == &"jump":
-		if sm.old_state == sprint_id:
-			sprint_speed = true
-	elif sm.state == &"land" or sm.old_state == sprint_id:
-		sprint_speed = false
-	elif sm.state == sprint_id:
-		sprint_speed = true
 		
 func get_movement_speed(delta: float) -> float:
 	var final_speed = movement_speed
@@ -67,8 +51,8 @@ func get_movement_speed(delta: float) -> float:
 		final_speed = movement_speed * sprint_speed_multiplier
 	return final_speed * delta * 100
 
-func physics(delta: float) -> void:
-	if not is_authority(): return
+func physics_process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
 	
 	var basis: Basis
 	if third_person_camera:
@@ -79,35 +63,33 @@ func physics(delta: float) -> void:
 		
 	if character.input_enabled and direction != Vector3.ZERO:
 		if Input.is_action_pressed(sprint_action):
-			sm.set_state(&"sprint")
+			sprint_speed = true
 		else:
-			sm.set_state(&"walk")
+			sprint_speed = false
 		
 	if !character.was_on_floor:
 		move_air(delta)
 	else:
 		move_ground(delta)
 	
-	set_rigid_interaction();
-
+	set_rigid_interaction()
 
 func set_rigid_interaction():
 	for i in character.get_slide_collision_count():
-		var c = character.get_slide_collision(i);
+		var c = character.get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
-			var lin_vel: Vector3 = c.get_collider().linear_velocity;
+			var lin_vel: Vector3 = c.get_collider().linear_velocity
 			var char_basis: Vector3 = character.transform.basis.z
 			
 			if sign(char_basis.x) == sign(lin_vel.x) and sign(char_basis.z) == sign(lin_vel.z):
-				c.get_collider().linear_velocity.x *= -0.1;
-				c.get_collider().linear_velocity.z *= -0.1;
+				c.get_collider().linear_velocity.x *= -0.1
+				c.get_collider().linear_velocity.z *= -0.1
 			elif sign(char_basis.x) == sign(lin_vel.x):
-				c.get_collider().linear_velocity.x *= -0.1;
+				c.get_collider().linear_velocity.x *= -0.1
 			elif sign(char_basis.z) == sign(lin_vel.z):
-				c.get_collider().linear_velocity.z *= -0.1;
+				c.get_collider().linear_velocity.z *= -0.1
 			
 			c.get_collider().apply_central_impulse(-c.get_normal() * 0.25 * c.get_collider().mass)
-
 
 func move_air(delta: float) -> void:
 	character.velocity.y = min(terminal_velocity, character.velocity.y - gravity * delta)
@@ -132,7 +114,7 @@ func move_ground(delta: float) -> void:
 		
 		if third_person_camera and !strafing:
 			var cached_rotation = third_person_camera_container.global_rotation
-			face_target(character.position + direction, turn_rate)
+			character.face_target(character.position + direction, turn_rate)
 			third_person_camera_container.global_rotation = cached_rotation
 	
 	# --- Stairs logic ---
@@ -141,7 +123,7 @@ func move_ground(delta: float) -> void:
 	
 	# Start by moving our character body by its normal velocity.
 	character.move_and_slide()
-	if sm.state == &"jump" or !stepping_enabled or !character.was_on_floor:
+	if !stepping_enabled or !character.was_on_floor:
 		return
 	
 	# Next, we store the resulting position for later, and reset our character's

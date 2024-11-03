@@ -4,39 +4,32 @@ class_name CharacterJump3D extends CharacterExtensionBase3D
 ## How high the character can jump
 @export var jump_velocity := 4.5
 
+@export_category("State Handlers")
+## Set the idle state handler
+@export var idle_state_handler: StateHandler
+
 @export_subgroup("Input Actions")
 ## The input action name for jumping
 @export var jump_action: String = "jump"
 
-func ready():
-	if !enabled:
-		return
-	
-	InputManager.register_action(jump_action, KEY_SPACE)
-	
-	handled_states = ["jump", "land", "idle", "walk", "sprint", "crouch", "prone"]
-
-func can_enter() -> bool:
-	return ["idle", "walk", "sprint", "jump", "land", "crouch", "prone"].has(sm.old_state)
-
-func enter() -> void:
-	if not is_authority_owner(): return
-	
-	if sm.state == &"jump":
-		jump()
-
-func jump() -> void:
-	character.velocity.y = jump_velocity
-
-func physics(_delta) -> void:
-	if not is_authority_owner(): return
-	
+func _input(_event):
 	if !character.was_on_floor:
 		return
 		
 	if Input.is_action_pressed(jump_action):
-		sm.set_state(&"jump")
-	elif sm.state == &"jump":
-		sm.set_state(&"land")
-	elif sm.state == &"land":
-		sm.set_state(&"idle")
+		state_machine.transition(name)
+		
+func setup():
+	InputManager.register_action(jump_action, KEY_SPACE)
+
+func can_enter(_old_state) -> bool:
+	return character._is_on_floor() != null
+
+func enter(_old_state) -> void:
+	character.velocity.y = jump_velocity
+
+func physics_process(_delta):
+	character.move_and_slide()
+	
+	if character._is_on_floor():
+		state_machine.transition(idle_state_handler.name)
