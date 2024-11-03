@@ -1,46 +1,54 @@
-extends CharacterExtensionBase3D
+extends Node
 
+@export var jump_state_handler: CharacterJump3D
+@export var move_state_handler: CharacterMover3D
+@export var crouch_state_handler: CharacterCrouch3D
+@export var prone_state_handler: CharacterProne3D
+
+@onready var character: FirstPersonCharacter = get_parent()
 @onready var anim: AnimationTree = $AnimationTree
 
+var state_machine: StateMachine
 var last_position: Vector3 = Vector3.ZERO
 var target_movement_vector: Vector2 = Vector2.ZERO
 var target_movement_velocity: float = 0.5
 
-func ready():
-	if !enabled:
-		return
-	
+func _ready():
 	character.connect("fall_damage", _on_fall_damage)
 	character.connect("current_camera_changed", _on_camera_change)
-	handled_states = ["jump", "land", "idle", "walk", "sprint", "crouch", "prone"]
 	
 	if character.is_current_player:
 		toggle_model(false)
 	
-func enter() -> void:
-	if sm.state == &"jump":
+	state_machine = character.sm
+	state_machine.on_state_changed.connect(_on_state_change)
+	
+func _on_state_change(old_state: StateHandler, new_state: StateHandler) -> void:
+	if new_state is CharacterJump3D:
 		anim["parameters/Jumping/blend_position"] = -1.0
-	elif sm.state == &"land":
+	if new_state is CharacterMover3D:
+		if move_state_handler.sprint_speed:
+			target_movement_velocity = 1.0
+		else:
+			target_movement_velocity = 0.5
+	
+	if old_state is CharacterJump3D:
 		anim["parameters/Jumping/blend_position"] = 1.0
-	elif sm.state == &"sprint":
-		target_movement_velocity = 1.0
-	elif sm.state == &"walk":
-		target_movement_velocity = 0.5
 
-func physics(_delta: float) -> void:
-	if sm.state == &"crouch":
+func _physics_process(delta: float) -> void:
+	if state_machine._state_object is CharacterCrouch3D:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 0.0, 0.3)
 		else:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], 1.0, 0.3)
-	elif sm.state == &"prone":
+	elif state_machine._state_object is CharacterProne3D:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
 		else:
 			anim["parameters/Crouching/blend_position"] = lerp(anim["parameters/Crouching/blend_position"], -1.0, 0.3)
-	elif sm.state == &"jump" or !character.was_on_floor:
+	elif state_machine._state_object is CharacterJump3D:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], -1.0, 0.1)
 		anim["parameters/Jumping/blend_position"] = lerp(anim["parameters/Jumping/blend_position"], 0.0, 0.1)
 	else:
@@ -50,7 +58,6 @@ func physics(_delta: float) -> void:
 		target_movement_vector = Vector2(movement_direction.x, -movement_direction.z) * target_movement_velocity
 		anim["parameters/HolsteredMovement/blend_position"] = lerp(anim["parameters/HolsteredMovement/blend_position"], target_movement_vector, 0.1)
 		last_position = character.global_position
-		
 		
 func _on_fall_damage(_amount):
 	anim["parameters/Hard Landing/request"] = true

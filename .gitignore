@@ -7,3 +7,4 @@ addons/tbloader/bin/~tbloader.windows.x86_64.dll
 addons/tbloader/bin/~*.pdb
 *.tmp
 addons/gut
+.DS_Store
