@@ -1,5 +1,11 @@
 ## A node to manage the idle state of a NodotCharacter3D
 class_name CharacterIdle3D extends CharacterExtensionBase3D
 
-func physics(delta: float) -> void:
-	character.move_and_slide()
+var move_state_node: CharacterMove3D
+
+func setup():
+	move_state_node = Nodot.get_first_sibling_of_type(self, CharacterMove3D)
+	
+func physics_process(delta: float) -> void:
+	if character.direction2d != Vector2.ZERO:
+		state_machine.transition(move_state_node.name)

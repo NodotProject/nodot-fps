@@ -13,12 +13,9 @@ class_name CharacterJump3D extends CharacterExtensionBase3D
 @export var jump_action: String = "jump"
 
 func _input(_event):
-	if !character.was_on_floor:
-		return
-		
-	if Input.is_action_pressed(jump_action):
+	if character.was_on_floor and Input.is_action_pressed(jump_action):
 		state_machine.transition(name)
-		
+
 func setup():
 	InputManager.register_action(jump_action, KEY_SPACE)
 
@@ -29,7 +26,5 @@ func enter(_old_state) -> void:
 	character.velocity.y = jump_velocity
 
 func physics_process(_delta):
-	character.move_and_slide()
-	
 	if character._is_on_floor():
 		state_machine.transition(idle_state_handler.name)

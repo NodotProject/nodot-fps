@@ -35,7 +35,7 @@ movie_writer/movie_file="C:/Users/krazy/Videos/Nodot/nodot.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/nodot/plugin.cfg")
 
 [input]
 

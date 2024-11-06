@@ -45,35 +45,36 @@ func action(hit_target: HitTarget) -> void:
 		decal_node.texture_emission = material.emission_texture
 		decal_node.texture_normal = material.normal_texture
 		
-		
 		decal_node.cull_mask = decal_mask
 		decal_node.layers = decal_layer
 		
 		if random_size:
-			decal_node.size = Vector3(randf_range(0.1, 0.8), randf_range(0.1, 0.8), randf_range(0.1, 0.8));
+			decal_node.size = Vector3(randf_range(0.1, 0.8), randf_range(0.1, 0.8), randf_range(0.1, 0.8))
 		else:
 			decal_node.size = hole_size
 		
 		if raycast_detectable:
-			var detection_area: Area3D = Area3D.new();
-			var collision_shape: CollisionShape3D = CollisionShape3D.new();
-			var box_shape = BoxShape3D.new();
-			box_shape.size = hole_size * 1.3;
-			collision_shape.shape = box_shape;
-			detection_area.add_child(collision_shape);
-			decal_node.add_child(detection_area);
+			var detection_area: Area3D = Area3D.new()
+			var collision_shape: CollisionShape3D = CollisionShape3D.new()
+			var box_shape = BoxShape3D.new()
+			box_shape.size = hole_size * 1.3
+			collision_shape.shape = box_shape
+			detection_area.add_child(collision_shape)
+			decal_node.add_child(detection_area)
 
 		if decal_name != "":
-			decal_node.name = decal_name;
+			decal_node.name = decal_name
 
 		hit_target.target_node.add_child(decal_node, decal_name != "", INTERNAL_MODE_FRONT)
 		decal_added.emit(decal_node)
 
-		decal_node.global_transform.origin = hit_target.collision_point
-		if hit_target.collision_normal != Vector3.UP:
-			decal_node.look_at(hit_target.collision_point + hit_target.collision_normal, Vector3.UP)
-			decal_node.transform = decal_node.transform.rotated_local(Vector3.RIGHT, PI / 2.0)
+		# Set the position with a slight offset
+		decal_node.global_transform.origin = hit_target.collision_point + hit_target.collision_normal * 0.01
 
+		# Align decal to surface normal
+		decal_node.global_transform.basis = Basis(hit_target.collision_normal).orthonormalized()
+
+		# Apply random rotation around the normal, if enabled
 		if random_rotation:
 			decal_node.rotate(hit_target.collision_normal, randf_range(0, 2 * PI))
 
