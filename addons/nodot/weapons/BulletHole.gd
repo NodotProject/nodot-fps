@@ -72,7 +72,7 @@ func action(hit_target: HitTarget) -> void:
 		decal_node.global_transform.origin = hit_target.collision_point + hit_target.collision_normal * 0.01
 
 		# Align decal to surface normal
-		decal_node.global_transform.basis = Basis(hit_target.collision_normal).orthonormalized()
+		decal_node.global_transform.basis = hit_target.global_basis.orthonormalized()
 
 		# Apply random rotation around the normal, if enabled
 		if random_rotation:

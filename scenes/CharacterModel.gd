@@ -1,7 +1,7 @@
 extends Node
 
 @export var jump_state_handler: CharacterJump3D
-@export var move_state_handler: CharacterMover3D
+@export var move_state_handler: CharacterMove3D
 @export var crouch_state_handler: CharacterCrouch3D
 @export var prone_state_handler: CharacterProne3D
 
@@ -26,8 +26,8 @@ func _ready():
 func _on_state_change(old_state: StateHandler, new_state: StateHandler) -> void:
 	if new_state is CharacterJump3D:
 		anim["parameters/Jumping/blend_position"] = -1.0
-	if new_state is CharacterMover3D:
-		if move_state_handler.sprint_speed:
+	if new_state is CharacterMove3D:
+		if move_state_handler.sprint_enabled:
 			target_movement_velocity = 1.0
 		else:
 			target_movement_velocity = 0.5

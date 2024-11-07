@@ -80,3 +80,16 @@ func _get_configuration_warnings():
 func _ready():
 	if _state_machine == null and get_parent() is StateMachine:
 		_state_machine = get_parent()
+		_state_machine._available_states[name] = self
+
+func _physics_process(delta: float) -> void:
+	if state_machine.state != name: return
+	physics_process(delta)
+	
+func _process(delta: float) -> void:
+	if state_machine.state != name: return
+	process(delta)
+
+func _input(event: InputEvent) -> void:
+	if state_machine.state != name: return
+	input(event)

@@ -14,7 +14,8 @@ signal key_deleted(key)
 func set_item(key: Variant, value: Variant):
 	data[key] = value
 	value_changed.emit(key, value)
-	trigger_signal(key, value)
+	if key is String:
+		_emit_signal(key, value)
 
 ## Method to get the value for a given key
 func get_item(key: Variant):
@@ -30,7 +31,8 @@ func delete_item(key: Variant):
 		var value = data[key]
 		data.erase(key)
 		key_deleted.emit(key)
-		trigger_signal(key, null)
+		if key is String:
+			_emit_signal(key, null)
 		
 ## Method returns whether there are any keys in the Storage
 func is_empty():
@@ -41,8 +43,8 @@ func add_signal(signal_name: String):
 	if not signals.has(signal_name):
 		signals[signal_name] = Signal(signals, signal_name)
 
-## Trigger a signal for a specific key
-func trigger_signal(signal_name: String, arg: Variant = null):
+## Emit a signal for a specific key
+func _emit_signal(signal_name: String, arg: Variant = null):
 	if not signals.has_signal(signal_name):
 		add_signal(signal_name)
 

@@ -14,6 +14,7 @@ func _ready():
 			third_person_camera = character.camera
 		
 		_state_machine = character.sm
+		_state_machine._available_states[name] = self
 		
 	if has_method("setup"):
 		setup()

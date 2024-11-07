@@ -70,7 +70,6 @@ func _enter_tree() -> void:
 	if NetworkManager.enabled:
 		set_multiplayer_authority(int(str(name)), true)
 
-
 func _ready() -> void:
 	camera.fov = fov
 
@@ -83,7 +82,7 @@ func _ready() -> void:
 		
 	if camera:
 		third_person_camera_container = camera.get_parent()
-		
+	
 	if has_method("_after_ready"):
 		call("_after_ready")
 
@@ -93,6 +92,7 @@ func _physics_process(delta: float) -> void:
 	_calculate_peak_recent_velocity(delta)
 	_process_fall_damage()
 	_process_look_angle()
+	move(delta)
 
 func _calculate_peak_recent_velocity(delta: float):
 	peak_recent_velocity_timer += delta
@@ -118,7 +118,7 @@ func _process_look_angle():
 	head.rotation.x = clamp(head.rotation.x, -1.57, 1.57)
 	head.rotation.z = 0
 	head.rotation.y = 0
-	
+
 func _process_fall_damage():
 	var on_floor = _is_on_floor() != null
 	if !health or fall_damage_multiplier <= 0.0:
@@ -137,7 +137,7 @@ func _process_fall_damage():
 		else:
 			previous_velocity = velocity.y
 	was_on_floor = on_floor
-	
+
 func _is_current_player_changed(new_value: bool):
 	is_current_player = new_value
 	input_enabled = new_value
@@ -196,20 +196,24 @@ func set_rigid_interaction():
 func move_air(delta: float) -> void:
 	velocity.y = min(terminal_velocity, velocity.y - gravity * delta)
 	
+	var final_speed: float = movement_speed * delta * 100
+	
 	if direction3d != Vector3.ZERO:
-		velocity.x = lerp(velocity.x, direction3d.x * movement_speed, 0.025)
-		velocity.z = lerp(velocity.z, direction3d.z * movement_speed, 0.025)
+		velocity.x = lerp(velocity.x, direction3d.x * final_speed, 0.025)
+		velocity.z = lerp(velocity.z, direction3d.z * final_speed, 0.025)
 	
 	move_and_slide()
 
 func move_ground(delta: float) -> void:
+	var final_speed: float = movement_speed * delta * 100
+	
 	if direction3d == Vector3.ZERO:
-		var final_friction = friction if friction >= 0 else movement_speed
+		var final_friction = friction if friction >= 0 else final_speed
 		velocity.x = move_toward(velocity.x, 0, friction)
 		velocity.z = move_toward(velocity.z, 0, friction)
 	else:
-		velocity.x = direction3d.x * movement_speed
-		velocity.z = direction3d.z * movement_speed
+		velocity.x = direction3d.x * final_speed
+		velocity.z = direction3d.z * final_speed
 		
 		if camera and !strafing:
 			var cached_rotation = third_person_camera_container.global_rotation

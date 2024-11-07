@@ -59,11 +59,6 @@ func transition(new_state_name: StringName) -> void:
 	on_state_changed.emit(_previous_state, new_state)
 	_state_object.enter(_previous_state)
 
-func _ready():
-	# Gather known states
-	for child in find_children("*", "StateHandler", false):
-		_available_states[child.name] = child
-
 func _input(event: InputEvent) -> void:
 	if _state_object:
 		_state_object.input(event)

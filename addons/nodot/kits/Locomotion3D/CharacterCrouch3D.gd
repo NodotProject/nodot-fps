@@ -22,7 +22,7 @@ var initial_movement_speed: float = 5.0
 func setup():
 	InputManager.register_action(crouch_action, KEY_CTRL)
 	shape_initial_height = get_collision_shape_height()
-	character.initial_movement_speed = character.movement_speed
+	initial_movement_speed = character.movement_speed
 
 func enter(_old_state) -> void:
 	apply_collision_shape_height(crouch_height)

@@ -4,6 +4,7 @@ class_name CharacterIdle3D extends CharacterExtensionBase3D
 var move_state_node: CharacterMove3D
 
 func setup():
+	state_machine.state = name
 	move_state_node = Nodot.get_first_sibling_of_type(self, CharacterMove3D)
 	
 func physics_process(delta: float) -> void:
