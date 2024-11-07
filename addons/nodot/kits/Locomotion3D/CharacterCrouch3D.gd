@@ -8,21 +8,25 @@ class_name CharacterCrouch3D extends CharacterExtensionBase3D
 ## The new movement speed
 @export var movement_speed: float = 1.0
 
-@export_category("State Handlers")
-## Set the idle state handler
-@export var idle_state_handler: StateHandler
-
 @export_subgroup("Input Actions")
 ## The input action name for crouching
 @export var crouch_action: String = "crouch"
 
+var idle_state_handler: CharacterIdle3D
 var shape_initial_height: float
 var initial_movement_speed: float = 5.0
 
+func _input(_event):
+	if Input.is_action_pressed(crouch_action):
+		state_machine.transition(name)
+	elif Input.is_action_just_released(crouch_action):
+		state_machine.transition(idle_state_handler.name)
+		
 func setup():
 	InputManager.register_action(crouch_action, KEY_CTRL)
 	shape_initial_height = get_collision_shape_height()
 	initial_movement_speed = character.movement_speed
+	idle_state_handler = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
 
 func enter(_old_state) -> void:
 	apply_collision_shape_height(crouch_height)
@@ -32,12 +36,6 @@ func exit(_new_state) -> void:
 	apply_collision_shape_height(shape_initial_height)
 	character.movement_speed = initial_movement_speed
 
-func input(_event):
-	if Input.is_action_pressed(crouch_action):
-		state_machine.transition(name)
-	elif Input.is_action_just_released(crouch_action):
-		state_machine.transition(idle_state_handler.name)
-		
 func apply_collision_shape_height(crouch_height: float):
 	if collision_shape and collision_shape.shape:
 		if collision_shape.shape is CapsuleShape3D:
