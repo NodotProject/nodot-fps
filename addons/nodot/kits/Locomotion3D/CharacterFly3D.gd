@@ -10,10 +10,6 @@ class_name CharacterFly3D extends CharacterExtensionBase3D
 ## Double tap sensitivity for enabling/disabling fly mode
 @export var double_tap_time: float = 0.3
 
-@export_category("State Handlers")
-## Set the idle state handler
-@export var idle_state_handler: StateHandler
-
 @export_subgroup("Input Actions")
 ## The input action name for strafing left
 @export var left_action: String = "left"
@@ -28,6 +24,7 @@ class_name CharacterFly3D extends CharacterExtensionBase3D
 ## The input action name for ascending
 @export var ascend_action: String = "jump"
 
+var idle_state_handler: CharacterIdle3D
 var direction: Vector3 = Vector3.ZERO
 var fly_doubletap_timeleft: float = 0.0
 	
@@ -38,22 +35,31 @@ func setup():
 	InputManager.register_action(down_action, KEY_S)
 	InputManager.register_action(descend_action, KEY_CTRL)
 	InputManager.register_action(ascend_action, KEY_SPACE)
-	
-func exit(_old_state):
-	fly_doubletap_timeleft = 0.0
+	idle_state_handler = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
 
-func physics(delta: float) -> void:
+func enter(_old_state: StateHandler):
+	character.override_movement = true
+	
+func exit(_old_state: StateHandler):
+	character.override_movement = false
+	fly_doubletap_timeleft = 0.0
+	
+func _physics_process(delta: float) -> void:
 	if fly_doubletap_timeleft > 0.0:
 		fly_doubletap_timeleft -= delta
-			
-	if land_on_ground and character.was_on_floor:
-		state_machine.transition(idle_state_handler.name)
 		
 	if Input.is_action_just_pressed(ascend_action):
 		if fly_doubletap_timeleft > 0.0:
-			state_machine.transition(idle_state_handler.name)
+			if state_machine.state == name:
+				state_machine.transition(idle_state_handler.name)
+			else:
+				state_machine.transition(name)
 		elif fly_doubletap_timeleft <= 0.0:
 			fly_doubletap_timeleft = double_tap_time
+
+func physics_process(delta: float) -> void:
+	if land_on_ground and character.was_on_floor:
+		state_machine.transition(idle_state_handler.name)
 			
 	var input_dir = Input.get_vector(left_action, right_action, up_action, down_action)
 	var basis: Basis

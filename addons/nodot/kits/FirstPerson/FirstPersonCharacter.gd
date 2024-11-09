@@ -44,6 +44,7 @@ var previous_velocity: float = 0.0
 # Peak velocity of the last 0.1 seconds
 var peak_recent_velocity: Vector3 = Vector3.ZERO
 var peak_recent_velocity_timer: float = 0.0
+var override_movement: bool = false
 var character_colliders: UniqueSet = UniqueSet.new()
 var direction2d := Vector2.ZERO
 var look_angle := Vector2.ZERO
@@ -92,6 +93,8 @@ func _physics_process(delta: float) -> void:
 	_calculate_peak_recent_velocity(delta)
 	_process_fall_damage()
 	_process_look_angle()
+	
+	if override_movement: return
 	move(delta)
 
 func _calculate_peak_recent_velocity(delta: float):

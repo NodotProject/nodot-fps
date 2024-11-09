@@ -50,3 +50,10 @@ func exit(_old_state) -> void:
 
 func physics(_delta):
 	head.position = lerp(head.position, target_head_position, 0.1)
+
+func apply_collision_shape_height(crouch_height: float):
+	if collision_shape and collision_shape.shape:
+		if collision_shape.shape is CapsuleShape3D:
+			collision_shape.shape.height = crouch_height
+		elif collision_shape.shape is BoxShape3D:
+			collision_shape.shape.size.y = crouch_height

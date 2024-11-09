@@ -4,10 +4,6 @@ class_name CharacterClimb3D extends CharacterExtensionBase3D
 ## How high the character can climb
 @export var climb_velocity := 4.0
 
-@export_category("State Handlers")
-## Set the idle state handler
-@export var idle_state_handler: StateHandler
-
 @export_subgroup("Input Actions")
 ## The input action name for climbing
 @export var climb_action: String = "up"
@@ -16,16 +12,26 @@ class_name CharacterClimb3D extends CharacterExtensionBase3D
 ## The input action name for jumping off the ladder
 @export var jump_action: String = "jump"
 
+var idle_state_handler: StateHandler
 var was_on_floor: bool = true
 
 func setup():
 	InputManager.register_action(climb_action, KEY_W)
 	InputManager.register_action(descend_action, KEY_S)
+	idle_state_handler = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
 	
 func enter(_old_state: StateHandler):
+	character.override_movement = true
 	was_on_floor = true
+	
+func exit(_old_state: StateHandler):
+	character.override_movement = false
 		
 func physics_process(delta: float):
+	if Input.is_action_pressed("jump"):
+		# TODO: add a little velocity in the faced direction
+		state_machine.transition(idle_state_handler.name)
+		
 	var ascend_velocity = climb_velocity
 	var descend_velocity = -climb_velocity
 	
