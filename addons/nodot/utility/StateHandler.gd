@@ -83,11 +83,11 @@ func _ready():
 		_state_machine._available_states[name] = self
 
 func _physics_process(delta: float) -> void:
-	if state_machine.state != name: return
+	if !state_machine or state_machine.state != name: return
 	physics_process(delta)
 	
 func _process(delta: float) -> void:
-	if state_machine.state != name: return
+	if !state_machine or state_machine.state != name: return
 	process(delta)
 
 func _input(event: InputEvent) -> void:

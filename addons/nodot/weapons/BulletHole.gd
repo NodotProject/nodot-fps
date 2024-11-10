@@ -68,11 +68,8 @@ func action(hit_target: HitTarget) -> void:
 		hit_target.target_node.add_child(decal_node, decal_name != "", INTERNAL_MODE_FRONT)
 		decal_added.emit(decal_node)
 
-		# Set the position with a slight offset
-		decal_node.global_transform.origin = hit_target.collision_point + hit_target.collision_normal * 0.01
-
-		# Align decal to surface normal
-		decal_node.global_transform.basis = hit_target.global_basis.orthonormalized()
+		decal_node.global_transform = Transform3D(hit_target.raycast_basis, hit_target.collision_point) * Transform3D(Basis().rotated(Vector3(1,0,0), deg_to_rad(90)), Vector3())
+		decal_node.global_basis = Basis(Quaternion(decal_node.global_basis.y, hit_target.collision_normal)) * decal_node.global_basis
 
 		# Apply random rotation around the normal, if enabled
 		if random_rotation:

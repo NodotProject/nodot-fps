@@ -54,7 +54,7 @@ func get_hit_target():
 	if !collider: return
 	var distance: float = get_distance(collider)
 	var hit_target = HitTarget.new(
-		distance, raycast.get_collision_point(), raycast.get_collision_normal(), collider
+		distance, raycast.get_collision_point(), raycast.get_collision_normal(), collider, raycast.global_basis
 	)
 	
 	if applied_force > 0 and not hit_target.target_node.has_meta("NonPunchable"):
