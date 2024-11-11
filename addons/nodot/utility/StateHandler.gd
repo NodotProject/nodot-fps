@@ -59,7 +59,7 @@ func enter(previous_state: StateHandler) -> void:
 func exit(next_state: StateHandler) -> void:
 	pass
 
-## Callback for validating state transitions.
+## Callback for validating state transitions while entering.
 ##
 ## Whenever the [StateMachine] attempts to enter this state, it will 
 ## call this method to ensure that the transition is valid.
@@ -70,6 +70,21 @@ func exit(next_state: StateHandler) -> void:
 ## [br][br]
 ## [i]override[/i] to implement custom transition validation logic
 func can_enter(previous_state: StateHandler) -> bool:
+	# Add your validation logic here
+	# Return true if the state machine can transition to the next state
+	return true
+
+## Callback for validating state transitions while exiting.
+##
+## Whenever the [StateMachine] attempts to exit this state, it will 
+## call this method to ensure that the transition is valid.
+## [br][br]
+## If this method returns true, the transition is valid and the state machine
+## will exit this state. Otherwise, the transition is invalid, and nothing
+## happens.
+## [br][br]
+## [i]override[/i] to implement custom transition validation logic
+func can_exit(next_state: StateHandler) -> bool:
 	# Add your validation logic here
 	# Return true if the state machine can transition to the next state
 	return true

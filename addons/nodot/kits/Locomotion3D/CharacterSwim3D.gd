@@ -5,7 +5,7 @@ class_name CharacterSwim3D extends CharacterExtensionBase3D
 ## The gravity to apply to the character while submerged
 @export var submerged_gravity: float = 0.3
 ## How slow the character can move while underwater
-@export var submerge_speed := 1.0
+@export var submerge_speed := 2.0
 ## The depth to allow before setting the character to swim
 @export var submerge_offset := 1.0
 ## Detect changing water heights (more performance intensive)
@@ -51,13 +51,23 @@ func setup():
 		InputManager.register_action(action_name, joy_default_keys[i], 2)
 		
 	original_gravity = character.gravity
+	idle_state_handler = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
+
+func enter(_old_state: StateHandler):
+	character.override_movement = true
+	
+func exit(_old_state: StateHandler):
+	character.override_movement = false
+	
+func can_exit(_new_state: StateHandler):
+	return !is_submerged
 
 func _physics_process(delta: float) -> void:
 	if !is_submerged: return
 	
 	check_head_submerged()
-	
-func physics(delta: float) -> void:
+
+func physics_process(delta: float) -> void:
 	if !is_submerged: return
 	
 	var character_offset_position = character.global_position.y + submerge_offset
@@ -83,6 +93,19 @@ func swim(delta: float) -> void:
 			character.velocity.y = lerp(character.velocity.y, submerge_speed * 7, delta)
 	elif descend_pressed:
 		character.velocity.y = lerp(character.velocity.y, -submerge_speed, delta)
+	
+	var basis: Basis
+	if character.camera:
+		basis = character.current_camera.global_transform.basis
+	else:
+		basis = character.transform.basis
+	character.direction3d = (basis * Vector3(character.direction2d.x, 0, character.direction2d.y))
+	
+	if character.direction3d != Vector3.ZERO:
+		character.velocity.x = lerp(character.velocity.x, character.direction3d.x * submerge_speed, 0.025)
+		character.velocity.z = lerp(character.velocity.z, character.direction3d.z * submerge_speed, 0.025)
+		
+	character.move_and_slide()
 
 ## Trigger submerge states
 func set_submerged(input_submerged: bool, water_area: WaterArea3D) -> void:

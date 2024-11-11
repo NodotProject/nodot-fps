@@ -19,7 +19,7 @@ func setup():
 	InputManager.register_action(jump_action, KEY_SPACE)
 	idle_state_node = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
 
-func can_enter(_old_state) -> bool:
+func can_enter(old_state) -> bool:
 	return character._is_on_floor() != null
 
 func enter(_old_state) -> void:

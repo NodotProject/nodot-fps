@@ -49,7 +49,7 @@ func transition(new_state_name: StringName) -> void:
 		
 	var new_state: StateHandler = _available_states[new_state_name]
 	if _state_object:
-		if !new_state.can_enter(_state_object):
+		if !_state_object.can_exit(new_state) or !new_state.can_enter(_state_object):
 			return
 	
 		_state_object.exit(new_state)
