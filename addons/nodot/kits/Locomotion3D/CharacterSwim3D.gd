@@ -58,7 +58,7 @@ func enter(_old_state: StateHandler):
 	
 func exit(_old_state: StateHandler):
 	character.override_movement = false
-	
+
 func can_exit(_new_state: StateHandler):
 	return !is_submerged
 

@@ -5,8 +5,6 @@ class_name Storage extends Nodot
 ## Dictionary to store key-value pairs
 @export var data: Dictionary = {}
 
-var signals: Object
-
 signal value_changed(key, new_value)
 signal key_deleted(key)
 
@@ -40,12 +38,10 @@ func is_empty():
 
 ## Add a signal for a specific key
 func add_signal(signal_name: String):
-	if not signals.has(signal_name):
-		signals[signal_name] = Signal(signals, signal_name)
+	if not has_user_signal(signal_name):
+		add_user_signal(signal_name, [{ "name": "value", "type": TYPE_OBJECT }])
 
 ## Emit a signal for a specific key
 func _emit_signal(signal_name: String, arg: Variant = null):
-	if not signals.has_signal(signal_name):
-		add_signal(signal_name)
-
-	var target = signals[signal_name].emit(arg)
+	add_signal(signal_name)
+	emit_signal(signal_name, arg)

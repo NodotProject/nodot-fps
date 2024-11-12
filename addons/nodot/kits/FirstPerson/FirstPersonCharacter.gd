@@ -36,7 +36,6 @@ signal fall_damage(amount: float)
 
 var head: Node3D
 var health: Health
-var inventory: CollectableInventory
 var was_on_floor: bool = false
 var floor_body: Node3D;
 # Velocity of the previous frame
@@ -64,7 +63,6 @@ func _enter_tree() -> void:
 		head.add_child(camera)
 		add_child(head)
 
-	inventory = Nodot.get_first_child_of_type(self, CollectableInventory)
 	health = Nodot.get_first_child_of_type(self, Health)
 	
 	PlayerManager.players.add(self)
