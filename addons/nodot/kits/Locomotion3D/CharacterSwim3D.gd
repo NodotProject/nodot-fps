@@ -5,7 +5,9 @@ class_name CharacterSwim3D extends CharacterExtensionBase3D
 ## The gravity to apply to the character while submerged
 @export var submerged_gravity: float = 0.3
 ## How slow the character can move while underwater
-@export var submerge_speed := 2.0
+@export var submerge_speed := 3.0
+## How much underwater acceleration is there
+@export var submerge_acceleration := 0.04
 ## The depth to allow before setting the character to swim
 @export var submerge_offset := 1.0
 ## Detect changing water heights (more performance intensive)
@@ -30,13 +32,11 @@ signal head_submerged
 ## Triggered when the head is surfaced
 signal head_surfaced
 
-var original_gravity: float
 var submerged_water_area: WaterArea3D
 var is_submerged: bool = false
 var is_head_submerged: bool = false
 var water_y_position: float = 0.0
 var idle_state_handler: CharacterIdle3D
-var third_person_camera_container: Node3D
 
 func setup():
 	var action_names = [ascend_action, descend_action]
@@ -50,7 +50,6 @@ func setup():
 		var action_name = action_names[i]
 		InputManager.register_action(action_name, joy_default_keys[i], 2)
 		
-	original_gravity = character.gravity
 	idle_state_handler = Nodot.get_first_sibling_of_type(self, CharacterIdle3D)
 
 func enter(_old_state: StateHandler):
@@ -61,36 +60,24 @@ func exit(_old_state: StateHandler):
 
 func can_exit(_new_state: StateHandler):
 	return !is_submerged
-
-func _physics_process(delta: float) -> void:
-	if !is_submerged: return
-	
-	check_head_submerged()
-
+		
+## Handles swimming movement
 func physics_process(delta: float) -> void:
 	if !is_submerged: return
+	if !character.input_enabled: return
 	
-	var character_offset_position = character.global_position.y + submerge_offset
+	check_head_submerged()
 	
-	swim(delta)
-	
-	if character_offset_position < water_y_position:
-		state_machine.transition(idle_state_handler.name)
-		
-## Handles swimming movementw
-func swim(delta: float) -> void:
-	if !character.input_enabled:
-		return
-	
+	var water_movement_enabled: bool = (character.global_position.y + submerge_offset) < water_y_position
 	var new_y_velocity = clamp(character.velocity.y - submerged_gravity * delta, -3.0, 3.0)
-	character.velocity.y = lerp(character.velocity.y, new_y_velocity, 0.025)
+	character.velocity.y = lerp(character.velocity.y, new_y_velocity, submerge_acceleration)
 	var ascend_pressed: bool = Input.is_action_pressed(ascend_action)
 	var descend_pressed: bool = Input.is_action_pressed(descend_action)
 	if ascend_pressed:
-		if is_head_submerged:
+		if is_head_submerged or water_movement_enabled or character.is_on_wall():
 			character.velocity.y = lerp(character.velocity.y, submerge_speed, delta)
 		else:
-			character.velocity.y = lerp(character.velocity.y, submerge_speed * 7, delta)
+			character.velocity.y = lerp(character.velocity.y, -submerge_speed * 2.0, delta)
 	elif descend_pressed:
 		character.velocity.y = lerp(character.velocity.y, -submerge_speed, delta)
 	
@@ -102,10 +89,14 @@ func swim(delta: float) -> void:
 	character.direction3d = (basis * Vector3(character.direction2d.x, 0, character.direction2d.y))
 	
 	if character.direction3d != Vector3.ZERO:
-		character.velocity.x = lerp(character.velocity.x, character.direction3d.x * submerge_speed, 0.025)
-		character.velocity.z = lerp(character.velocity.z, character.direction3d.z * submerge_speed, 0.025)
+		var final_speed: float = submerge_speed * 2.0 if character._is_on_floor() else submerge_speed
+		character.velocity.x = lerp(character.velocity.x, character.direction3d.x * final_speed, submerge_acceleration)
+		character.velocity.z = lerp(character.velocity.z, character.direction3d.z * final_speed, submerge_acceleration)
 		
 	character.move_and_slide()
+	
+	if (character.global_position.y + submerge_offset) < water_y_position:
+		state_machine.transition(idle_state_handler.name)
 
 ## Trigger submerge states
 func set_submerged(input_submerged: bool, water_area: WaterArea3D) -> void:
