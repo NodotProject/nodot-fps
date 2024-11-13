@@ -1,35 +1,19 @@
+## Credit: Majikayo Games - https://www.youtube.com/watch?v=vWHHXq8NAYw
 ## A 3D bullet tracer effect that can be attached to a weapon.
 class_name BulletTracer3D extends Nodot3D
 
 @export var enabled: bool = true
-## The magazine to trigger the effect
-@export var magazine: Magazine
+## The hitscan3d to trigger the effect
+@export var hitscan: HitScan3D
 
-var mesh_instance := MeshInstance3D.new()
+var tracer_scene: PackedScene = load("res://addons/nodot/scenes/weapons/tracer.tscn")
 
-func _enter_tree() -> void:
-	var mesh := RibbonTrailMesh.new()
-	mesh.size = 0.015
-	mesh.sections = 2
-	mesh.section_segments = 1
-	mesh.section_length = 0.5
-	
-	var mesh_material = StandardMaterial3D.new()
-	mesh_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	
-	var gradient_texture = GradientTexture2D.new()
-	var gradient = Gradient.new()
-	gradient.offsets = [Vector2(0.5, 0.0), Vector2(0.5, 1.0)]
-	gradient.colors = [Color.WHITE, Color.BLACK]
-	gradient_texture.gradient = gradient
-	
-	mesh_material.albedo_texture = gradient_texture
-	
-	mesh.material = mesh_material
-	mesh_instance.mesh = mesh
-	
-	mesh_instance.rotation.z = -(PI / 2)
-	mesh_instance.position.z = -mesh.section_length
+func _ready():
+	hitscan.target_hit.connect(action)
 
-func action():
-	pass
+func action(target_hit: HitTarget):
+	var tracer_mesh: Node3D = tracer_scene.instantiate()
+	tracer_mesh.target_position = target_hit.collision_point
+	get_tree().root.add_child(tracer_mesh)
+	tracer_mesh.global_position = global_position
+	tracer_mesh.look_at(tracer_mesh.target_position)
