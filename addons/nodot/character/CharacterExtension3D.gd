@@ -18,7 +18,7 @@ func _notification(what: int) -> void:
 		
 		_state_machine = character.sm
 		_state_machine._available_states[name] = self
-			
+	
 		if has_method("setup"):
 			setup()
 

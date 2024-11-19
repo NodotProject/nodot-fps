@@ -3,8 +3,6 @@ class_name FirstPersonCharacter extends NodotCharacter3D
 
 ## Allow player input
 @export var input_enabled := true
-## Gravity for the character
-@export var gravity: float = 9.8
 ## Friction when stopping. The smaller the value, the more you slide (-1 to disable)
 @export var friction: float = 1.0
 ## Enables stepping up stairs.
@@ -13,20 +11,12 @@ class_name FirstPersonCharacter extends NodotCharacter3D
 @export var step_height: float = 0.5
 ## How fast the character can move
 @export var movement_speed := 5.0
-## The maximum speed a character can fall
-@export var terminal_velocity := 190.0
 ## The camera field of view
 @export var fov := 75.0
 ## Minimum amount of fall damage before it is actually applied
 @export var minimum_fall_damage: float = 5.0
 ## The amount of fall damage to inflict when hitting the ground at velocity (0 for disabled)
 @export var fall_damage_multiplier: float = 0.5
-
-@export_subgroup("Third Person Controls")
-## Strafing enabled. Otherwise the character will turn to face the movement direction
-@export var strafing: bool = true
-## Turn rate. If strafing is disabled, define how fast the character will turn.
-@export var turn_rate: float = 0.1
 
 ## Constructs the step up movement vector.
 @onready var step_vector: Vector3 = Vector3(0, step_height, 0)
@@ -49,7 +39,6 @@ var direction2d := Vector2.ZERO
 var look_angle := Vector2.ZERO
 var input_states: Dictionary = {}
 var direction3d: Vector3 = Vector3.ZERO
-var third_person_camera_container: Node3D
 
 func _enter_tree() -> void:
 	if !sm:
@@ -70,7 +59,6 @@ func _enter_tree() -> void:
 		set_multiplayer_authority(int(str(name)), true)
 
 func _ready() -> void:
-	camera.fov = fov
 
 	if has_node("Head"):
 		head = get_node("Head")
@@ -80,7 +68,7 @@ func _ready() -> void:
 		set_current_player()
 		
 	if camera:
-		third_person_camera_container = camera.get_parent()
+		camera.fov = fov
 	
 	if has_method("_after_ready"):
 		call("_after_ready")
@@ -151,15 +139,6 @@ func set_current_player():
 	PlayerManager.node = self
 	set_current_camera(camera)
 
-func cap_velocity(velocity: Vector3) -> Vector3:
-	# Check if the velocity exceeds the terminal velocity
-	if velocity.length() > terminal_velocity:
-		# Cap the velocity to the terminal velocity, maintaining direction
-		return velocity.normalized() * terminal_velocity
-	else:
-		# If it's below terminal velocity, return it unchanged
-		return velocity
-
 func move(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
@@ -215,11 +194,6 @@ func move_ground(delta: float) -> void:
 	else:
 		velocity.x = direction3d.x * final_speed
 		velocity.z = direction3d.z * final_speed
-		
-		if camera and !strafing:
-			var cached_rotation = third_person_camera_container.global_rotation
-			face_target(position + direction3d, turn_rate)
-			third_person_camera_container.global_rotation = cached_rotation
 			
 	stair_step(delta)
 	

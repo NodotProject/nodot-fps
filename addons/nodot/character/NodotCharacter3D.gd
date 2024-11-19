@@ -6,6 +6,10 @@ class_name NodotCharacter3D extends CharacterBody3D
 ## Is the character used by the player
 @export var is_current_player: bool = false: set = _is_current_player_changed
 @export var camera: Camera3D = Camera3D.new()
+## Gravity for the character
+@export var gravity: float = 9.8
+## The maximum speed a character can fall
+@export var terminal_velocity := 190.0
 
 signal current_camera_changed(old_camera: Camera3D, new_camera: Camera3D)
 
@@ -64,3 +68,12 @@ func face_target(target_position: Vector3, weight: float) -> void:
 	# Then lerp the next rotation
 	var target_rot = rotation
 	rotation.y = lerp_angle(initial_rotation.y, target_rot.y, weight)
+
+func cap_velocity(velocity: Vector3) -> Vector3:
+	# Check if the velocity exceeds the terminal velocity
+	if velocity.length() > terminal_velocity:
+		# Cap the velocity to the terminal velocity, maintaining direction
+		return velocity.normalized() * terminal_velocity
+	else:
+		# If it's below terminal velocity, return it unchanged
+		return velocity
