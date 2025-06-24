@@ -1,3 +1,92 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:10c1e1b889b335ed979b8322bd83a2de59574ee1cb31bf05b929d02a017e4549
-size 3728
+[gd_scene load_steps=12 format=3 uid="uid://bxwbg6hpyr1sd"]
+
+[ext_resource type="Script" uid="uid://wadnh1eekriy" path="res://entities/collectables/coin.gd" id="1_bnnc5"]
+[ext_resource type="Script" uid="uid://b8ws6e4qukgh" path="res://addons/nodot/signaling/LocalToGlobalSignalProxy.gd" id="2_pyxe3"]
+[ext_resource type="Script" uid="uid://cgdcx3d7h8o0k" path="res://addons/nodot/interaction/RigidCollectable3D.gd" id="3_hfr5m"]
+[ext_resource type="Resource" uid="uid://cioittoecmpem" path="res://resources/collectables/coin.tres" id="4_8tug3"]
+[ext_resource type="PackedScene" uid="uid://digdeccrha8aa" path="res://models/collectable/Coin.fbx" id="5_ot2k5"]
+[ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="6_g2li6"]
+[ext_resource type="AudioStream" uid="uid://b5dv0hn5kowbq" path="res://sfx/interact/coin_collect.wav" id="7_qyjx7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7i15"]
+
+[sub_resource type="Animation" id="Animation_7ca1q"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_txmfw"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, 0.294245, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 2, 1, 0, 0, 0, -1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gn2rw"]
+_data = {
+&"RESET": SubResource("Animation_7ca1q"),
+&"default": SubResource("Animation_txmfw")
+}
+
+[node name="coin" type="Node3D"]
+script = ExtResource("1_bnnc5")
+
+[node name="GlobalSignalReady" type="Node" parent="." node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("2_pyxe3")
+trigger_node = NodePath("../RigidCollectable3D")
+global_signal = "coin_ready"
+trigger_signal = "ready"
+
+[node name="GlobalSignalCollected" type="Node" parent="." node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("2_pyxe3")
+trigger_node = NodePath("../RigidCollectable3D")
+global_signal = "coin_collected"
+trigger_signal = "collected"
+
+[node name="RigidCollectable3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.332104, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+can_sleep = false
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("3_hfr5m")
+collectable = ExtResource("4_8tug3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidCollectable3D"]
+transform = Transform3D(0.358546, 0, -0.933512, 0, 1, 0, 0.933512, 0, 0.358546, 0, 0.0912164, 0)
+shape = SubResource("BoxShape3D_i7i15")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RigidCollectable3D"]
+transform = Transform3D(0.925478, 0, -0.378802, 0, 1, 0, 0.378802, 0, 0.925478, 0, 0.0123865, 0)
+light_color = Color(1, 1, 0, 1)
+omni_range = 2.347
+
+[node name="Coin" parent="RigidCollectable3D" instance=ExtResource("5_ot2k5")]
+transform = Transform3D(0.60156, 0, -0.246221, 0, 0.65, 0, 0.246221, 0, 0.60156, 0, 0.0123865, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidCollectable3D"]
+root_node = NodePath("../Coin")
+libraries = {
+&"": SubResource("AnimationLibrary_gn2rw")
+}
+autoplay = "default"
+
+[node name="CollectSFX" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("6_g2li6")
+sfx = Array[AudioStream]([ExtResource("7_qyjx7")])
+trigger_node = NodePath("../RigidCollectable3D")
+trigger_signal = "collected"

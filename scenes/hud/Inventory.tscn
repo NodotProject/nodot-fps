@@ -1,3 +1,46 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:be3a81efdbd32b9db6c1cfa75cb675e9942ed3ee27523358de889d6ed345218b
-size 1362
+[gd_scene load_steps=2 format=3 uid="uid://bosvr4earapoc"]
+
+[sub_resource type="GDScript" id="GDScript_njy6f"]
+resource_name = "hud_inventory"
+script/source = "extends GridContainer
+
+@export var inventory: CollectableInventory
+
+var slot_scene: PackedScene = load(\"res://scenes/hud/InventorySlot.tscn\")
+
+func _ready():
+	for i in inventory.capacity:
+		_create_slot(i)
+	inventory.collectable_updated.connect(_update_inventory.unbind(3))
+		
+func _update_inventory():
+	var stacks = inventory.collectable_stacks
+	for i in stacks.size():
+		var stack = stacks[i]
+		_update_slot(i, stack[0], stack[1])
+
+func _create_slot(slot_index: int) -> Node:
+	var new_node = slot_scene.instantiate()
+	new_node.slot_index = slot_index
+	new_node.connect(\"slot_updated\", inventory.update_slot)
+	new_node.connect(\"slot_dropped\", inventory.drop_slot)
+	add_child(new_node)
+	return new_node
+	
+func _update_slot(slot_id: int, collectable_id: String, quantity: int):
+	var item_nodes: Array = Nodot.get_children_of_type(self, Control)
+	var new_node: Node
+	if item_nodes.size() <= slot_id:
+		new_node = _create_slot(slot_id)
+	else:
+		new_node = item_nodes[slot_id]
+	new_node.setup(collectable_id, quantity)
+"
+
+[node name="Inventory" type="GridContainer"]
+offset_left = 10.0
+offset_top = 95.0
+offset_right = 42.0
+offset_bottom = 127.0
+columns = 3
+script = SubResource("GDScript_njy6f")

@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4708d2186878fcba4ebf346b3bc94b606f4c9ac4d171989e01374c4720d9c254
-size 1288
+[gd_scene load_steps=6 format=3 uid="uid://dumq2wnihxph4"]
+
+[ext_resource type="PackedScene" uid="uid://di8lqls52riqt" path="res://maps/map.tscn" id="1_qooef"]
+[ext_resource type="PackedScene" uid="uid://dv6pyhevccscg" path="res://scenes/player.tscn" id="2_ttouu"]
+[ext_resource type="Script" uid="uid://b7agap5vmr6uq" path="res://addons/nodot/menus/MenuManager.gd" id="3_v6347"]
+[ext_resource type="PackedScene" uid="uid://clvaldaec2uum" path="res://addons/nodot/scenes/menus/pause_menu.tscn" id="4_nyvg5"]
+[ext_resource type="PackedScene" uid="uid://dj1v33w5ffysa" path="res://addons/nodot/scenes/menus/options_menu.tscn" id="5_2ctlh"]
+
+[node name="world" type="Node3D"]
+
+[node name="FirstPersonCharacterBody3D" parent="." instance=ExtResource("2_ttouu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15182, -9.89426)
+
+[node name="map" parent="." instance=ExtResource("1_qooef")]
+
+[node name="HUD" type="CanvasGroup" parent="."]
+z_index = 100
+
+[node name="MenuManager" type="Node2D" parent="HUD"]
+process_mode = 3
+script = ExtResource("3_v6347")
+
+[node name="PauseMenuContainer" parent="HUD/MenuManager" instance=ExtResource("4_nyvg5")]
+
+[node name="OptionsMenuContainer" parent="HUD/MenuManager" node_paths=PackedStringArray("selectable_items") instance=ExtResource("5_2ctlh")]
+selectable_items = []

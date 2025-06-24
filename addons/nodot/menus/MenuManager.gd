@@ -1,6 +1,6 @@
 @icon("../icons/menu_manager.svg")
 ## Contains MenuContainer nodes and can be used to show, hide or transition between them as needed
-class_name MenuManager extends Nodot2D
+class_name MenuManager extends Node2D
 
 ## The active menu node name (empty string if none active)
 @export var active_menu: String = ""
@@ -34,7 +34,7 @@ func change_to(menu_name: String) -> void:
 	var menu_node: MenuContainer = get_node(menu_name)
 	if !is_instance_valid(menu_node):
 		return
-		
+
 	menu_node._show()
 	active_menu = menu_name
 	active_menu_index = menu_node.get_index()

@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bc59c59535ca99ec8b24cf0269a146bddd4690864001ee32685f81744b832f61
-size 213
+[gd_scene load_steps=2 format=3 uid="uid://edj3hy1lebxn"]
+
+[ext_resource type="Script" uid="uid://c2aa12w2baln6" path="res://entities/utility/position.gd" id="1_tix5o"]
+
+[node name="position" type="Node3D"]
+script = ExtResource("1_tix5o")

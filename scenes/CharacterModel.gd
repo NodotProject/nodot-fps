@@ -35,7 +35,7 @@ func _on_state_change(old_state: StateHandler, new_state: StateHandler) -> void:
 	if old_state is CharacterJump3D:
 		anim["parameters/Jumping/blend_position"] = 1.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta) -> void:
 	if state_machine._state_object is CharacterCrouch3D:
 		anim["parameters/Blend/blend_amount"] = lerp(anim["parameters/Blend/blend_amount"], 1.0, 0.1)
 		if Vector2(character.velocity.x, character.velocity.z) == Vector2.ZERO:

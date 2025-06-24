@@ -1,5 +1,5 @@
 ## A node to manage and monitor a numeric value.
-class_name Counter extends Nodot
+class_name Counter extends Node
 
 ## Use the minimum and maximum values to forcefully limit the value
 @export var limit_values: bool = false
@@ -51,16 +51,13 @@ func set_value(new_value: float) -> void:
 func add(amount: float) -> void:
 	set_value(value + amount)
 
-
 ## Remove an amount from the value.
 func remove(amount: float) -> void:
 	set_value(value - amount)
 
-
 ## Increase the value by the step value
 func step_up() -> void:
 	add(step)
-
 
 ## Decrease the value by the step value
 func step_down() -> void:

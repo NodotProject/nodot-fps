@@ -13,7 +13,7 @@ config_version=5
 config/name="nodot-fps"
 config/tags=PackedStringArray("demo")
 run/main_scene="res://scenes/world.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -27,7 +27,6 @@ AudioManager="*res://addons/nodot/autoload/AudioManager.gd"
 VideoManager="*res://addons/nodot/autoload/VideoManager.gd"
 NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
 GlobalStorage="*res://addons/nodot/autoload/GlobalStorage.gd"
-DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
 
 [editor]
 

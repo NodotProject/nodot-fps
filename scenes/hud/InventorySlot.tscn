@@ -1,3 +1,123 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bf1f483ba8b85c488948ae0e850adcef4d493e397b0cfe6e5ca706e8bf521915
-size 3236
+[gd_scene load_steps=2 format=3 uid="uid://d1ic0oo5blmhl"]
+
+[sub_resource type="GDScript" id="GDScript_vkn05"]
+resource_name = "inventory_slot"
+script/source = "extends Control
+
+@onready var sprite_node = $ColorRect/Sprite2D
+@onready var label_node = $ColorRect/Label
+
+signal slot_updated(slot_index: int, collectable_id: String, amount: int, overflow: int)
+signal slot_dropped(slot_index: int, collectable_id: String, amount: int)
+
+var slot_index: int = 0
+var stack_data: Array = [\"\", 0]
+var item_data: Collectable
+	
+func setup(collectable_id: String, quantity: int):
+	stack_data = [collectable_id, quantity]
+	if collectable_id != \"\" and quantity > 0:
+		item_data = CollectableManager.get_info(collectable_id)
+		sprite_node.texture = item_data.icon
+		label_node.text = str(quantity)
+	else:
+		sprite_node.texture = null
+		label_node.text = \"\"
+
+func _get_drag_data(at_position: Vector2):
+	var preview: Control = Control.new()
+	preview.z_index = 1
+	var preview_child = $ColorRect.duplicate(15)
+	preview_child.position = Vector2(-16, -16)
+	preview.add_child(preview_child)
+	set_drag_preview(preview)
+	return {
+		\"stack\": stack_data,
+		\"sender\": self
+	}
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	var stack = data.stack
+	var sender_node = data.sender
+	
+	if sender_node == self:
+		return false
+	
+	if stack == null or !is_instance_valid(sender_node):
+		return false
+		
+	if not stack is Array:
+		return false
+		
+	if stack.size() != 2:
+		return false
+		
+	if not stack[0] is String or stack[0] == \"\":
+		return false
+	
+	if not stack[1] is int or stack[1] <= 0:
+		return false
+	
+	var item = CollectableManager.get_info(stack[0])
+	if !item:
+		return false
+		
+	if stack_data:
+		if stack_data[0] == \"\":
+			return true
+			
+		if stack_data[0] == stack[0]:
+			if stack_data[1] >= item_data.stack_limit:
+				return false
+		else:
+			return false
+		
+	return true
+		
+func _drop_data(_at_position, data):
+	var stack = data.stack
+	var sender_node = data.sender
+	
+	var overflow = 0
+	var new_quantity = stack[1]
+	if stack_data[0] != \"\":
+		if stack_data[0] == stack[0]:
+			new_quantity = stack_data[1] + stack[1]
+			if new_quantity > item_data.stack_limit:
+				overflow = new_quantity - item_data.stack_limit
+				new_quantity = item_data.stack_limit
+	
+	stack_data[0] = stack[0]
+	stack_data[1] = new_quantity
+	slot_updated.emit(slot_index, stack_data[0], stack_data[1], overflow)
+	slot_updated.emit(sender_node.slot_index, stack_data[0], overflow, 0)
+"
+
+[node name="InventorySlot" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+script = SubResource("GDScript_vkn05")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+mouse_filter = 1
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(2, 2)
+centered = false
+region_rect = Rect2(0, 0, 28, 28)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 30.0
+offset_bottom = 32.0
+mouse_filter = 1
+horizontal_alignment = 2
+vertical_alignment = 2

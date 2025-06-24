@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Collectable" load_steps=2 format=3 uid="uid://2f4250gbaxt4"]
+
+[ext_resource type="Script" uid="uid://dwkltttomatao" path="res://addons/nodot/utility/Collectable.gd" id="1_yp06b"]
+
+[resource]
+script = ExtResource("1_yp06b")
+display_name = "Item"
+description = "A collectable item."
+stack_limit = 1
+mass = 0.1
+value = 0
+armor = 0.0
+metadata/_custom_type_script = "uid://dwkltttomatao"

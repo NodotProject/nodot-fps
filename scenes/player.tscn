@@ -1,3 +1,366 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5582c995b45abdff5a25fdd60c742f7db1605e55e14ebd9b41a57f2c6f51f849
-size 14781
+[gd_scene load_steps=48 format=3 uid="uid://dv6pyhevccscg"]
+
+[ext_resource type="Script" uid="uid://of4awv5btgt3" path="res://addons/nodot/character/kits/Locomotion3D/CharacterFly3D.gd" id="1_73qnd"]
+[ext_resource type="Script" uid="uid://d3qnaju80jb8g" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonCharacter.gd" id="1_xg7st"]
+[ext_resource type="Script" uid="uid://b1xnnq4u1j86f" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonMouseInput.gd" id="2_fhrhx"]
+[ext_resource type="Script" uid="uid://du1eb6e7b4hbp" path="res://addons/nodot/character/kits/Locomotion3D/CharacterMove3D.gd" id="3_1xhnc"]
+[ext_resource type="Script" uid="uid://h7s4lf6nhh68" path="res://addons/nodot/interaction/Interaction3D.gd" id="3_2hkex"]
+[ext_resource type="Script" uid="uid://dv4a82gemqnhy" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonKeyboardInput.gd" id="4_4eb5d"]
+[ext_resource type="Script" uid="uid://m3vgpnkot4lx" path="res://addons/nodot/character/kits/Locomotion3D/CharacterJump3D.gd" id="4_bmxub"]
+[ext_resource type="Script" uid="uid://c6j3tfoumg64p" path="res://scenes/CharacterModel.gd" id="4_lvn0c"]
+[ext_resource type="Script" uid="uid://c1tig61oov8hc" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonJoypadInput.gd" id="5_45pkn"]
+[ext_resource type="Script" uid="uid://c0pxun1du7f43" path="res://addons/nodot/character/kits/Locomotion3D/CharacterCrouch3D.gd" id="5_xhuu4"]
+[ext_resource type="Script" uid="uid://bxumvgfk7kbgo" path="res://addons/nodot/character/kits/Locomotion3D/CharacterProne3D.gd" id="6_gug8q"]
+[ext_resource type="Script" uid="uid://bx6xho1o04mfl" path="res://addons/nodot/character/kits/Locomotion3D/CharacterSwim3D.gd" id="6_pwj1o"]
+[ext_resource type="Script" uid="uid://b1use1u658036" path="res://addons/nodot/character/kits/Locomotion3D/CharacterIdle3D.gd" id="7_fk6op"]
+[ext_resource type="AudioStream" uid="uid://c14iolb75rqly" path="res://sfx/ambience/underwater_ambience.mp3" id="7_p7smq"]
+[ext_resource type="Script" uid="uid://burx4xbw3t10g" path="res://addons/nodot/character/kits/Locomotion3D/CharacterClimb3D.gd" id="9_hsm3k"]
+[ext_resource type="PackedScene" uid="uid://dar73dx71p0su" path="res://scenes/player_items.tscn" id="13_rr7qt"]
+[ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="18_8y8a8"]
+[ext_resource type="PackedScene" uid="uid://cr84bk2nbrg5i" path="res://models/characters/dude/dude.tscn" id="36_28iro"]
+[ext_resource type="Script" uid="uid://cdhkq48626rer" path="res://addons/nodot/sound/FootStepSFX3D.gd" id="37_uiwuf"]
+[ext_resource type="AudioStream" uid="uid://c8df3qhkj5rlm" path="res://sfx/footsteps/concrete1.mp3" id="38_6hdgw"]
+[ext_resource type="AudioStream" uid="uid://bxv35s54p7pyp" path="res://sfx/footsteps/concrete2.mp3" id="39_yaicf"]
+[ext_resource type="AudioStream" uid="uid://cpmfwg6l3nhok" path="res://sfx/footsteps/concrete3.mp3" id="40_dk3mr"]
+[ext_resource type="AudioStream" uid="uid://qjiac3u5o816" path="res://sfx/footsteps/concrete4.mp3" id="41_ecgai"]
+[ext_resource type="AudioStream" uid="uid://sr7jij6555s4" path="res://sfx/footsteps/concrete5.mp3" id="42_bfmfy"]
+[ext_resource type="Script" uid="uid://cmien627v1uvy" path="res://addons/nodot/utility/CollectableInventory.gd" id="43_jtt0g"]
+[ext_resource type="AudioStream" uid="uid://bhhfp45dmo0nn" path="res://sfx/interact/denied.wav" id="44_hi8fk"]
+[ext_resource type="PackedScene" uid="uid://bosvr4earapoc" path="res://scenes/hud/Inventory.tscn" id="45_28jts"]
+[ext_resource type="AudioStream" uid="uid://dxi0kawconp6" path="res://sfx/environmental/fall_damage.mp3" id="45_n16rd"]
+[ext_resource type="Script" uid="uid://q8j1mer4kt8" path="res://scenes/FPSCounter.gd" id="46_tkv32"]
+[ext_resource type="Texture2D" uid="uid://bjek10miplb0m" path="res://textures/gui/coin.png" id="47_v6s0p"]
+[ext_resource type="Script" uid="uid://buk2rbi7sy4vm" path="res://addons/nodot/utility/Counter.gd" id="48_pppyv"]
+[ext_resource type="Script" uid="uid://c5fu75lbvn2ug" path="res://addons/nodot/signaling/SignalConnector.gd" id="49_fjcmh"]
+[ext_resource type="AudioStream" uid="uid://dmw73s3rbv7g0" path="res://sfx/interact/crowd_cheer.mp3" id="50_5jo2g"]
+[ext_resource type="Texture2D" uid="uid://d2pi4r8fldsqe" path="res://textures/gui/cursor.png" id="51_y1t04"]
+[ext_resource type="Script" uid="uid://ch2xypf8ajtrh" path="res://addons/nodot/hud/Cursor.gd" id="52_1ybdi"]
+[ext_resource type="Script" uid="uid://c6uf8kppkce47" path="res://addons/nodot/interaction/Health.gd" id="56_huvkc"]
+[ext_resource type="Script" uid="uid://cpnd6dnbe0ffc" path="res://addons/nodot/camera/ScreenShake3D.gd" id="57_g2jvm"]
+[ext_resource type="Script" uid="uid://dq5ltbwqxh2j8" path="res://addons/nodot/utility/Saver.gd" id="60_77f52"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_of5ey"]
+height = 1.946
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8jbhs"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="GDScript" id="GDScript_ewv7c"]
+resource_name = "submergesound"
+script/source = "extends Node
+
+var audio_bus_index = AudioServer.get_bus_index(\"Master\")
+
+var parent: CharacterSwim3D
+
+func _ready() -> void:
+	parent = get_parent()
+	parent.connect(\"head_submerged\", head_submerged)
+	parent.connect(\"head_surfaced\", head_surfaced)
+
+func head_submerged():
+	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, true)
+	$Ambience.play()
+	
+func head_surfaced():
+	AudioServer.set_bus_effect_enabled(audio_bus_index, 0, false)
+	$Ambience.stop()
+"
+
+[sub_resource type="GDScript" id="GDScript_huewq"]
+resource_name = "coin_counter"
+script/source = "extends Node2D
+
+func _ready():
+	$CurrentCounter.connect(\"value_changed\", recount)
+	$TotalCounter.connect(\"value_changed\", recount)
+	
+
+func recount(_new_value: int):
+	$CurrentCounter.max_value = $TotalCounter.value
+	$CoinLabel.text = \"%s/%s\" % [$CurrentCounter.value, $CurrentCounter.max_value]
+"
+
+[sub_resource type="Animation" id="Animation_5v8rv"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_huji3"]
+_data = {
+&"new_animation": SubResource("Animation_5v8rv")
+}
+
+[sub_resource type="GDScript" id="GDScript_bj8vy"]
+resource_name = "healthbar"
+script/source = "extends ProgressBar
+
+func _ready():
+	var health: Health = Nodot.get_first_child_of_type(get_parent().get_parent(), Health)
+	max_value = health.max_health
+	value = health.max_health
+	health.connect(\"health_changed\", health_changed)
+
+func health_changed(_old_health, new_health):
+	value = new_health
+"
+
+[sub_resource type="GDScript" id="GDScript_046xe"]
+resource_name = "player state"
+script/source = "extends Label
+
+@onready var sm: StateMachine = get_parent().get_parent().sm
+
+# Called when the node enters the scene tree for the first time.
+func _process(_delta):
+	text = \"Character State: %s\" % sm.state
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qep0r"]
+noise_type = 3
+frequency = 0.5
+
+[node name="FirstPersonCharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_xg7st")
+is_current_player = true
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.922933, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Interaction3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -2)
+script = ExtResource("3_2hkex")
+carry_distance = 1.5
+
+[node name="FirstPersonItemContainer" parent="Head/Camera3D" node_paths=PackedStringArray("character") instance=ExtResource("13_rr7qt")]
+character = NodePath("../../..")
+
+[node name="FirstPersonMouseInput" type="Node" parent="." node_paths=PackedStringArray("fps_item_container")]
+script = ExtResource("2_fhrhx")
+custom_cursor = true
+fps_item_container = NodePath("../Head/Camera3D/FirstPersonItemContainer")
+
+[node name="FirstPersonKeyboardInput" type="Node" parent="."]
+script = ExtResource("4_4eb5d")
+
+[node name="FirstPersonJoypadInput" type="Node" parent="."]
+script = ExtResource("5_45pkn")
+enabled = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00804606, 0)
+shape = SubResource("CapsuleShape3D_of5ey")
+
+[node name="DetectableBodies" type="Node3D" parent="CollisionShape"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00804606, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="CollisionShape/DetectableBodies" groups=["detectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.843, -0.0466666)
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape/DetectableBodies/RigidBody3D"]
+shape = SubResource("BoxShape3D_8jbhs")
+
+[node name="CharacterModel" parent="." node_paths=PackedStringArray("jump_state_handler", "move_state_handler", "crouch_state_handler", "prone_state_handler") instance=ExtResource("36_28iro")]
+transform = Transform3D(-0.119, 0, -1.04033e-08, 0, 0.119, 0, 1.04033e-08, 0, -0.119, 0, -0.975761, 0)
+script = ExtResource("4_lvn0c")
+jump_state_handler = NodePath("../CharacterJump3D")
+move_state_handler = NodePath("../CharacterMove3D")
+crouch_state_handler = NodePath("../CharacterCrouch3D")
+prone_state_handler = NodePath("../CharacterProne3D")
+
+[node name="CharacterIdle3D" type="Node" parent="."]
+script = ExtResource("7_fk6op")
+
+[node name="CharacterMove3D" type="Node" parent="."]
+script = ExtResource("3_1xhnc")
+
+[node name="CharacterJump3D" type="Node" parent="."]
+script = ExtResource("4_bmxub")
+
+[node name="CharacterCrouch3D" type="Node" parent="." node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("5_xhuu4")
+collision_shape = NodePath("../CollisionShape")
+
+[node name="CharacterProne3D" type="Node" parent="." node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("6_gug8q")
+collision_shape = NodePath("../CollisionShape")
+movement_speed = 0.3
+
+[node name="CharacterSwim3D" type="Node" parent="."]
+script = ExtResource("6_pwj1o")
+submerge_speed = 1.0
+submerge_offset = 0.5
+
+[node name="Submerge" type="Node" parent="CharacterSwim3D"]
+script = SubResource("GDScript_ewv7c")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="CharacterSwim3D/Submerge"]
+stream = ExtResource("7_p7smq")
+
+[node name="CharacterClimb3D" type="Node" parent="."]
+script = ExtResource("9_hsm3k")
+
+[node name="CharacterFly3D" type="Node" parent="."]
+script = ExtResource("1_73qnd")
+
+[node name="FootStepSFX" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.864601, 0)
+script = ExtResource("37_uiwuf")
+frequency = 2.5
+
+[node name="Concrete" type="AudioStreamPlayer3D" parent="FootStepSFX"]
+volume_db = -22.984
+script = ExtResource("18_8y8a8")
+sfx = Array[AudioStream]([ExtResource("38_6hdgw"), ExtResource("39_yaicf"), ExtResource("40_dk3mr"), ExtResource("41_ecgai"), ExtResource("42_bfmfy")])
+
+[node name="FallDamageSFX" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("18_8y8a8")
+sfx = Array[AudioStream]([ExtResource("45_n16rd")])
+trigger_node = NodePath("..")
+unbind_count = 1
+trigger_signal = "fall_damage"
+
+[node name="ItemSpawnLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51059, -0.649849)
+
+[node name="CollectableInventory" type="Node" parent="." node_paths=PackedStringArray("spawn_location_node")]
+script = ExtResource("43_jtt0g")
+capacity = 6
+spawn_location_node = NodePath("../ItemSpawnLocation")
+
+[node name="CapacityReachedSFX" type="AudioStreamPlayer3D" parent="CollectableInventory" node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("18_8y8a8")
+sfx = Array[AudioStream]([ExtResource("44_hi8fk")])
+trigger_node = NodePath("..")
+trigger_signal = "capacity_reached"
+
+[node name="HUD" type="CanvasGroup" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+offset_left = 15.0
+offset_top = 90.0
+offset_right = 90.0
+offset_bottom = 130.0
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="Inventory" parent="HUD/VBoxContainer" node_paths=PackedStringArray("inventory") instance=ExtResource("45_28jts")]
+layout_mode = 2
+inventory = NodePath("../../../CollectableInventory")
+
+[node name="FPSCounter" type="Label" parent="HUD"]
+offset_left = 43.0
+offset_top = 1.0
+offset_right = 83.0
+offset_bottom = 27.0
+text = "0"
+script = ExtResource("46_tkv32")
+
+[node name="FPSLabel" type="Label" parent="HUD/FPSCounter"]
+layout_mode = 0
+offset_left = -36.0
+offset_right = 4.0
+offset_bottom = 26.0
+text = "FPS:"
+
+[node name="Coins" type="Node2D" parent="HUD"]
+position = Vector2(0, 7)
+script = SubResource("GDScript_huewq")
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Coins"]
+position = Vector2(25.5, 46.5)
+scale = Vector2(0.273438, 0.273438)
+texture = ExtResource("47_v6s0p")
+hframes = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Coins/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_huji3")
+}
+autoplay = "new_animation"
+
+[node name="CoinLabel" type="Label" parent="HUD/Coins"]
+offset_left = 48.0
+offset_top = 36.0
+offset_right = 63.0
+offset_bottom = 62.0
+text = "0/0"
+
+[node name="CurrentCounter" type="Node" parent="HUD/Coins"]
+script = ExtResource("48_pppyv")
+limit_values = true
+max_value = 5.0
+
+[node name="CurrentCounterUpdater" type="Node" parent="HUD/Coins" node_paths=PackedStringArray("target_node")]
+script = ExtResource("49_fjcmh")
+global_trigger_signal = "coin_collected"
+target_node = NodePath("../CurrentCounter")
+target_method = "step_up"
+
+[node name="TotalCounter" type="Node" parent="HUD/Coins"]
+script = ExtResource("48_pppyv")
+
+[node name="TotalCounterUpdater" type="Node" parent="HUD/Coins" node_paths=PackedStringArray("target_node")]
+script = ExtResource("49_fjcmh")
+global_trigger_signal = "coin_ready"
+target_node = NodePath("../TotalCounter")
+target_method = "step_up"
+
+[node name="CompletedSFX" type="AudioStreamPlayer3D" parent="HUD/Coins" node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("18_8y8a8")
+sfx = Array[AudioStream]([ExtResource("50_5jo2g")])
+trigger_node = NodePath("../CurrentCounter")
+unbind_count = 1
+trigger_signal = "max_value_reached"
+
+[node name="Cursor" type="Sprite2D" parent="HUD"]
+z_index = 99
+texture = ExtResource("51_y1t04")
+centered = false
+script = ExtResource("52_1ybdi")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+offset_left = 16.0
+offset_top = 604.0
+offset_right = 217.0
+offset_bottom = 631.0
+rounded = true
+script = SubResource("GDScript_bj8vy")
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 93.0
+offset_top = 1.0
+offset_right = 222.0
+offset_bottom = 27.0
+text = "Character State: "
+script = SubResource("GDScript_046xe")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("56_huvkc")
+
+[node name="ScreenShake3D" type="Node" parent="."]
+script = ExtResource("57_g2jvm")
+noise = SubResource("FastNoiseLite_qep0r")
+
+[node name="Saver" type="Node" parent="."]
+script = ExtResource("60_77f52")
+fields = Array[String](["position", "rotation"])

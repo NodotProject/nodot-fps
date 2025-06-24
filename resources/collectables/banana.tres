@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Collectable" load_steps=5 format=3 uid="uid://b8gft56fwp53l"]
+
+[ext_resource type="Texture2D" uid="uid://bgqnrhc00esf4" path="res://textures/gui/Fruit.png" id="1_e13su"]
+[ext_resource type="Script" uid="uid://dwkltttomatao" path="res://addons/nodot/utility/Collectable.gd" id="2_gh4ie"]
+[ext_resource type="AudioStream" uid="uid://bfd7ia4fj5kq3" path="res://sfx/interact/banana.mp3" id="3_e13su"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puo5d"]
+atlas = ExtResource("1_e13su")
+region = Rect2(48, 0, 26, 26)
+
+[resource]
+script = ExtResource("2_gh4ie")
+icon = SubResource("AtlasTexture_puo5d")
+sfx = ExtResource("3_e13su")
+display_name = "Banana"
+description = "A collectable item."
+stack_limit = 99
+mass = 0.1
+value = 0
+armor = 0.0
+metadata/_custom_type_script = "uid://dwkltttomatao"

@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:beaadfc98aada55ff78395707ef13062db0ca3ddc444ce93f4960aa9983c9e99
-size 1466
+[gd_scene load_steps=6 format=3 uid="uid://dkqylgy3hxgid"]
+
+[ext_resource type="Script" uid="uid://cavfqts068f1p" path="res://entities/lighting/lamp.gd" id="1_0lnem"]
+[ext_resource type="ArrayMesh" uid="uid://c3gwvjq5wjt4e" path="res://models/Fluorescent_Lamp.obj" id="1_5fu81"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5lxy"]
+albedo_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8fub"]
+emission_enabled = true
+emission = Color(0.682353, 0.682353, 0.682353, 1)
+emission_energy_multiplier = 11.06
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wortb"]
+material = SubResource("StandardMaterial3D_f8fub")
+top_radius = 0.12
+bottom_radius = 0.12
+height = 5.9
+
+[node name="lamp" type="Node3D"]
+script = ExtResource("1_0lnem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_u5lxy")
+mesh = ExtResource("1_5fu81")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.271843, 0)
+mesh = SubResource("CylinderMesh_wortb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_energy = 3.377
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 15.645
+spot_angle = 79.53

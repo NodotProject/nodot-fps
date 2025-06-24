@@ -1,1 +1,0 @@
-extends RigidBreakable3D

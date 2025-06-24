@@ -1,7 +1,7 @@
 @tool
 @icon("../icons/signal.svg")
 ## Connects signals to methods
-class_name SignalConnector extends Nodot
+class_name SignalConnector extends Node
 
 var is_editor: bool = Engine.is_editor_hint()
 
@@ -26,12 +26,10 @@ var is_editor: bool = Engine.is_editor_hint()
 ## Arguments to unbind from signal
 @export var method_unbind_count: int = 0
 
-
-## The name of the signal
 var trigger_signal: String = ""
-## The name of the target node method to execute
 var target_method: String = ""
 
+## Called when the node enters the scene tree
 func _ready():
 	notify_property_list_changed()
 	
@@ -50,8 +48,9 @@ func _ready():
 	if trigger_node.is_connected(trigger_signal, callback): return
 	trigger_node.connect(trigger_signal, callback)
 
+## Generates the property list for the inspector
 func _get_property_list() -> Array[Dictionary]:
-	var property_list: Array[Dictionary] = [{
+	var property_list: Array[Dictionary] = [ {
 		name = "Trigger",
 		type = TYPE_NIL,
 		usage = PROPERTY_USAGE_SUBGROUP
@@ -83,7 +82,7 @@ func _get_property_list() -> Array[Dictionary]:
 		methods.sort()
 		method_list = ",".join(methods)
 			
-		property_list.append_array([{
+		property_list.append_array([ {
 			name = "Target",
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_SUBGROUP

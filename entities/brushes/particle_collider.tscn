@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2d447609fd2c84ab6fdeccdc68a964d25f46b34ffcbc068aedaf1ed9185991e3
-size 238
+[gd_scene load_steps=2 format=3 uid="uid://bmom8s1b8wijn"]
+
+[ext_resource type="Script" uid="uid://x4b1ni4d03bl" path="res://entities/brushes/particle_collider.gd" id="1_rew7w"]
+
+[node name="particle_collider" type="StaticBody3D"]
+script = ExtResource("1_rew7w")

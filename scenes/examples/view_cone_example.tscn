@@ -1,3 +1,102 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1d2aa272f9c0d97f0e083770eee98cc45b5c3a10a90394faa7d72ce326119a52
-size 4428
+[gd_scene load_steps=12 format=3 uid="uid://cv4a6wmlumihv"]
+
+[ext_resource type="Script" uid="uid://dv70snww85yqc" path="res://addons/nodot/interaction/StaticInteractBody3D.gd" id="1_pg4kt"]
+[ext_resource type="Script" uid="uid://c5fu75lbvn2ug" path="res://addons/nodot/signaling/SignalConnector.gd" id="2_ptah5"]
+[ext_resource type="PackedScene" uid="uid://dopwatsfgwpt3" path="res://models/Cannon_1.fbx" id="3_psbiw"]
+[ext_resource type="Script" uid="uid://6c60ncrxrirx" path="res://addons/nodot/detection/ViewCone3D.gd" id="4_gp7w6"]
+[ext_resource type="Script" uid="uid://dvrgykom70lmy" path="res://addons/nodot/weapons/ProjectileEmitter3D.gd" id="5_iw410"]
+[ext_resource type="Script" uid="uid://dggcuh48ubqua" path="res://addons/nodot/weapons/Projectile3D.gd" id="6_jwajo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_33864"]
+size = Vector3(0.225, 1.7, 0.365)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vpg6o"]
+points = PackedVector3Array(-0.125992, -0.863323, -0.195992, 0.116865, 0.863323, 0.20877, -0.125992, 0.863323, 0.20877, 0.116865, -0.863323, 0.20877, 0.10877, 0.805768, -0.1825, -0.125992, 0.863323, -0.195992, -0.125992, -0.863323, 0.20877, 0.10877, -0.805768, -0.1825)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cp8b"]
+emission_enabled = true
+emission = Color(0.290196, 0.439216, 0.792157, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4iaeq"]
+material = SubResource("StandardMaterial3D_6cp8b")
+radius = 0.22
+height = 0.443
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_opprn"]
+radius = 0.223
+
+[node name="ViewConeExample" type="Node3D"]
+
+[node name="StaticInteractBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.941431, 0.702957, -3.10977)
+script = ExtResource("1_pg4kt")
+label_text = "Fire!"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticInteractBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432383, 0, 0)
+mesh = SubResource("BoxMesh_33864")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticInteractBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432383, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vpg6o")
+
+[node name="ButtonTriggerSignalConnector" type="Node" parent="StaticInteractBody3D" node_paths=PackedStringArray("trigger_node", "target_node")]
+script = ExtResource("2_ptah5")
+trigger_node = NodePath("..")
+target_node = NodePath("../../ProjectileEmitter3D")
+trigger_signal = "interacted"
+target_method = "action"
+
+[node name="Cannon_1" parent="." instance=ExtResource("3_psbiw")]
+transform = Transform3D(0.0621111, 0, -0.998069, 0, 1, 0, 0.998069, 0, 0.0621111, 0, 0, 0)
+
+[node name="ViewCone3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.0290473, -0.384053, 0.922854, 0.0435207, 0.922854, 0.382683, -0.99863, 0.0290473, 0.0435207, -0.541962, 1.45823, 0)
+light_energy = 8.04
+spot_range = 50.0
+spot_angle = 30.0
+script = ExtResource("4_gp7w6")
+collision_layer = 2
+
+[node name="ProjectileEmitter3D" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.02135, 1.4456, 0)
+script = ExtResource("5_iw410")
+accuracy = 1.0
+
+[node name="Projectile3D" type="RigidBody3D" parent="ProjectileEmitter3D"]
+script = ExtResource("6_jwajo")
+speed = 2000.0
+self_propelling = false
+lifespan = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ProjectileEmitter3D/Projectile3D"]
+mesh = SubResource("SphereMesh_4iaeq")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileEmitter3D/Projectile3D"]
+shape = SubResource("SphereShape3D_opprn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Fire" type="Node" parent="." node_paths=PackedStringArray("trigger_node", "target_node")]
+script = ExtResource("2_ptah5")
+trigger_node = NodePath("../Timer")
+target_node = NodePath("../ProjectileEmitter3D")
+trigger_signal = "timeout"
+target_method = "action"
+
+[node name="StartFiring" type="Node" parent="." node_paths=PackedStringArray("trigger_node", "target_node")]
+script = ExtResource("2_ptah5")
+trigger_node = NodePath("../ViewCone3D")
+target_node = NodePath("../Timer")
+method_unbind_count = 1
+trigger_signal = "body_detected"
+target_method = "start"
+
+[node name="StopFiring" type="Node" parent="." node_paths=PackedStringArray("trigger_node", "target_node")]
+script = ExtResource("2_ptah5")
+trigger_node = NodePath("../ViewCone3D")
+target_node = NodePath("../Timer")
+method_unbind_count = 1
+trigger_signal = "body_lost"
+target_method = "stop"

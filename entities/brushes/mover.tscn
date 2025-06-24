@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e7c828f1ecfadd1bfdc5ddbff119c0cda441c1f256b893ce33d0db9ebaeeefec
-size 491
+[gd_scene load_steps=3 format=3 uid="uid://cfq0ps8eivosv"]
+
+[ext_resource type="Script" uid="uid://70733e5b8sib" path="res://addons/nodot/physics/Mover3D.gd" id="1_agh77"]
+[ext_resource type="Script" uid="uid://dhayvo2rnmmmb" path="res://entities/brushes/mover.gd" id="1_aoi3w"]
+
+[node name="mover" type="StaticBody3D"]
+script = ExtResource("1_aoi3w")
+
+[node name="Mover3D" type="Node3D" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("1_agh77")
+target_node = NodePath("..")
+relative_destination_position = true

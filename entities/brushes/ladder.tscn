@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:03679dc4e5461307d222d468a09762d00489ad780a0e4d2612de11a6a93f88f4
-size 209
+[gd_scene load_steps=2 format=3 uid="uid://1afvh85miaw0"]
+
+[ext_resource type="Script" uid="uid://c5u0ac7gru28u" path="res://entities/brushes/ladder.gd" id="1_eaqrm"]
+
+[node name="ladder" type="Area3D"]
+script = ExtResource("1_eaqrm")

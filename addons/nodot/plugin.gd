@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-@export var version = 0.1
+@export var version = 0.2
 
 func _init():
 	var is_editor: bool = Engine.is_editor_hint()
@@ -15,4 +15,3 @@ func _init():
 		add_autoload_singleton("CollectableManager", "res://addons/nodot/autoload/CollectableManager.gd")
 		add_autoload_singleton("InputManager", "res://addons/nodot/autoload/InputManager.gd")
 		add_autoload_singleton("NetworkManager", "res://addons/nodot/autoload/NetworkManager.gd")
-		add_autoload_singleton("DebugManager", "res://addons/nodot/autoload/DebugManager.gd")

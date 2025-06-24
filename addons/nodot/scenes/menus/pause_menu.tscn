@@ -1,3 +1,147 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3a68815c785e2c5c0f8b619d097f0e544f0411eb82b0516df232249a87c8ae87
-size 4876
+[gd_scene load_steps=11 format=3 uid="uid://clvaldaec2uum"]
+
+[ext_resource type="Script" uid="uid://bcbxhmjoythj1" path="res://addons/nodot/menus/MenuContainer.gd" id="1_jfhkd"]
+[ext_resource type="Script" uid="uid://d0xxbusf24atk" path="res://addons/nodot/global/Pause.gd" id="2_m0bhf"]
+[ext_resource type="Script" uid="uid://qva3d4dek0pp" path="res://addons/nodot/signaling/InputActionConnector.gd" id="3_ubt1a"]
+[ext_resource type="Script" uid="uid://dx8ygrcaflqan" path="res://addons/nodot/utility/WindowSizeConnector.gd" id="4_8t53l"]
+
+[sub_resource type="GDScript" id="GDScript_1o2ip"]
+resource_name = "pause_menu_control"
+script/source = "extends Node
+
+@onready var menu_manager: MenuManager = get_parent().get_parent()
+
+var previous_mouse_mode := Input.MOUSE_MODE_VISIBLE
+
+func _ready():
+	%PauseNode.connect(\"pause_changed\", pause_changed)
+	
+func pause_changed(paused: bool):
+	if paused:
+		menu_manager.change_to(\"PauseMenuContainer\")
+		previous_mouse_mode = Input.mouse_mode
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		menu_manager.hide_all()
+		Input.mouse_mode = previous_mouse_mode
+"
+
+[sub_resource type="GDScript" id="GDScript_4s27g"]
+resource_name = "resumebtn"
+script/source = "extends Button
+
+func _on_pressed():
+	%PauseNode.toggle()
+"
+
+[sub_resource type="GDScript" id="GDScript_5jsh3"]
+resource_name = "savebtn"
+script/source = "extends Button
+
+func _on_pressed():
+	SaveManager.save(0)
+	%PauseNode.toggle()
+"
+
+[sub_resource type="GDScript" id="GDScript_3npm6"]
+resource_name = "loadbtn"
+script/source = "extends Button
+
+func _on_pressed():
+	SaveManager.load(0)
+	%PauseNode.toggle()
+"
+
+[sub_resource type="GDScript" id="GDScript_b7600"]
+resource_name = "optionsbtn"
+script/source = "extends Button
+
+@onready var menu_manager: MenuManager = %PauseMenuControl.menu_manager
+
+func _on_pressed():
+	menu_manager.change_to(\"OptionsMenuContainer\")
+"
+
+[sub_resource type="GDScript" id="GDScript_yama0"]
+resource_name = "quitbtn"
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().quit()
+"
+
+[node name="PauseMenuContainer" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_jfhkd")
+
+[node name="PauseMenuControl" type="Node" parent="."]
+unique_name_in_owner = true
+script = SubResource("GDScript_1o2ip")
+
+[node name="BackDrop" type="ColorRect" parent="."]
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.415686)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+script = SubResource("GDScript_4s27g")
+
+[node name="SaveButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+script = SubResource("GDScript_5jsh3")
+
+[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load"
+script = SubResource("GDScript_3npm6")
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+script = SubResource("GDScript_b7600")
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit to Desktop"
+script = SubResource("GDScript_yama0")
+
+[node name="PauseNode" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_m0bhf")
+
+[node name="InputActionConnector" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("3_ubt1a")
+input_action = "escape"
+target_node = NodePath("../PauseNode")
+target_method = "toggle"
+
+[node name="WindowSizeConnector" type="Node" parent="." node_paths=PackedStringArray("target_nodes")]
+script = ExtResource("4_8t53l")
+target_nodes = [NodePath("../CenterContainer"), NodePath("../BackDrop")]
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="CenterContainer/VBoxContainer/ResumeButton" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SaveButton" to="CenterContainer/VBoxContainer/SaveButton" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LoadButton" to="CenterContainer/VBoxContainer/LoadButton" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="CenterContainer/VBoxContainer/OptionsButton" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="CenterContainer/VBoxContainer/QuitButton" method="_on_pressed"]
