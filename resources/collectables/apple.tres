@@ -1,13 +1,24 @@
-[gd_resource type="Resource" script_class="Collectable" load_steps=2 format=3 uid="uid://2f4250gbaxt4"]
+[gd_resource type="Resource" script_class="Collectable" load_steps=6 format=3 uid="uid://2f4250gbaxt4"]
 
+[ext_resource type="Texture2D" uid="uid://bgqnrhc00esf4" path="res://textures/gui/Fruit.png" id="1_h04tq"]
 [ext_resource type="Script" uid="uid://dwkltttomatao" path="res://addons/nodot/utility/Collectable.gd" id="1_yp06b"]
+[ext_resource type="PackedScene" uid="uid://c8fhx1jxqok08" path="res://entities/collectables/apple.tscn" id="2_nqppq"]
+[ext_resource type="AudioStream" uid="uid://dd0eyuqbyjx3b" path="res://sfx/interact/apple.mp3" id="4_8e8ug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puo5d"]
+atlas = ExtResource("1_h04tq")
+region = Rect2(0.3, 0, 26, 26)
 
 [resource]
 script = ExtResource("1_yp06b")
-display_name = "Item"
-description = "A collectable item."
-stack_limit = 1
+icon = SubResource("AtlasTexture_puo5d")
+sfx = ExtResource("4_8e8ug")
+display_name = "Apple"
+description = "A delicious apple"
+stack_limit = 99
 mass = 0.1
 value = 0
+item_groups = Array[String]([])
+scene = ExtResource("2_nqppq")
 armor = 0.0
 metadata/_custom_type_script = "uid://dwkltttomatao"

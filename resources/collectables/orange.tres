@@ -17,5 +17,6 @@ description = "A collectable item."
 stack_limit = 99
 mass = 0.1
 value = 0
+item_groups = Array[String]([])
 armor = 0.0
 metadata/_custom_type_script = "uid://dwkltttomatao"

@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://c8fhx1jxqok08"]
+[gd_scene load_steps=12 format=4 uid="uid://c8fhx1jxqok08"]
 
 [ext_resource type="Script" uid="uid://dmpw6byf2tgam" path="res://entities/collectables/apple.gd" id="1_g2mi8"]
 [ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="2_bfc8v"]
 [ext_resource type="AudioStream" uid="uid://dd0eyuqbyjx3b" path="res://sfx/interact/apple.mp3" id="3_x4b0h"]
 [ext_resource type="Script" uid="uid://cgdcx3d7h8o0k" path="res://addons/nodot/interaction/RigidCollectable3D.gd" id="4_tt220"]
-[ext_resource type="Resource" uid="uid://2f4250gbaxt4" path="res://resources/collectables/apple.tres" id="5_qkqff"]
 [ext_resource type="Script" uid="uid://cc52dqr5jwe1p" path="res://addons/nodot/interaction/Outline3D.gd" id="6_3bfj7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq6kd"]
@@ -125,9 +124,9 @@ trigger_signal = "collected"
 [node name="RigidCollectable3D" type="RigidBody3D" parent="."]
 mass = 0.2
 script = ExtResource("4_tt220")
-collectable = ExtResource("5_qkqff")
 collectable_root_node = NodePath("..")
 free_delay = 1.0
+collectable_path = "uid://2f4250gbaxt4"
 
 [node name="Apple" type="MeshInstance3D" parent="RigidCollectable3D"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)

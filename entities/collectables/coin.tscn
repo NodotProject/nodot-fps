@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxwbg6hpyr1sd"]
+[gd_scene load_steps=11 format=3 uid="uid://bxwbg6hpyr1sd"]
 
 [ext_resource type="Script" uid="uid://wadnh1eekriy" path="res://entities/collectables/coin.gd" id="1_bnnc5"]
 [ext_resource type="Script" uid="uid://b8ws6e4qukgh" path="res://addons/nodot/signaling/LocalToGlobalSignalProxy.gd" id="2_pyxe3"]
 [ext_resource type="Script" uid="uid://cgdcx3d7h8o0k" path="res://addons/nodot/interaction/RigidCollectable3D.gd" id="3_hfr5m"]
-[ext_resource type="Resource" uid="uid://cioittoecmpem" path="res://resources/collectables/coin.tres" id="4_8tug3"]
 [ext_resource type="PackedScene" uid="uid://digdeccrha8aa" path="res://models/collectable/Coin.fbx" id="5_ot2k5"]
 [ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="6_g2li6"]
 [ext_resource type="AudioStream" uid="uid://b5dv0hn5kowbq" path="res://sfx/interact/coin_collect.wav" id="7_qyjx7"]
@@ -64,7 +63,7 @@ freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("3_hfr5m")
-collectable = ExtResource("4_8tug3")
+collectable_path = "uid://cioittoecmpem"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidCollectable3D"]
 transform = Transform3D(0.358546, 0, -0.933512, 0, 1, 0, 0.933512, 0, 0.358546, 0, 0.0912164, 0)

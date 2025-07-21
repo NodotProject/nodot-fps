@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://djws22huy3rbu"]
+[gd_scene load_steps=10 format=4 uid="uid://djws22huy3rbu"]
 
 [ext_resource type="Script" uid="uid://brygcxrs763ys" path="res://entities/collectables/orange.gd" id="1_3bdm5"]
 [ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="2_buly0"]
 [ext_resource type="AudioStream" uid="uid://ct26uwnfdhgud" path="res://sfx/interact/orange.mp3" id="3_7ovw1"]
 [ext_resource type="Script" uid="uid://cgdcx3d7h8o0k" path="res://addons/nodot/interaction/RigidCollectable3D.gd" id="4_4mvff"]
-[ext_resource type="Resource" uid="uid://b5ql3e3q0papd" path="res://resources/collectables/orange.tres" id="5_cli54"]
 [ext_resource type="Script" uid="uid://cc52dqr5jwe1p" path="res://addons/nodot/interaction/Outline3D.gd" id="6_hgglm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqi7c"]
@@ -63,9 +62,9 @@ trigger_signal = "collected"
 [node name="RigidCollectable3D" type="RigidBody3D" parent="."]
 mass = 0.2
 script = ExtResource("4_4mvff")
-collectable = ExtResource("5_cli54")
 collectable_root_node = NodePath("..")
 free_delay = 1.0
+collectable_path = "uid://b5ql3e3q0papd"
 
 [node name="Orange" type="MeshInstance3D" parent="RigidCollectable3D"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)

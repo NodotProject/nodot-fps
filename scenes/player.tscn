@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=3 uid="uid://dv6pyhevccscg"]
 
 [ext_resource type="Script" uid="uid://of4awv5btgt3" path="res://addons/nodot/character/kits/Locomotion3D/CharacterFly3D.gd" id="1_73qnd"]
-[ext_resource type="Script" uid="uid://d3qnaju80jb8g" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonCharacter.gd" id="1_xg7st"]
+[ext_resource type="Script" uid="uid://djlh1k0g778h" path="res://scenes/player.gd" id="1_t4otl"]
 [ext_resource type="Script" uid="uid://b1xnnq4u1j86f" path="res://addons/nodot/character/kits/FirstPerson/FirstPersonMouseInput.gd" id="2_fhrhx"]
 [ext_resource type="Script" uid="uid://du1eb6e7b4hbp" path="res://addons/nodot/character/kits/Locomotion3D/CharacterMove3D.gd" id="3_1xhnc"]
 [ext_resource type="Script" uid="uid://h7s4lf6nhh68" path="res://addons/nodot/interaction/Interaction3D.gd" id="3_2hkex"]
@@ -131,8 +131,9 @@ func _process(_delta):
 noise_type = 3
 frequency = 0.5
 
-[node name="FirstPersonCharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_xg7st")
+[node name="FirstPersonCharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("inventory")]
+script = ExtResource("1_t4otl")
+inventory = NodePath("CollectableInventory")
 is_current_player = true
 
 [node name="Head" type="Node3D" parent="."]

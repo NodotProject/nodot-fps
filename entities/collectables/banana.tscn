@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://churfdvcgc21p"]
+[gd_scene load_steps=10 format=4 uid="uid://churfdvcgc21p"]
 
 [ext_resource type="Script" uid="uid://cdc53kyhvhhkr" path="res://entities/collectables/banana.gd" id="1_j0p4f"]
 [ext_resource type="Script" uid="uid://cq3x3pdavl4w8" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="2_42rps"]
 [ext_resource type="AudioStream" uid="uid://bfd7ia4fj5kq3" path="res://sfx/interact/banana.mp3" id="3_lsoje"]
 [ext_resource type="Script" uid="uid://cgdcx3d7h8o0k" path="res://addons/nodot/interaction/RigidCollectable3D.gd" id="4_864lb"]
-[ext_resource type="Resource" uid="uid://b8gft56fwp53l" path="res://resources/collectables/banana.tres" id="5_cm1ek"]
 [ext_resource type="Script" uid="uid://cc52dqr5jwe1p" path="res://addons/nodot/interaction/Outline3D.gd" id="6_2gttc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkav4"]
@@ -62,9 +61,9 @@ trigger_signal = "collected"
 [node name="RigidCollectable3D" type="RigidBody3D" parent="."]
 mass = 0.2
 script = ExtResource("4_864lb")
-collectable = ExtResource("5_cm1ek")
 collectable_root_node = NodePath("..")
 free_delay = 1.0
+collectable_path = "uid://b8gft56fwp53l"
 
 [node name="Banana" type="MeshInstance3D" parent="RigidCollectable3D"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)

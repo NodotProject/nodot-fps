@@ -4,18 +4,19 @@
 [ext_resource type="Script" uid="uid://dwkltttomatao" path="res://addons/nodot/utility/Collectable.gd" id="2_gh4ie"]
 [ext_resource type="AudioStream" uid="uid://bfd7ia4fj5kq3" path="res://sfx/interact/banana.mp3" id="3_e13su"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puo5d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e13su"]
 atlas = ExtResource("1_e13su")
-region = Rect2(48, 0, 26, 26)
+region = Rect2(48.45, 0, 26, 26)
 
 [resource]
 script = ExtResource("2_gh4ie")
-icon = SubResource("AtlasTexture_puo5d")
+icon = SubResource("AtlasTexture_e13su")
 sfx = ExtResource("3_e13su")
 display_name = "Banana"
 description = "A collectable item."
 stack_limit = 99
 mass = 0.1
 value = 0
+item_groups = Array[String]([])
 armor = 0.0
 metadata/_custom_type_script = "uid://dwkltttomatao"

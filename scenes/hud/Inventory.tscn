@@ -14,7 +14,7 @@ func _ready():
 	inventory.collectable_updated.connect(_update_inventory.unbind(3))
 		
 func _update_inventory():
-	var stacks = inventory.collectable_stacks
+	var stacks = inventory._collectable_stacks
 	for i in stacks.size():
 		var stack = stacks[i]
 		_update_slot(i, stack[0], stack[1])

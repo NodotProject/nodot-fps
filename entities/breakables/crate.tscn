@@ -289,12 +289,10 @@ target = NodePath("../Smoke3D")
 autostart = true
 wait_time = 5.0
 
-[node name="BreakSFX" type="AudioStreamPlayer3D" parent="ReplaceWith" node_paths=PackedStringArray("trigger_node")]
+[node name="BreakSFX" type="AudioStreamPlayer3D" parent="ReplaceWith"]
 volume_db = -18.564
 script = ExtResource("8_jeyfv")
 sfx = Array[AudioStream]([ExtResource("5_sl6of")])
-trigger_node = NodePath("")
-trigger_signal = "broken"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_n0blm")
@@ -313,7 +311,7 @@ health_node = NodePath("../Health")
 [node name="Burnable3D" type="Node" parent="." node_paths=PackedStringArray("target", "health_node", "fire3d_node")]
 unique_name_in_owner = true
 script = ExtResource("6_bi88o")
-target = NodePath("")
+target = NodePath("..")
 time_to_spread = 2.0
 time_to_full_effect = 10.0
 time_to_burnout = 20.0
