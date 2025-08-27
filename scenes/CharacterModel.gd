@@ -70,7 +70,7 @@ func _on_camera_change(_old_camera: Camera3D, new_camera: Camera3D):
 
 func toggle_model(show_model: bool):
 	var i = 0
-	for child in Nodot.get_children_of_type($combined/RootNode/Skeleton3D, MeshInstance3D):
+	for child in Nodot.get_children_of_type($combined/Skeleton3D, MeshInstance3D):
 		if i < 6:
 			if show_model:
 				child.transparency = 0.0

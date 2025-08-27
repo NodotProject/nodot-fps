@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Collectable" load_steps=5 format=3 uid="uid://b5ql3e3q0papd"]
+[gd_resource type="Resource" script_class="Collectable" load_steps=4 format=3 uid="uid://b5ql3e3q0papd"]
 
 [ext_resource type="Texture2D" uid="uid://bgqnrhc00esf4" path="res://textures/gui/Fruit.png" id="1_rau8t"]
 [ext_resource type="Script" uid="uid://dwkltttomatao" path="res://addons/nodot/utility/Collectable.gd" id="2_me112"]
-[ext_resource type="AudioStream" uid="uid://ct26uwnfdhgud" path="res://sfx/interact/orange.mp3" id="3_rau8t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puo5d"]
 atlas = ExtResource("1_rau8t")
@@ -11,12 +10,6 @@ region = Rect2(25, 0, 26, 26)
 [resource]
 script = ExtResource("2_me112")
 icon = SubResource("AtlasTexture_puo5d")
-sfx = ExtResource("3_rau8t")
 display_name = "Orange"
-description = "A collectable item."
 stack_limit = 99
-mass = 0.1
-value = 0
-item_groups = Array[String]([])
-armor = 0.0
 metadata/_custom_type_script = "uid://dwkltttomatao"

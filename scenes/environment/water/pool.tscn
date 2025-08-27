@@ -67,5 +67,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000339985, 0.336845, 0.0002
 script = ExtResource("4_4fcn4")
 sfx = Array[AudioStream]([ExtResource("5_4h4hr"), ExtResource("6_126fc"), ExtResource("7_tgjv2")])
 trigger_node = NodePath("..")
-trigger_signal = "body_entered"
 unbind_count = 1
+trigger_signal = "body_entered"

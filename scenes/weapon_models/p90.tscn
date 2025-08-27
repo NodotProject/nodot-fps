@@ -214,5 +214,5 @@ skin = SubResource("Skin_kflqc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7aq28")
+&"": SubResource("AnimationLibrary_7aq28")
 }

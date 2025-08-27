@@ -2507,7 +2507,7 @@ max_contacts_reported = 1
 [node name="WoodenTorch" parent="FireExample/RigidBody3D" instance=ExtResource("37_ox87x")]
 
 [node name="Fire3D" type="Node3D" parent="FireExample/RigidBody3D/WoodenTorch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82772, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8277206, 0)
 script = ExtResource("38_pnh16")
 effect_scale = 0.877
 smoke_color = Color(0.827451, 0.827451, 0.827451, 0.235294)
@@ -2526,7 +2526,7 @@ permanent = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1201, 19, -11.4903)
 
 [node name="Fire3D" type="Node3D" parent="FireExample/Bonfire"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389265, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38926506, 0)
 script = ExtResource("38_pnh16")
 emission_shape = SubResource("SphereShape3D_otcli")
 effect_scale = 1.129
@@ -2545,7 +2545,7 @@ effect_scale = 1.451
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4686, 19, -9.61145)
 
 [node name="Fire3D" type="Node3D" parent="FireExample/WoodLog"]
-transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0.389856, 0)
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0.38985634, 0)
 script = ExtResource("38_pnh16")
 emission_shape = SubResource("BoxShape3D_erd80")
 

@@ -354,7 +354,7 @@ bind/4/pose = Transform3D(0.327319, 1.68837e-07, 0.944914, 0.944914, 5.85519e-07
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../RootNode")
 libraries = {
-"": SubResource("AnimationLibrary_du2h4")
+&"": SubResource("AnimationLibrary_du2h4")
 }
 
 [node name="RootNode" type="Node3D" parent="."]

@@ -273,5 +273,5 @@ skin = SubResource("Skin_js5w0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6yrwk")
+&"": SubResource("AnimationLibrary_6yrwk")
 }

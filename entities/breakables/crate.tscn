@@ -23,9 +23,9 @@ colors = PackedColorArray(0.77084, 0.770839, 0.770839, 1, 1, 1, 1, 1)
 frequency = 0.0145
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ev6an"]
-seamless = true
-color_ramp = SubResource("Gradient_q167b")
 noise = SubResource("FastNoiseLite_ukx4r")
+color_ramp = SubResource("Gradient_q167b")
+seamless = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kbcj"]
 resource_local_to_scene = true
@@ -83,9 +83,9 @@ colors = PackedColorArray(0.77084, 0.770839, 0.770839, 1, 1, 1, 1, 1)
 frequency = 0.0145
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dstkx"]
-seamless = true
-color_ramp = SubResource("Gradient_gxb3s")
 noise = SubResource("FastNoiseLite_jxwje")
+color_ramp = SubResource("Gradient_gxb3s")
+seamless = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do5bb"]
 resource_local_to_scene = true
@@ -144,9 +144,9 @@ colors = PackedColorArray(0.77084, 0.770839, 0.770839, 1, 1, 1, 1, 1)
 frequency = 0.0145
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mjnmp"]
-seamless = true
-color_ramp = SubResource("Gradient_xnyku")
 noise = SubResource("FastNoiseLite_ak7h4")
+color_ramp = SubResource("Gradient_xnyku")
+seamless = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2wax"]
 resource_local_to_scene = true
